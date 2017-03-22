@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MapReduce and RDBMS</title>
+  <meta charset="utf-8">
+  <meta name="description" content="MapReduce and RDBMS">
+  <meta name="author" content="Ahsan Ijaz">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>MapReduce and RDBMS</h1>
+    <h2></h2>
+    <p>Ahsan Ijaz<br/>Ebryx</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Distributed File system</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>For very large files (TBs, PBs)</li>
+<li>Each file is partioned into <color style="color:blue;"> chunks (64MB) </color></li>
+<li>Each chunk is replicated several times ($ &gt; 3 $) </li>
+<li>Implementations - <color style="color:blue;"> Hadoop file system (HDFS- open source), Google distributed File system (GFS- proprietary) </color> </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Implementation</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>One master node</li>
+<li>Master partitions file into <color style="color:blue;"> M splits </color> by key</li>
+<li>Master assigns <color style="color:green;"> workers </color> to the <color style="color:blue;"> M map tasks </color> and keep track of their progress.</li>
+<li>Workers write output into local disks with <color style="color:blue;"> R regions. </color></li>
+<li>Master assigns workers to <color style="color:blue;"> R reduced tasks. </color></li>
+<li>Reduce workers read regions from the map worker&#39;s local disk.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>MapReduce Complete cycle</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img class="center" src= mr.png height=450></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Large-scale Data Processing</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Many tasks process big data.</li>
+<li>Want to use hundreds or thousands of CPUs
+
+<ul>
+<li>Parallel databases exist - Expensive! Difficult to set up.</li>
+</ul></li>
+<li>MapReduce is a lightweight framework, providing:
+
+<ul>
+<li>Automatic parallelization and distribution</li>
+<li>Fault-tolerance</li>
+<li>I/O scheduling</li>
+<li>Status and monitoring</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Design space for Big data</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img class="center" src= dspace.png height=450></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Parallel query processing</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Distributed Query (Microsoft SQL server)
+
+<ul>
+<li>Rewrite the query as a union of subqueries</li>
+<li>Workers communicate through standard interfaces </li>
+<li>Same as MR, BUT all results are sent back to head node</li>
+</ul></li>
+<li>Parallel Query
+
+<ul>
+<li>Each operator is implemented with a parallel query</li>
+<li>Same as MR</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Distributed Query</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">CREATE VIEW SALES AS
+SELECT * from janSales
+UNION ALL
+SELECT * from febSales
+UNION ALL
+SELECT * from marchSales
+UNION ALL
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Parallel Query</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img class="center" src= parallelQuery.png height=450></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>TeraData Example</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">SELECT *
+    FROM Orders o, Lines i
+WHERE o.item = i.item
+AND o.date = today()
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>TeraData Example</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img class="center" src= tera1.png height=450></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>TeraData Example</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img class="center" src= tera2.png height=450></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>MapReduce Extensions</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Pig 
+
+<ul>
+<li>Relational algebra over Hadoop</li>
+</ul></li>
+<li>Hive
+
+<ul>
+<li>SQL over hadoop</li>
+</ul></li>
+<li>Impala
+
+<ul>
+<li>SQL over HDFS; builds on HIVE code</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>MapReduce vs RDBMS</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>RDBMS</h3>
+
+<ul>
+<li>Declarative query language (Pig, HIVE)</li>
+<li>Schemas (HIVE)</li>
+<li>Logical data independence</li>
+<li>Indexing (Hbase)</li>
+<li>Algebraic optimization (Pig, HIVE)</li>
+<li>Caching Views</li>
+<li>ACID/Transactions</li>
+</ul>
+
+<h3>MapReduce</h3>
+
+<ul>
+<li>High Scalability ( \(>\) 1000 Nodes)</li>
+<li>Fault tolerance</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Hadoop vs. RDBMS</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Comparison of 3 systems
+
+<ul>
+<li>Hadoop</li>
+<li>Vertica (column oriented)</li>
+<li>Oracle  (row oriented)</li>
+</ul></li>
+<li>Qualitative
+
+<ul>
+<li>Programming model, ease of setup, features</li>
+</ul></li>
+<li>Quantitative
+
+<ul>
+<li>Data loading, different types of queries</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Grep Task</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Find 3-byte pattern in 100 byte record
+
+<ul>
+<li>1 match per 10,000 records</li>
+</ul></li>
+<li>Data set:
+
+<ul>
+<li>10 byte unique key, 90 byte value</li>
+<li>1TB spread across 25, 50 or 100 nodes</li>
+<li>10 billion records</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Grep task loading results</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img class="center" src= saveHadoop.png height=450></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Grep Task</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img class="center" src= grepExec.png height=450></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Selection and filter task</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img class="center" src= selectFilter.png height=450></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>Aggregate tasks</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img class="center" src= aggregate.png height=450></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Distributed File system'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Implementation'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='MapReduce Complete cycle'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Large-scale Data Processing'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Design space for Big data'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Parallel query processing'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Distributed Query'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Parallel Query'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='TeraData Example'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='TeraData Example'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='TeraData Example'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='MapReduce Extensions'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='MapReduce vs RDBMS'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Hadoop vs. RDBMS'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Grep Task'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Grep task loading results'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Grep Task'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Selection and filter task'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Aggregate tasks'>
+         19
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
