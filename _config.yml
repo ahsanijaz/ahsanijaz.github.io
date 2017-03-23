@@ -35,12 +35,9 @@ navbar-links:
     - Big data paradigm: "http://ahsanijaz.github.io/workshops/BigData/BigData-00/bigData1.html"
     - MapReduce and RDBMS: "http://ahsanijaz.github.io/workshops/BigData/NoSQL_selection-01/noSQLselection.html"
     - No Sql selection: "http://ahsanijaz.github.io/workshops/BigData/noSQL_selection-02/noSQL_overview.html"
-    - Useful resource: "http://ahsanijaz.github.io/_site/usefulResources-00/usefulResources/usefulResources.html"
-
-
     
   Resources:
-    - Data Science: "http://ahsanijaz.github.io/_site/usefulResources-00/usefulResources/usefulResources.html"
+    - Data Science: "http://ahsanijaz.github.io/_site/usefulResources-00/usefulResources/index.html"
     - Learn markdown: "http://www.markdowntutorial.com/"
 #    - GitHub Pages: "https://pages.github.com/"
 #  Author's home: "http://deanattali.com"
