@@ -2,7 +2,7 @@
 title       : Regression Module 1
 subtitle    : 
 author      : Ahsan Ijaz
-job         : Ebryx
+job         : 
 # logo        : ebryx-logo.png
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
@@ -78,6 +78,7 @@ Adding basis to regression.
 ## Model complexity
 
 <img class="center" src= modelComplex.png height=450>
+
 
 
 

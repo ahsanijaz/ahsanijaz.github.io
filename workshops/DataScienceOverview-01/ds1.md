@@ -2,7 +2,7 @@
 title       : Introduction to Data Science
 subtitle    : 
 author      : Ahsan Ijaz
-job         : Ebryx
+job         : 
 # logo        : ebryx-logo.png
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
@@ -15,11 +15,6 @@ mode        : selfcontained # {standalone, draft}
 ---
 
 
-<style>
-em {
-  font-style: italic
-}
-</style>
 
 ## Topics
 
@@ -367,7 +362,7 @@ A case study approach to machine learning and data science.
 ---
 
 
-## Regression
+## Regression techniques
 
 - Linear Regression
 - Multiple linear Regression
@@ -378,7 +373,7 @@ A case study approach to machine learning and data science.
 
 ---
 
-## Classification problems
+## Classification methods
 
 - Linear Classifier
 - Logistic Regression
@@ -402,6 +397,7 @@ A case study approach to machine learning and data science.
 
 - Nearest Neighbor
 - K-means clustering
+- DB-scan
 - Hierarchical Clustering
 - Latent Dirichlet allocation
 

@@ -2,7 +2,7 @@
 title       : Clustering techniques
 subtitle    : 
 author      : Ahsan Ijaz
-job         : Ebryx
+job         : 
 # logo        : /home/ahsan/Personal/Workshop Machine learning/DataScienceWorkshops/usefulResources-00/ebryx-logo.png
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
