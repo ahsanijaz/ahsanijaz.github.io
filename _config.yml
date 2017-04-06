@@ -35,7 +35,7 @@ navbar-links:
     - Big data paradigm: "http://ahsanijaz.github.io/workshops/BigData/BigData-00/bigData1.html"
     - MapReduce and RDBMS: "http://ahsanijaz.github.io/workshops/BigData/NoSQL_selection-01/noSQLselection.html"
     - No Sql selection: "http://ahsanijaz.github.io/workshops/BigData/noSQL_selection-02/noSQL_overview.html"
-    
+
   Resources:
     - Data Science: "http://ahsanijaz.github.io/usefulResources-00/index.html"
     - Learn markdown: "http://www.markdowntutorial.com/"

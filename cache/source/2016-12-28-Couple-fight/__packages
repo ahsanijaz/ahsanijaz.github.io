@@ -1,0 +1,13 @@
+base
+plyr
+dplyr
+lattice
+reshape2
+ggplot2
+caret
+mlbench
+lars
+Matrix
+foreach
+glmnet
+randomForest

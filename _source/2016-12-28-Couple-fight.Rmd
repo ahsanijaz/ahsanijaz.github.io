@@ -1,0 +1,155 @@
+---
+title: "Couples Data Exploration"
+author: "Ahsan Ijaz"
+date: "28/2/2017"
+output: html_document
+---
+This is an inital attempt of understanding data. I'd explain the methods selected, stuff going through my mind, and questions raised as I code and explore. 
+
+```{r,echo=FALSE,message=FALSE}
+library(plyr)
+library(ipred)
+library(dplyr) 
+library(lattice) 
+library(reshape2)
+library(caret)
+library(mlbench)
+library(ggplot2)
+library(lars)
+library(glmnet)
+library(randomForest)
+```
+
+
+```{r,echo=FALSE,message=FALSE}
+set.seed(1021)
+joystickHCforJCUpdated <- read.csv2("~/Personal/Data Sets//Couple_project_dohuan//Joystick_HC_updated_forJC.csv",sep = ",")
+joystickHCforJCOld <- read.csv2("~/Personal/Data Sets//Couple_project_dohuan//Joystick_WC_forJC.csv",sep=",")
+oldDataGlobal <- read.csv2("~/Personal/Data Sets/Couple_project_dohuan/old data/Global_for JC.csv",sep=",")
+oldDatJoystick <- read.csv2("~/Personal/Data Sets/Couple_project_dohuan/old data/Joystic_HC_for JC.csv",sep=",")
+numberCouple <- gsub(pattern = "FI",replacement = "",oldDataGlobal$Partnum)
+coupleDyadLocation <- c()
+for(i in 1: length(numberCouple)){
+  coupleDyadLocation <- append(coupleDyadLocation,list(grep(pattern = numberCouple[i],names(oldDatJoystick))))
+}
+```
+
+Reading some of the content shared, I assume that the study is intended to provide interpretable results and variable importance in predicting Zdyad_msi_globdist. This follows that instead of looking for the best model, I'd initially look into finding the most interpretable interactions using the provided features. Starting off, let's look at the story told by the Global data file.
+
+## Global Data (generalized findings):
+
+
+### Handling missing values
+
+The Global dataframe contains ` r sum(is.na(oldDataGlobal)) ` missing values. Please note that the missing values belong to columns mom_ipde_total and dad_ipde_total. This would limit many analysis techniques we might want to explore. So, a good idea would be of imputing these values. Here, I use bagged tree imputation to estimate these values. Imputation via bagging fits a bagged tree model for each predictor (as a function of all the others). At this point, the partNum variable has been removed. 
+
+```{r,echo=FALSE}
+oldDataGlobal <- oldDataGlobal[,!(names(oldDataGlobal) %in% c("Partnum"))]
+for(i in 1:ncol(oldDataGlobal)){
+  oldDataGlobal[,i]<- as.numeric(as.character(oldDataGlobal[,i]))
+}
+preProcValues <- preProcess(oldDataGlobal, method = "bagImpute")
+imputedOldDataGlobal <- predict(preProcValues, oldDataGlobal)
+```
+
+### Eliminating Near Zero Variance predictors
+
+
+With imputation done, next step is looking at near zero variance variables. Please note that from this point onward, I've changed all the columns in provided data frame as numeric. I thought identifying it as necessary since some variable make good bins like the predicted variable Zdyad_msi_globdist has 51 unique values for the 140 observations. 
+
+```{r,echo=TRUE}
+nearZeroVar(imputedOldDataGlobal)
+```
+None of the predictor variables is found to have near zero variance, so we cannot eliminate any at this stage. Next step, is looking into the correlation structure of the provided data. 
+
+### Studying Correlation Structure
+
+In this section, I'd like to look at how the predictor variables are interacting with each other. I've put up a threshold of 0.75 correlation to point out as variables indicating redundancy. 
+```{r,echo=FALSE}
+corStructure <- cor(imputedOldDataGlobal[,2:ncol(imputedOldDataGlobal)],use = "pairwise.complete.obs")
+highlyCorrelated <- findCorrelation(corStructure, cutoff=0.75,verbose = FALSE)
+highlyCorrelated <- highlyCorrelated + 1
+print(colnames(imputedOldDataGlobal)[highlyCorrelated])
+```
+
+As the output of the previous code chunk suggests, ` r length(highlyCorrelated) ` variables are highly correlated with previously occuring variables in the data frame. The names of these variables suggest that they are derived from other variables. If so, these should be removed from analysis. Otherwise, the model fits will not represent the underlying phenomena. At the same time, it might be desirable to have equal representation of the correlated variables if they explain something different. Say, let X1 = X2 and underlying model be Y = X1 + X2. A representation model Y = 1X1 + 1X2 is desirable instead of Y = 2X1 or Y = 2X2.  *This is where I'd need to consult the person generating data source to know if the variables should be kept or removed. Since, I'm agnostic to what individual variable conveys this may lead to misleading hypothesis. As seen from column names, I'm removing mom_ipde_total and Zdad_ipde_total, maybe consistent variables should be removed. However, from an analysis point of view, this does not matter. This is where someone who knows the data should provide input.*
+For the time being, I'd remove these variables from the analysis and continue development of the global model. 
+```{r,echo=FALSE}
+imputedOldDataGlobalUnCor <- imputedOldDataGlobal[,-highlyCorrelated]
+```
+
+### Linear model testing:
+
+Linear model is a good starting point to discuss variable importance especially if the predictor variables are independent. To follow, we will first center and scale the predictor variables to get the coefficients at the same scale. We'd look at the corresponding coefficients of variables to see which ones seems important.
+```{r,echo=FALSE}
+lmFit <- train(Zdyad_msi_globdist ~ .,
+ data = imputedOldDataGlobalUnCor,
+ method = "lm",
+ ## Center and scale the predictors for the training
+ ## set and all future samples.
+ preProc = c("center", "scale"))
+print(summary(lmFit$finalModel))
+plot(lmFit$finalModel)
+```
+
+__In general, it can be seen that the predictor dad_ipde_total and HC_WF_M are of prime importance with p-values less than 0.0001__ As per the linear model, we get the recommendation of keeping these variables. Let's delve a bit deeper and look at regularized regression for variable selection.
+
+### Lasso regularization:
+
+L1 regularization adds a penalty term to the loss function: $\alpha{}\sum_{i=1}^{n}∣w_{i}∣$ (L1-norm). Since each non-zero coefficient adds to the penalty, the features with smaller coefficients are forced towards zero. Thus L1 regularization produces a parsimonious solution, inherently performing feature selection. Here, the parameter lambda is selected using ten-fold cross validation. Let's look at the results of this fit. The following plot is created without removing correlated variables. Hence, all 34 predictors are included for prediction. The intuition being, that the lasso selection tends to pick one of the correlated terms while disregarding the other one. __Please note that this is again something that the people generating data should suggest :).__  In the plot, the top row corresponds to number of predictor variables for thresholding on a given lambda value. The two dotted vertical lines correspond to the value of $\lambda$ that minimizes mean cross validated error and the most regularized model such that error is within one standard error of the minimum. 
+```{r,echo=FALSE}
+cvfit <-cv.glmnet(x = as.matrix(imputedOldDataGlobal[,-1]),y = as.matrix(imputedOldDataGlobal$Zdyad_msi_globdist),alpha=1)
+plot(cvfit)
+```
+
+As can be seen, the selected lambda value is ` r cvfit$lambda.min ` which minimizes the mean square error over cross validation corresponding to approximately nine predictor variables. These predictor variables with corresponding coefficients are given as follows:
+```{r,echo=FALSE}
+coef(cvfit,s="lambda.min")
+```
+Furthermore, value of each individual coefficient against l1 norm of the whole coefficient value is provided in the following path. The top axis label here corresponds to non-zero coefficient values at a particular lambda value.
+```{r,echo=FALSE}
+plot(cvfit$glmnet.fit)
+```
+
+### Ridge Regression:
+Let's look at the story that ridge regression tells us about the data. Here, the ridge penalty tends to shrink the coefficients of correlated predictors towards each other. The same plots and coefficent values from previous section are used here so I'd skip the explanation and just display the results.
+```{r,echo=FALSE}
+cvfitR <-cv.glmnet(x = as.matrix(imputedOldDataGlobal[,-1]),y = as.matrix(imputedOldDataGlobal$Zdyad_msi_globdist),alpha=0)
+plot(cvfitR)
+```
+
+As expected, all the variables are selected using ridge regression and we have no zero (close to zero) value predictor coefficients. The lamda value selected using cross-validation ` r cvfit$lambda.min `. The selected coefficients are given as follows:
+```{r,echo=FALSE}
+coef(cvfitR,s="lambda.min")
+plot(cvfitR$glmnet.fit)
+```
+
+### Random Forest feature selection:
+When training a tree, it can be computed how much each feature decreases the weighted impurity in a tree. For a forest, the impurity decrease of each feature can be averaged and the features can be ranked according to this measure. In particular, this provides us with a measure telling how much residual squared error(RSS) is increased by removing one of the features. If more RSS is increased, the feature is important. 
+Another popular feature selection method using random forest is to permute the values of each feature and measure how much the permutation decreases the accuracy of the model. For unimportant variables, the permutation has little to no effect on model accuracy, while permuting important variables significantly decreases it. Using a random forest with 2000 trees and 11 variables tried at each split, with all 34 predictor variables included, this is what we get:
+
+```{r,echo=FALSE,fig.height= 7.5}
+fit <- randomForest(Zdyad_msi_globdist ~ ., data=imputedOldDataGlobal, importance=TRUE, ntree=2000)
+varImpPlot(fit)
+```
+
+The variable at the top are the most important, since for mean square error, permuting value of this variable increase the mean square error by a horrible 25%!!! 
+
+_It is again imperative to point out the caveat in all of it. When the dataset has two (or more) correlated features, then from the point of view of the model, any of these correlated features can be used as the predictor, with no concrete preference of one over the others. But once one of them is used, the importance of others is significantly reduced since effectively the impurity they can remove is already removed by the first feature. As a consequence, they will have a lower reported importance. This is not an issue when we want to use feature selection to reduce overfitting, since it makes sense to remove features that are mostly duplicated by other features. But when interpreting the data, it can lead to the incorrect conclusion that one of the variables is a strong predictor while the others in the same group are unimportant, while actually they are very close in terms of their relationship with the response variable._
+
+
+### Recursive feature elimination:
+
+Finally, here are the results of one of the popular technique used these days for feature selection. Recursive feature elimination is based on the idea to repeatedly construct a model (for example an SVM or a regression model) and choose either the best performing feature (for example based on coefficients), setting the feature aside and then repeating the process with the rest of the features. This process is applied until all features in the dataset are exhausted. Features are then ranked according to when they were eliminated. I like random forest :D. So, I've again used the baseline model as Random forests here. (but please let me know if you want me to use some other base model). 
+
+```{r,echo=FALSE}
+control <- rfeControl(functions=rfFuncs,method ="cv",number=10)
+results <- rfe(x = as.matrix(imputedOldDataGlobal[,-1]),y = as.matrix(imputedOldDataGlobal$Zdyad_msi_globdist),sizes=c(1:34),
+               rfeControl = control)
+print(results)
+predictors(results)
+plot(results,type=c("g","o"))
+```
+
+
+__There is one important commonality from all the results. The predictor variables HCWFM and  dadIpdeTotal are shown as of prime important by all selection techniques__
