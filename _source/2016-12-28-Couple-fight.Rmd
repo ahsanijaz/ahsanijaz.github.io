@@ -41,7 +41,7 @@ Reading some of the content shared, I assume that the study is intended to provi
 
 ### Handling missing values
 
-The Global dataframe contains ` r sum(is.na(oldDataGlobal)) ` missing values. Please note that the missing values belong to columns mom_ipde_total and dad_ipde_total. This would limit many analysis techniques we might want to explore. So, a good idea would be of imputing these values. Here, I use bagged tree imputation to estimate these values. Imputation via bagging fits a bagged tree model for each predictor (as a function of all the others). At this point, the partNum variable has been removed. 
+The Global dataframe contains `r sum(is.na(oldDataGlobal)) ` missing values. Please note that the missing values belong to columns mom_ipde_total and dad_ipde_total. This would limit many analysis techniques we might want to explore. So, a good idea would be of imputing these values. Here, I use bagged tree imputation to estimate these values. Imputation via bagging fits a bagged tree model for each predictor (as a function of all the others). At this point, the partNum variable has been removed. 
 
 ```{r,echo=FALSE}
 oldDataGlobal <- oldDataGlobal[,!(names(oldDataGlobal) %in% c("Partnum"))]
@@ -72,7 +72,7 @@ highlyCorrelated <- highlyCorrelated + 1
 print(colnames(imputedOldDataGlobal)[highlyCorrelated])
 ```
 
-As the output of the previous code chunk suggests, ` r length(highlyCorrelated) ` variables are highly correlated with previously occuring variables in the data frame. The names of these variables suggest that they are derived from other variables. If so, these should be removed from analysis. Otherwise, the model fits will not represent the underlying phenomena. At the same time, it might be desirable to have equal representation of the correlated variables if they explain something different. Say, let X1 = X2 and underlying model be Y = X1 + X2. A representation model Y = 1X1 + 1X2 is desirable instead of Y = 2X1 or Y = 2X2.  *This is where I'd need to consult the person generating data source to know if the variables should be kept or removed. Since, I'm agnostic to what individual variable conveys this may lead to misleading hypothesis. As seen from column names, I'm removing mom_ipde_total and Zdad_ipde_total, maybe consistent variables should be removed. However, from an analysis point of view, this does not matter. This is where someone who knows the data should provide input.*
+As the output of the previous code chunk suggests, `r length(highlyCorrelated) ` variables are highly correlated with previously occuring variables in the data frame. The names of these variables suggest that they are derived from other variables. If so, these should be removed from analysis. Otherwise, the model fits will not represent the underlying phenomena. At the same time, it might be desirable to have equal representation of the correlated variables if they explain something different. Say, let X1 = X2 and underlying model be Y = X1 + X2. A representation model Y = 1X1 + 1X2 is desirable instead of Y = 2X1 or Y = 2X2.  *This is where I'd need to consult the person generating data source to know if the variables should be kept or removed. Since, I'm agnostic to what individual variable conveys this may lead to misleading hypothesis. As seen from column names, I'm removing mom_ipde_total and Zdad_ipde_total, maybe consistent variables should be removed. However, from an analysis point of view, this does not matter. This is where someone who knows the data should provide input.*
 For the time being, I'd remove these variables from the analysis and continue development of the global model. 
 ```{r,echo=FALSE}
 imputedOldDataGlobalUnCor <- imputedOldDataGlobal[,-highlyCorrelated]
@@ -96,13 +96,13 @@ __In general, it can be seen that the predictor dad_ipde_total and HC_WF_M are o
 
 ### Lasso regularization:
 
-L1 regularization adds a penalty term to the loss function: $\alpha{}\sum_{i=1}^{n}∣w_{i}∣$ (L1-norm). Since each non-zero coefficient adds to the penalty, the features with smaller coefficients are forced towards zero. Thus L1 regularization produces a parsimonious solution, inherently performing feature selection. Here, the parameter lambda is selected using ten-fold cross validation. Let's look at the results of this fit. The following plot is created without removing correlated variables. Hence, all 34 predictors are included for prediction. The intuition being, that the lasso selection tends to pick one of the correlated terms while disregarding the other one. __Please note that this is again something that the people generating data should suggest :).__  In the plot, the top row corresponds to number of predictor variables for thresholding on a given lambda value. The two dotted vertical lines correspond to the value of $\lambda$ that minimizes mean cross validated error and the most regularized model such that error is within one standard error of the minimum. 
+L1 regularization adds a penalty term to the loss function: $$\alpha{}\sum_{i=1}^{n}∣w_{i}$$ (L1-norm). Since each non-zero coefficient adds to the penalty, the features with smaller coefficients are forced towards zero. Thus L1 regularization produces a parsimonious solution, inherently performing feature selection. Here, the parameter lambda is selected using ten-fold cross validation. Let's look at the results of this fit. The following plot is created without removing correlated variables. Hence, all 34 predictors are included for prediction. The intuition being, that the lasso selection tends to pick one of the correlated terms while disregarding the other one. __Please note that this is again something that the people generating data should suggest :).__  In the plot, the top row corresponds to number of predictor variables for thresholding on a given lambda value. The two dotted vertical lines correspond to the value of $ \lambda $ that minimizes mean cross validated error and the most regularized model such that error is within one standard error of the minimum. 
 ```{r,echo=FALSE}
 cvfit <-cv.glmnet(x = as.matrix(imputedOldDataGlobal[,-1]),y = as.matrix(imputedOldDataGlobal$Zdyad_msi_globdist),alpha=1)
 plot(cvfit)
 ```
 
-As can be seen, the selected lambda value is ` r cvfit$lambda.min ` which minimizes the mean square error over cross validation corresponding to approximately nine predictor variables. These predictor variables with corresponding coefficients are given as follows:
+As can be seen, the selected lambda value is `r cvfit$lambda.min ` which minimizes the mean square error over cross validation corresponding to approximately nine predictor variables. These predictor variables with corresponding coefficients are given as follows:
 ```{r,echo=FALSE}
 coef(cvfit,s="lambda.min")
 ```
@@ -113,12 +113,13 @@ plot(cvfit$glmnet.fit)
 
 ### Ridge Regression:
 Let's look at the story that ridge regression tells us about the data. Here, the ridge penalty tends to shrink the coefficients of correlated predictors towards each other. The same plots and coefficent values from previous section are used here so I'd skip the explanation and just display the results.
+
 ```{r,echo=FALSE}
 cvfitR <-cv.glmnet(x = as.matrix(imputedOldDataGlobal[,-1]),y = as.matrix(imputedOldDataGlobal$Zdyad_msi_globdist),alpha=0)
 plot(cvfitR)
 ```
 
-As expected, all the variables are selected using ridge regression and we have no zero (close to zero) value predictor coefficients. The lamda value selected using cross-validation ` r cvfit$lambda.min `. The selected coefficients are given as follows:
+As expected, all the variables are selected using ridge regression and we have no zero (close to zero) value predictor coefficients. The lamda value selected using cross-validation is `r cvfit$lambda.min `. The selected coefficients are given as follows:
 ```{r,echo=FALSE}
 coef(cvfitR,s="lambda.min")
 plot(cvfitR$glmnet.fit)
