@@ -30,7 +30,7 @@ businessDataN <- data.frame(lat = businessData$latitude,lon = businessData$longi
 ```
 Here is a plot showing the businesses present in the Las Vegas area. As can be seen, for a tourist, it might be extremely difficult to decide which place to go since there are so many populated businesses here.
 
-```{r,echo=FALSE,warning=FALSE}
+```{r,echo=FALSE,message = FALSE, warning=FALSE}
 LV <- get_map(location = 'Las Vegas', zoom = 11)
 ggmap(LV) + geom_point(data = businessData, aes(x = longitude, y = latitude),colour='blue')
 ```
