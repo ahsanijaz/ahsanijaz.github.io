@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "Couples Data Exploration"
+title: "Relationship longevity"
 date: "28/4/2016"
 bigimg: /img/coupleFight1.jpg
+tags: [feature engineering,variable importance] 
 ---
 This is an inital attempt of understanding data. I'd explain the methods selected, stuff going through my mind, and questions raised as I code and explore. 
 

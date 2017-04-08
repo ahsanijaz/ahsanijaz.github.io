@@ -1,7 +1,8 @@
 ---
 layout: post
-title: "Counting people using bluetooth"
+title: "Estimating number of people by using bluetooth"
 bigimg: /img/peopleCount.png
+tags: [confidence intervals, extrapolation]
 ---
 
 As a thought experiment, I was working on the detection of number of people using Bluetooth visibility. Briefly, I was collecting data on my cellphone by counting the number of visible bluetooth devices while hanging out in some Cafes around Palo Alto. I was also counting the actual number of people in those shops. Thus, a simple extrapolation using these two numbers would provide an extrapolation factor. Assuming that the number of bluetooth devices follow a gaussian distribution, we can provide confidence interval of our extrapolation by looking at the standard deviation of data obtained. In this post, I'm generating psuedo-data to provide such estimates. In the next post, I'll work and show the actual results obtained through real data around Palo Alto. 
@@ -13,14 +14,14 @@ The sections that follow look into the confidence intervals by assuming that a c
 
 
 <!-- Table generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Sat Apr  8 15:53:21 2017 -->
+<!-- Sat Apr  8 22:30:50 2017 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataTableID2d5a3a34312a () {
+function gvisDataTableID71a35f616f3a () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -58,13 +59,13 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartTableID2d5a3a34312a() {
-var data = gvisDataTableID2d5a3a34312a();
+function drawChartTableID71a35f616f3a() {
+var data = gvisDataTableID71a35f616f3a();
 var options = {};
 options["allowHtml"] = true;
 
     var chart = new google.visualization.Table(
-    document.getElementById('TableID2d5a3a34312a')
+    document.getElementById('TableID71a35f616f3a')
     );
     chart.draw(data,options);
     
@@ -88,9 +89,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartTableID2d5a3a34312a);
+callbacks.push(drawChartTableID71a35f616f3a);
 })();
-function displayChartTableID2d5a3a34312a() {
+function displayChartTableID71a35f616f3a() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -114,11 +115,11 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID2d5a3a34312a"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID71a35f616f3a"></script>
  
 <!-- divChart -->
   
-<div id="TableID2d5a3a34312a" 
+<div id="TableID71a35f616f3a" 
   style="width: 500; height: automatic;">
 </div>
 
@@ -127,14 +128,14 @@ callbacks.shift()();
 
 
 <!-- Table generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Sat Apr  8 15:53:21 2017 -->
+<!-- Sat Apr  8 22:30:50 2017 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataTableID2d5a2153d07 () {
+function gvisDataTableID71a3fba048f () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -172,13 +173,13 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartTableID2d5a2153d07() {
-var data = gvisDataTableID2d5a2153d07();
+function drawChartTableID71a3fba048f() {
+var data = gvisDataTableID71a3fba048f();
 var options = {};
 options["allowHtml"] = true;
 
     var chart = new google.visualization.Table(
-    document.getElementById('TableID2d5a2153d07')
+    document.getElementById('TableID71a3fba048f')
     );
     chart.draw(data,options);
     
@@ -202,9 +203,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartTableID2d5a2153d07);
+callbacks.push(drawChartTableID71a3fba048f);
 })();
-function displayChartTableID2d5a2153d07() {
+function displayChartTableID71a3fba048f() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -228,11 +229,11 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID2d5a2153d07"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID71a3fba048f"></script>
  
 <!-- divChart -->
   
-<div id="TableID2d5a2153d07" 
+<div id="TableID71a3fba048f" 
   style="width: 500; height: automatic;">
 </div>
 
@@ -241,14 +242,14 @@ callbacks.shift()();
 
 
 <!-- Table generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Sat Apr  8 15:53:21 2017 -->
+<!-- Sat Apr  8 22:30:50 2017 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataTableID2d5a15e81041 () {
+function gvisDataTableID71a348743b47 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -286,13 +287,13 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartTableID2d5a15e81041() {
-var data = gvisDataTableID2d5a15e81041();
+function drawChartTableID71a348743b47() {
+var data = gvisDataTableID71a348743b47();
 var options = {};
 options["allowHtml"] = true;
 
     var chart = new google.visualization.Table(
-    document.getElementById('TableID2d5a15e81041')
+    document.getElementById('TableID71a348743b47')
     );
     chart.draw(data,options);
     
@@ -316,9 +317,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartTableID2d5a15e81041);
+callbacks.push(drawChartTableID71a348743b47);
 })();
-function displayChartTableID2d5a15e81041() {
+function displayChartTableID71a348743b47() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -342,11 +343,11 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID2d5a15e81041"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID71a348743b47"></script>
  
 <!-- divChart -->
   
-<div id="TableID2d5a15e81041" 
+<div id="TableID71a348743b47" 
   style="width: 500; height: automatic;">
 </div>
 
@@ -355,14 +356,14 @@ callbacks.shift()();
 
 
 <!-- Table generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Sat Apr  8 15:53:22 2017 -->
+<!-- Sat Apr  8 22:30:50 2017 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataTableID2d5a608e4e05 () {
+function gvisDataTableID71a36112b405 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -400,13 +401,13 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartTableID2d5a608e4e05() {
-var data = gvisDataTableID2d5a608e4e05();
+function drawChartTableID71a36112b405() {
+var data = gvisDataTableID71a36112b405();
 var options = {};
 options["allowHtml"] = true;
 
     var chart = new google.visualization.Table(
-    document.getElementById('TableID2d5a608e4e05')
+    document.getElementById('TableID71a36112b405')
     );
     chart.draw(data,options);
     
@@ -430,9 +431,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartTableID2d5a608e4e05);
+callbacks.push(drawChartTableID71a36112b405);
 })();
-function displayChartTableID2d5a608e4e05() {
+function displayChartTableID71a36112b405() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -456,11 +457,11 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID2d5a608e4e05"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID71a36112b405"></script>
  
 <!-- divChart -->
   
-<div id="TableID2d5a608e4e05" 
+<div id="TableID71a36112b405" 
   style="width: 500; height: automatic;">
 </div>
 
@@ -469,14 +470,14 @@ callbacks.shift()();
 
 
 <!-- Table generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Sat Apr  8 15:53:22 2017 -->
+<!-- Sat Apr  8 22:30:50 2017 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataTableID2d5a32f2c431 () {
+function gvisDataTableID71a332f64407 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -514,13 +515,13 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartTableID2d5a32f2c431() {
-var data = gvisDataTableID2d5a32f2c431();
+function drawChartTableID71a332f64407() {
+var data = gvisDataTableID71a332f64407();
 var options = {};
 options["allowHtml"] = true;
 
     var chart = new google.visualization.Table(
-    document.getElementById('TableID2d5a32f2c431')
+    document.getElementById('TableID71a332f64407')
     );
     chart.draw(data,options);
     
@@ -544,9 +545,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartTableID2d5a32f2c431);
+callbacks.push(drawChartTableID71a332f64407);
 })();
-function displayChartTableID2d5a32f2c431() {
+function displayChartTableID71a332f64407() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -570,10 +571,10 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID2d5a32f2c431"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID71a332f64407"></script>
  
 <!-- divChart -->
   
-<div id="TableID2d5a32f2c431" 
+<div id="TableID71a332f64407" 
   style="width: 500; height: automatic;">
 </div>
