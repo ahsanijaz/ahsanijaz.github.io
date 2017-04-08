@@ -4,7 +4,7 @@ title: Mining Severe weather conditions
 date: "24/01/2015"
 ---
 
-This post looks into  the data of U.S. National Oceanic and Atmospheric Administration's storm database. The primary goal is to simply report the hazards causing the most property damage and fatalities. Some exploratory analysis is done with plots used to answer the questions. According to analysis, the most hazardous event for human life is Tornados followed by excessive heat and flash floods whereas floods cause the most property and crop damage followed by hurricane, tornado and storm surge.
+This post looks into  the data of U.S. National Oceanic and Atmospheric Administration's storm database. The primary goal is to simply report the hazards causing the most property damage and fatalities. The results show that the most hazardous event for human life is Tornados followed by excessive heat and flash floods whereas floods cause the most property and crop damage followed by hurricane, tornado and storm surge.
 
 ## Data Processing
 
