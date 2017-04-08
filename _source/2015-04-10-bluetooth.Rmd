@@ -1,0 +1,218 @@
+---
+layout: post
+title: "Counting people using bluetooth"
+bigimg: /img/peopleCount.png
+---
+
+As a thought experiment, I was working on the detection of number of people using Bluetooth visibility. Briefly, I was collecting data on my cellphone by counting the number of visible bluetooth devices while hanging out in some Cafes around Palo Alto. I was also counting the actual number of people in those shops. Thus, a simple extrapolation using these two numbers would provide an extrapolation factor. Assuming that the number of bluetooth devices follow a gaussian distribution, we can provide confidence interval of our extrapolation by looking at the standard deviation of data obtained. In this post, I'm generating psuedo-data to provide such estimates. In the next post, I'll work and show the actual results obtained through real data around Palo Alto. 
+The sections that follow look into the confidence intervals by assuming that a certain proportion of population has there bluetooth devices turned on. With that, we provide the observed total number of people and use mean and standard deviations of a binomial distribution. With increasing percentage, our confidence of estimates will increase and margin of error reduce. 
+```{r,echo=FALSE, include = FALSE}
+suppressPackageStartupMessages(library(googleVis))
+suppressPackageStartupMessages(library(dplyr))
+
+```
+
+## Bluetooth usage = 10% 
+
+```{r, echo=FALSE}
+library(ggplot2)
+p <- 0.1
+pb <- seq(from = 0.1,to = 0.9,by = 0.05)
+nn <- seq(from = 20,to = 50, by = 10)
+estimate <- c()
+extraSd <- c()
+meanB <- c()
+stanDev <- c()
+extrapSd <- c()
+for(n in nn){
+#print(p)
+stanDevc <- sqrt(n*p*(1-p))
+meanBc <- n*p
+estimatec <- meanBc/p
+extrapSdc <- stanDevc/p
+estimate <- c(estimate,estimatec)  
+stanDev <- c(stanDev,stanDevc)
+meanB <- c(meanB,meanBc)
+extrapSd <- c(extrapSd,extrapSdc)
+}
+bluetoothEst <- data.frame(observedBluetooth = meanB, estimate = estimate,  confidenceInterval = extrapSd)
+plt <- ggplot(bluetoothEst, aes(x=estimate, y=estimate)) + 
+  geom_errorbar(aes(ymin=estimate-confidenceInterval, ymax=estimate+confidenceInterval), width=.1) +
+  geom_line() +
+  geom_point()
+
+```
+
+```{r,echo=FALSE,results='asis',tidy=FALSE}
+tableCreate <- bluetoothEst %>% mutate( devicesFound= meanB,estimateOfPeople = estimate, upperLimit = round(estimate + confidenceInterval), lowerLimit = round(estimate - confidenceInterval)) %>% select(devicesFound,estimateOfPeople,lowerLimit,upperLimit) 
+Table <- gvisTable(tableCreate, options = list(), formats = NULL)
+Table$html$header <- NULL
+Table$html$footer <- NULL
+Table$html$jsFooter <- NULL
+Table$html$caption <- NULL
+print(Table)
+```
+
+## Bluetooth usage = 20% 
+
+```{r, echo=FALSE}
+library(ggplot2)
+p <- 0.2
+pb <- seq(from = 0.1,to = 0.9,by = 0.05)
+nn <- seq(from = 20,to = 50, by = 10)
+estimate <- c()
+extraSd <- c()
+meanB <- c()
+stanDev <- c()
+extrapSd <- c()
+for(n in nn){
+#print(p)
+stanDevc <- sqrt(n*p*(1-p))
+meanBc <- n*p
+estimatec <- meanBc/p
+extrapSdc <- stanDevc/p
+estimate <- c(estimate,estimatec)  
+stanDev <- c(stanDev,stanDevc)
+meanB <- c(meanB,meanBc)
+extrapSd <- c(extrapSd,extrapSdc)
+}
+bluetoothEst <- data.frame(observedBluetooth = meanB, estimate = estimate,  confidenceInterval = extrapSd)
+plt <- ggplot(bluetoothEst, aes(x=estimate, y=estimate)) + 
+  geom_errorbar(aes(ymin=estimate-confidenceInterval, ymax=estimate+confidenceInterval), width=.1) +
+  geom_line() +
+  geom_point()
+
+```
+
+```{r,echo=FALSE,results='asis',tidy=FALSE}
+tableCreate <- bluetoothEst %>% mutate( devicesFound= meanB,estimateOfPeople = estimate, upperLimit = round(estimate + confidenceInterval), lowerLimit = round(estimate - confidenceInterval)) %>% select(devicesFound,estimateOfPeople,lowerLimit,upperLimit) 
+Table <- gvisTable(tableCreate, options = list(), formats = NULL)
+Table$html$header <- NULL
+Table$html$footer <- NULL
+Table$html$jsFooter <- NULL
+Table$html$caption <- NULL
+print(Table)
+```
+
+## Bluetooth usage = 30% 
+
+```{r, echo=FALSE}
+library(ggplot2)
+p <- 0.3
+pb <- seq(from = 0.1,to = 0.9,by = 0.05)
+nn <- seq(from = 20,to = 50, by = 10)
+estimate <- c()
+extraSd <- c()
+meanB <- c()
+stanDev <- c()
+extrapSd <- c()
+for(n in nn){
+#print(p)
+stanDevc <- sqrt(n*p*(1-p))
+meanBc <- n*p
+estimatec <- meanBc/p
+extrapSdc <- stanDevc/p
+estimate <- c(estimate,estimatec)  
+stanDev <- c(stanDev,stanDevc)
+meanB <- c(meanB,meanBc)
+extrapSd <- c(extrapSd,extrapSdc)
+}
+bluetoothEst <- data.frame(observedBluetooth = meanB, estimate = estimate,  confidenceInterval = extrapSd)
+plt <- ggplot(bluetoothEst, aes(x=estimate, y=estimate)) + 
+  geom_errorbar(aes(ymin=round(estimate-confidenceInterval), ymax=round(estimate+confidenceInterval)), width=.1) +
+  geom_line() +
+  geom_point()
+
+```
+
+```{r,echo=FALSE,results='asis',tidy=FALSE}
+tableCreate <- bluetoothEst %>% mutate( devicesFound= meanB,estimateOfPeople = estimate, upperLimit = round(estimate + confidenceInterval), lowerLimit = round(estimate - confidenceInterval)) %>% select(devicesFound,estimateOfPeople,lowerLimit,upperLimit) 
+Table <- gvisTable(tableCreate, options = list(), formats = NULL)
+Table$html$header <- NULL
+Table$html$footer <- NULL
+Table$html$jsFooter <- NULL
+Table$html$caption <- NULL
+print(Table)
+```
+
+## Bluetooth usage = 40% 
+
+```{r, echo=FALSE}
+library(ggplot2)
+p <- 0.4
+pb <- seq(from = 0.1,to = 0.9,by = 0.05)
+nn <- seq(from = 20,to = 50, by = 10)
+estimate <- c()
+extraSd <- c()
+meanB <- c()
+stanDev <- c()
+extrapSd <- c()
+for(n in nn){
+#print(p)
+stanDevc <- sqrt(n*p*(1-p))
+meanBc <- n*p
+estimatec <- meanBc/p
+extrapSdc <- stanDevc/p
+estimate <- c(estimate,estimatec)  
+stanDev <- c(stanDev,stanDevc)
+meanB <- c(meanB,meanBc)
+extrapSd <- c(extrapSd,extrapSdc)
+}
+bluetoothEst <- data.frame(observedBluetooth = meanB, estimate = estimate,  confidenceInterval = extrapSd)
+plt <- ggplot(bluetoothEst, aes(x=estimate, y=estimate)) + 
+  geom_errorbar(aes(ymin=estimate-confidenceInterval, ymax=estimate+confidenceInterval), width=.1) +
+  geom_line() +
+  geom_point()
+
+```
+
+```{r,echo=FALSE,results='asis',tidy=FALSE}
+tableCreate <- bluetoothEst %>% mutate( devicesFound= meanB,estimateOfPeople = estimate, upperLimit = round(estimate + confidenceInterval), lowerLimit = round(estimate - confidenceInterval)) %>% select(devicesFound,estimateOfPeople,lowerLimit,upperLimit) 
+Table <- gvisTable(tableCreate, options = list(), formats = NULL)
+Table$html$header <- NULL
+Table$html$footer <- NULL
+Table$html$jsFooter <- NULL
+Table$html$caption <- NULL
+print(Table)
+```
+
+## Bluetooth usage = 50% 
+
+```{r, echo=FALSE}
+library(ggplot2)
+p <- 0.5
+pb <- seq(from = 0.1,to = 0.9,by = 0.05)
+nn <- seq(from = 20,to = 50, by = 10)
+estimate <- c()
+extraSd <- c()
+meanB <- c()
+stanDev <- c()
+extrapSd <- c()
+for(n in nn){
+#print(p)
+stanDevc <- sqrt(n*p*(1-p))
+meanBc <- n*p
+estimatec <- meanBc/p
+extrapSdc <- stanDevc/p
+estimate <- c(estimate,estimatec)  
+stanDev <- c(stanDev,stanDevc)
+meanB <- c(meanB,meanBc)
+extrapSd <- c(extrapSd,extrapSdc)
+}
+bluetoothEst <- data.frame(observedBluetooth = meanB, estimate = estimate,  confidenceInterval = extrapSd)
+plt <- ggplot(bluetoothEst, aes(x=estimate, y=estimate)) + 
+  geom_errorbar(aes(ymin=estimate-confidenceInterval, ymax=estimate+confidenceInterval), width=.1) +
+  geom_line() +
+  geom_point()
+
+```
+
+```{r,echo=FALSE,results='asis',tidy=FALSE}
+tableCreate <- bluetoothEst %>% mutate( devicesFound= meanB,estimateOfPeople = estimate, upperLimit = round(estimate + confidenceInterval), lowerLimit = round(estimate - confidenceInterval)) %>% select(devicesFound,estimateOfPeople,lowerLimit,upperLimit) 
+Table <- gvisTable(tableCreate, options = list(), formats = NULL)
+Table$html$header <- NULL
+Table$html$footer <- NULL
+Table$html$jsFooter <- NULL
+Table$html$caption <- NULL
+print(Table)
+```

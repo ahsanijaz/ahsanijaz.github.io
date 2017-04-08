@@ -1,8 +1,8 @@
 ---
+layout: post
 title: "Couples Data Exploration"
-author: "Ahsan Ijaz"
-date: "28/2/2017"
-output: html_document
+date: "28/4/2016"
+bigimg: /img/coupleFight1.jpg
 ---
 This is an inital attempt of understanding data. I'd explain the methods selected, stuff going through my mind, and questions raised as I code and explore. 
 
