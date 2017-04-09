@@ -1,31 +1,34 @@
 ---
 layout: post
-title: Mining Severe weather conditions
+title: Mining weather conditions
 date: "24/01/2015"
+bigimg: /img/tornado.jpg
 ---
 
-This post looks into  the data of U.S. National Oceanic and Atmospheric Administration's storm database. The primary goal is to simply report the hazards causing the most property damage and fatalities. Some exploratory analysis is done with plots used to answer the questions. According to analysis, the most hazardous event for human life is Tornados followed by excessive heat and flash floods whereas floods cause the most property and crop damage followed by hurricane, tornado and storm surge.
+This post looks into  the data of U.S. National Oceanic and Atmospheric Administration's storm database. Here, we look into the hazards causing the most property damage and fatalities. The results show that the most hazardous event for human life is Tornados followed by excessive heat and flash floods whereas floods cause the most property and crop damage followed by hurricane, tornado and storm surge.
 
 ## Data Processing
 
-Loading required libraries for analysis:
-```{r,echo=TRUE}
+```{r,echo=FALSE,warning=FALSE,include = FALSE}
 library(dplyr)
 library(ggplot2)
 library(reshape2)
 ```
 
+The information and links for data are provided below:
+* [NOAA database](https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2)
+* [Weather documenation](https://d396qusza40orc.cloudfront.net/repdata%2Fpeer2_doc%2Fpd01016005curr.pdf)
 
-Reading the data as a data frame:
+The timeline of these events are from 1950 to 2011.
 
-```{r,echo=TRUE}
+```{r,echo=FALSE}
 NOAAdata <- read.csv("/home/ahsan/Downloads/repdata%2Fdata%2FStormData.csv")
 ```
 To answer our questions, we look at the data to see which columns are relavant for our analysis:
 ```{r,echo=TRUE}
 str(NOAAdata)
 ```
-Fromn the documentation, we can see that the study can be limited using columns EVTYPE, PROPDMG, PROPDMGEXP, FATALITIES,INJURIES, CROPDMG, CROPDMGEXP. So subsetting the data:
+Since, we are interested in knowing which events causes the most damage, we limit the study to the columns EVTYPE, PROPDMG, PROPDMGEXP, FATALITIES,INJURIES, CROPDMG, CROPDMGEXP. So subsetting the data:
 
 ```{r,echo=TRUE}
 NOAAdata.rel <- NOAAdata[,c("EVTYPE", "PROPDMG", "PROPDMGEXP", "FATALITIES","INJURIES", "CROPDMG", "CROPDMGEXP")]
@@ -41,8 +44,10 @@ The documentation doesn't specify anything about levels "-","+","0-8" so they wo
 ```{r,echo=TRUE}
 NOAAdata.rel$CROPDMGEXP <- as.factor(toupper(NOAAdata.rel$CROPDMGEXP))
 NOAAdata.rel$PROPDMGEXP <- as.factor(toupper(NOAAdata.rel$PROPDMGEXP))
-NOAAdata.rel$CROPDMG[as.character(NOAAdata.rel$CROPDMGEXP) %in% c("0","1","2","3","4","5","6","7","8","-"," ","?")] <- 0
-NOAAdata.rel$PROPDMG[as.character(NOAAdata.rel$PROPDMGEXP) %in% c("0","1","2","3","4","5","6","7","8","-"," ","?")] <- 0
+NOAAdata.rel$CROPDMG[as.character(NOAAdata.rel$CROPDMGEXP) %in%
+                     c("0","1","2","3","4","5","6","7","8","-"," ","?")] <- 0
+NOAAdata.rel$PROPDMG[as.character(NOAAdata.rel$PROPDMGEXP)
+                     %in% c("0","1","2","3","4","5","6","7","8","-"," ","?")] <- 0
 ```
 
 As per documentation, H will be translated as hundred, K as thousand, M as million and B as billion in the PROPDMGEXP and CROPDMGEXP to be multiplied with relevant variables. 
@@ -80,12 +85,20 @@ noaaDamages <- head(noaaDamages)
 
 ## Results
 
-The highest fatalities and injuries caused by disasters is shown in figure below:
+The highest fatalities and injuries caused by disasters are shown in figure below:
 ```{r,echo=TRUE,fig.align='center'}
-ggplot(noaaFatal,aes(x = EVTYPE,y = value,fill=EVTYPE))+geom_bar(stat="identity") + facet_grid(.~variable) + xlab("Event Type") + ylab("") + ggtitle("Highest Fatalities and Injuries caused by Disaster") + coord_flip()
+ggplot(noaaFatal,aes(x = EVTYPE,y = value,fill=EVTYPE)) +
+    geom_bar(stat="identity") + facet_grid(.~variable) +
+    xlab("Event Type") + ylab("") +
+    ggtitle("Highest Fatalities and Injuries caused by Disaster") + coord_flip()
 ```
 
 The highest property damage caused by disasters is shown in figure below:
 ```{r,echo=TRUE,fig.align='center'}
-ggplot(noaaDamages,aes(x = EVTYPE,y = TotalDamage,fill=EVTYPE))+geom_bar(stat="identity") + xlab("Event Type") + ylab("") + ggtitle("Highest total property and crop damage caused by Disaster") + coord_flip()
+ggplot(noaaDamages,aes(x = EVTYPE,y = TotalDamage,fill=EVTYPE)) +
+    geom_bar(stat="identity") + xlab("Event Type") + ylab("") +
+    ggtitle("Highest total property and crop damage caused by Disaster") + coord_flip()
+
 ```
+
+As can be seen from the plots, the highest damage to property and crops is caused by floods, where as tornadoes cause the most injuries and fatalities.
