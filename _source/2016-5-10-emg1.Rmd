@@ -1,0 +1,11 @@
+---
+layout: post
+title: EMG signals
+date: "05/09/2016"
+bigimg: 
+---
+
+1. Psuedo data generation
+2. Psuedo anomalies and anomaly types along with plots
+3. Unsupervised PCA setting
+4. 
