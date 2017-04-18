@@ -1,0 +1,123 @@
+---
+title: "Agencies Information"
+author: "Ahsan Ijaz"
+date: "03/05/2015"
+tags: ["GTFS, visualization, document automation"]
+image: /img/gtfsB.jpg
+---
+
+
+A GTFS feed is a collection of csv files that stores a transit system's scheduled operations as visible to riders. The specification is designed to be sufficient to provide trip planning functionality. An excellent visual explanation by [OpenPlans](http://blog.openplans.org/2012/08/the-openplans-guide-to-gtfs-data/) of this system is provided in the figure below:
+
+![GTFS Summary](/img/gtfs.png)
+
+While, working on GTFS files, I realized that since there is no consistency among the kind of information that is provided by trip agencies, you need to do visual analysis of each before using them. Here, I've created an automated document creation module, that feeds in a folder containing data files from various agencies, and produces a documentation summary for each agency. It shows how the complete document creation process can be automated. The data can be obtained from [GTFS data exchange](http://www.gtfs-data-exchange.com/agency/san-francisco-municipal-transportation-agency/).
+
+```{r,results='asis',echo= TRUE,warning=FALSE,message=FALSE}
+library(ggmap)
+library(RgoogleMaps)
+library(googleVis)
+library(rgdal)
+library(sp)
+library(ggplot2)
+summaryData <- data.frame(Agency = character(), Routes= numeric(),
+                          Shapes=numeric(),
+                          trips = numeric(), stops = numeric(),
+                          shapeFile = logical(),
+                          Transportation = character(),
+                          stringsAsFactors = FALSE )
+GTFSDirs <- dir("~/Personal/blogData/san_fran_noShapeGTFS/",full.names = TRUE)
+routeTypeDefs <- data.frame(c(0,1,2,3,4,5,6,7),
+                            c("light rail","Subway or Metro",
+                              "rail","bus","Ferry","cable car",
+                              "gondola","funicular"))
+colnames(routeTypeDefs)<- c("rId","transType")
+for(dir in GTFSDirs){
+  GTFSFileName <- dir
+  agencyFile <-paste0(GTFSFileName,"/agency.txt")
+  routeFile <- paste0(GTFSFileName,"/routes.txt")
+  tripFile <- paste0(GTFSFileName,"/trips.txt")
+  stoptimesFile <- paste0(GTFSFileName,"/stop_times.txt")
+  stopsFile <- paste0(GTFSFileName,"/stops.txt")
+  shapesFile <- paste0(GTFSFileName,"/shapes.txt")
+
+  routesInfo <- read.csv(routeFile, header = TRUE)
+  #shapesInfo <- read.csv(shapesFile, header = TRUE)
+  tripInfo <- read.csv(tripFile, header = TRUE)
+  stopInfo <- read.csv(stoptimesFile, header = TRUE)
+  stopInformation <-read.csv(stopsFile, header = TRUE)
+  agencyInfo <- read.csv(agencyFile,header = TRUE)
+    
+  cat("## ",as.character(agencyInfo$agency_name),"\n")
+  #,unique(length(shapesInfo$shape_id))
+  cat("The agency is serving a total of ",
+      length(routesInfo$route_id)," routes.")
+if(file.exists(shapesFile)){
+  
+  shapesInfo <- read.csv(shapesFile, header = TRUE)
+  shapeLen <- length(unique(shapesInfo$shape_id))
+    cat("The number of shapes in this agency are ",
+        length(unique(shapesInfo$shape_id)))
+    cat(" The trips that go through these shapes are ",
+        length(unique(tripInfo$trip_id)),".")
+  shapeFil <- TRUE
+ 
+}else{
+  cat(" The gtfs folder of this agency does not contains a shape file.")
+  cat(" The trips that go through these routes are ",
+      length(unique(tripInfo$trip_id)),".")
+  shapeLen <- 0
+  shapeFil <- FALSE
+}
+  cat("The number of stops served by all the routes in this agency are ",
+      length(stopInformation$stop_id),".")
+  
+ routeTypes <- unique(routesInfo$route_type)
+ 
+  cat("The type of transportation served by this agency is ",
+      paste0(as.character(routeTypeDefs[routeTypeDefs$rId %in% routeTypes,
+                                        "transType"]),collapse =  " and "),".")
+cat("\n","Web URL: ",as.character(agencyInfo$agency_url),"\n")
+  summaryData <- rbind.data.frame(
+      summaryData,data.frame(Agency = as.character(agencyInfo$agency_name),
+                             Routes = as.numeric(
+                                 length(routesInfo$route_id)),
+                             Shapes = shapeLen,
+                             trips = as.numeric(
+                                 length(unique(tripInfo$trip_id))) ,
+                             stops = as.numeric(
+                                 length(stopInformation$stop_id)),
+                             shapeFile = shapeFil,
+                             Transportation = paste0(as.character(
+                                 routeTypeDefs[routeTypeDefs$rId %in% routeTypes,
+                                               "transType"]),
+                             collapse =  ",")))
+#stopTemp <- stopInformation
+#coordinates(stopInformation) <- ~stop_lon+stop_lat
+#sf <- get_map(c(left= bbox(stopInformation)[1]-0.1,bottom=bbox(stopInformation)[2]-0.1, right=bbox(stopInformation)[3]+0.1,top=bbox(stopInformation)[4]+0.1), maptype = "terrain", source = "google")
+latLong<-paste(stopInformation$stop_lat,stopInformation$stop_lon,sep = ":")
+stopInformation$latLong <- latLong
+
+#stopPlot <- stopInformation[,c("stop_name","stop_code","latLong")]
+AhMap <- gvisMap(stopInformation, "latLong" , "stop_name", 
+                     options=list(showTip=TRUE,
+                                  showLine=TRUE, 
+                                  enableScrollWheel=TRUE,
+                                  mapType='terrain', 
+                                  useMapTypeControl=TRUE))
+print(AhMap,"chart")
+
+#sfMap <-ggmap(sf) + geom_point(aes(x=stop_lon, y=stop_lat), color='blue', data = stopTemp,size = 1,alpha = 0.6) + xlab("longitude") #+ ylab("lattitude") + ggtitle(paste0("Stops served by ", as.character(agencyInfo$agency_name)))
+#plot(sfMap)
+
+cat("\n")
+cat("\n")
+
+ }
+#rsave(summaryData,file="summaryData.Rda")
+cat("### Tabular Summary of Agencies")
+AgenTable <- gvisTable(summaryData, options=list(page='enable'))
+print(AgenTable,"chart")
+
+```
+

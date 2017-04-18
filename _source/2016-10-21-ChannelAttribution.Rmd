@@ -1,0 +1,188 @@
+---
+layout: post
+title: Cross Channel Attribution (Part II)
+date: "19/10/2016"
+bigimg: /img/ca1.jpg
+tags: [data driven marketing, financial engineering]
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=8, fig.height=4, echo=FALSE, warning=FALSE, message=FALSE)
+```
+
+
+## Markov chain based attribution
+
+- Transitional probalities by using markov model 
+- Check the effect of removal of each touch point
+- Attribute touch points according to the lift 
+
+```{r,echo=FALSE}
+library(dplyr)
+library(reshape2)
+library(ggplot2)
+library(ChannelAttribution)
+library(markovchain)
+library(broom)
+library(survsim)
+library(OIsurv)
+
+set.seed(354) # c(0.2, 0.3, 0.1, 0.15, 0.25)
+channel_data <- data.frame(client_id = sample(c(1:500), 5000, replace = TRUE),
+                  date = sample(c(1:32), 5000, replace = TRUE),
+                  channel = sample(c(0:4), 5000, replace = TRUE,
+                                   prob =  c(0.2, 0.3, 0.1, 0.15, 0.25)))
+
+channel_data$date <- as.Date(channel_data$date, origin = "2016-01-01")
+name_channel <- c("Social_Network","Organic_Search", "Referral", "Paid_Search", "Direct")
+channel_data$channel <- name_channel[channel_data$channel+1]
+
+survival_time <- function(date){
+  return(difftime(date[2],date[1]))
+}
+
+survival_channel <- function(ch){
+  return(ch[1])
+}
+# aggregating channels to the paths for each customer
+channel_data_survival <- channel_data %>%
+  group_by(client_id) %>% arrange(date) %>% 
+  filter(row_number()==1 | row_number()==n()) %>% summarise(surv_time = survival_time(date),
+                                                            channel_name = survival_channel(channel))
+
+
+channel_data <- channel_data %>%
+  group_by(client_id) %>% arrange(date) %>% 
+  summarise(path = paste(channel, collapse = ' > '),
+            # assume that all paths were finished with conversion
+            conv = 1,
+            conv_null = 0) 
+channel_data = merge(channel_data_survival,channel_data,by = 'client_id')
+
+channel_survfit = survfit(Surv(time = as.numeric(surv_time), event = conv) ~ channel_name, data = channel_data)
+# channel_data %>%
+# calculating the models (Markov and heuristics)
+mod_mark <- markov_model(channel_data,
+                     var_path = 'path',
+                     var_conv = 'conv',
+                     var_null = 'conv_null',
+                     out_more = TRUE)
+
+# heuristic_models() function doesn't work for me, therefore I used the manual calculations
+# instead of:
+h_mod <- heuristic_models(channel_data, var_path = 'path', var_conv = 'conv')
+ndl_data <- function(path1){
+  #print(path1)
+  for(i in 1:length(path1)){
+    path_split = strsplit(path1[i],"> ")
+    l_ps = length(path_split[[1]])
+    ch_ndl = trimws(path_split[[1]][l_ps-1])
+    path1[i] = ch_ndl
+  }
+  #path_split = strsplit(path1,"> ")
+  #l_ps = length(path_split[[1]])
+  #ch_ndl = path_split[[1]][l_ps-1]
+  return(path1)
+}
+df_hm <- channel_data %>% mutate(channel_name_ndl = ndl_data(path))
+ndl_model <- df_hm %>% group_by(channel_name_ndl) %>% summarise(last_non_direct_conversions = sum(conv))
+
+df_plot_trans <- mod_mark$transition_matrix
+
+cols <- c("#e7f0fa", "#c9e2f6", "#95cbee", "#0099dc", "#4ab04a", "#ffd73e", "#eec73a",
+          "#e29421", "#e29421", "#f05336", "#ce472e")
+cols = c('#edf8fb','#b2e2e2','#66c2a4','#2ca25f','#006d2c')
+t <- max(df_plot_trans$transition_probability)
+
+ggplot(df_plot_trans, aes(y = channel_from, x = channel_to, fill = transition_probability)) +
+  theme_minimal() +
+  geom_tile(colour = "white", width = .9, height = .9) +
+  scale_fill_gradientn(colours = cols, limits = c(0, t),
+                       breaks = seq(0, t, by = t/4),
+                       labels = c("0", round(t/4*1, 2), round(t/4*2, 2), round(t/4*3, 2), round(t/4*4, 2)),
+                       guide = guide_colourbar(ticks = T, nbin = 50, barheight = .5, label = T, barwidth = 10)) +
+  geom_text(aes(label = round(transition_probability, 2)), fontface = "bold", size = 4) +
+  theme(legend.position = 'bottom',
+        legend.direction = "horizontal",
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.title = element_text(size = 20, face = "bold", vjust = 2, color = 'black', lineheight = 0.8),
+        axis.title.x = element_text(size = 24, face = "bold"),
+        axis.title.y = element_text(size = 24, face = "bold"),
+        axis.text.y = element_text(size = 8, face = "bold", color = 'black'),
+        axis.text.x = element_text(size = 8, angle = 90, hjust = 0.5, vjust = 0.5, face = "plain")) +
+  ggtitle("Transition matrix heatmap")
+
+```
+
+### Survival Model
+
+- Use time to conversion from each touch-point
+- Medians time required to convert starting from each touch-point 
+
+```{r,echo=FALSE}
+channel_tidy = tidy(channel_survfit)
+mx = max(channel_tidy$n.censor)
+ggplot(channel_tidy, aes(time, estimate, fill = strata)) + 
+  geom_line(aes(linetype = strata)) +
+  geom_ribbon(aes(ymin=conf.low, ymax=conf.high), alpha=.15) + 
+  xlab("days") + 
+  ylab("Proportion Survival")
+```
+
+
+### Comparison of other models
+
+- Attribution to conversions to different channels by using all the models
+
+```{r, echo=FALSE}
+h_mod <- heuristic_models(channel_data, var_path = 'path', var_conv = 'conv')
+ndl_data <- function(path1){
+  #print(path1)
+  for(i in 1:length(path1)){
+    path_split = strsplit(path1[i],"> ")
+    l_ps = length(path_split[[1]])
+    ch_ndl = trimws(path_split[[1]][l_ps-1])
+    path1[i] = ch_ndl
+  }
+  #path_split = strsplit(path1,"> ")
+  #l_ps = length(path_split[[1]])
+  #ch_ndl = path_split[[1]][l_ps-1]
+  return(path1)
+}
+df_hm <- channel_data %>% mutate(channel_name_ndl = ndl_data(path))
+ndl_model <- df_hm %>% group_by(channel_name_ndl) %>% summarise(last_non_direct_conversions = sum(conv))
+#colnames(ndl_model)[1] <- "channel_name"
+ndl_model$channel_name_ndl <- as.factor(ndl_model$channel_name_ndl)
+models_1 <- merge(h_mod, mod_mark$result, by = 'channel_name')
+all_models <- merge(models_1, as.data.frame(ndl_model),by.x = 'channel_name',by.y='channel_name_ndl')
+colnames(all_models)[c(1, 5)] <- c('channel_name', 'markov_model')
+
+all_mod_plot <- melt(all_models, id.vars = 'channel_name', variable.name = 'conv_type')
+all_mod_plot$value <- round(all_mod_plot$value)
+# slope chart
+#pal <- colorRampPalette(brewer.pal(10, "Set1"))
+ggplot(all_mod_plot, aes(x = conv_type, y = value, group = channel_name)) +
+  geom_line(aes(color = channel_name), size = 2.5, alpha = 0.8) +
+  geom_point(aes(color = channel_name), size = 5)  +
+  labs(x = 'Model', y = 'Conversions') +
+  ggtitle('Model comparison') + 
+  theme(text = element_text(size=23),
+        plot.title = element_text(size = rel(1)),axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+### Comparison of other models
+
+- Attribution to touch-points
+
+```{r,echo=FALSE}
+ggplot(all_mod_plot, aes(channel_name, value, fill = conv_type)) +
+  geom_bar(stat='identity', position='dodge') +
+  ggtitle('TOTAL VALUE') + 
+  scale_fill_manual(values = colours)  + 
+  ylab("") + 
+  theme(text = element_text(size=23),
+        plot.title = element_text(size = rel(1)),axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
