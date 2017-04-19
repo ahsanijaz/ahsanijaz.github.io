@@ -5,6 +5,9 @@ date: "28/4/2016"
 bigimg: /img/coupleFight1.jpg
 tags: [feature engineering,variable importance] 
 ---
+
+
+
 This is an inital attempt of understanding data. I'd explain the methods selected, stuff going through my mind, and questions raised as I code and explore. 
 
 
@@ -99,14 +102,14 @@ Linear model is a good starting point to discuss variable importance especially 
 ## F-statistic:  5.69 on 22 and 117 DF,  p-value: 1.665e-10
 ```
 
-![plot of chunk unnamed-chunk-7](/figure/source/2016-12-28-Couple-fight/unnamed-chunk-7-1.png)![plot of chunk unnamed-chunk-7](/figure/source/2016-12-28-Couple-fight/unnamed-chunk-7-2.png)![plot of chunk unnamed-chunk-7](/figure/source/2016-12-28-Couple-fight/unnamed-chunk-7-3.png)![plot of chunk unnamed-chunk-7](/figure/source/2016-12-28-Couple-fight/unnamed-chunk-7-4.png)
+<img src="/figure/source/2016-12-28-Couple-fight/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" /><img src="/figure/source/2016-12-28-Couple-fight/unnamed-chunk-7-2.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" /><img src="/figure/source/2016-12-28-Couple-fight/unnamed-chunk-7-3.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" /><img src="/figure/source/2016-12-28-Couple-fight/unnamed-chunk-7-4.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
 __In general, it can be seen that the predictor dad_ipde_total and HC_WF_M are of prime importance with p-values less than 0.0001__ As per the linear model, we get the recommendation of keeping these variables. Let's delve a bit deeper and look at regularized regression for variable selection.
 
 ### Lasso regularization:
 
 L1 regularization adds a penalty term to the loss function: $$ \alpha{}\sum_{i=1}^{n}w_{i} $$ (L1-norm). Since each non-zero coefficient adds to the penalty, the features with smaller coefficients are forced towards zero. Thus L1 regularization produces a parsimonious solution, inherently performing feature selection. Here, the parameter lambda is selected using ten-fold cross validation. Let's look at the results of this fit. The following plot is created without removing correlated variables. Hence, all 34 predictors are included for prediction. The intuition being, that the lasso selection tends to pick one of the correlated terms while disregarding the other one. __Please note that this is again something that the people generating data should suggest :). In the plot, the top row corresponds to number of predictor variables for thresholding on a given lambda value. The two dotted vertical lines correspond to the value of $ \lambda $ that minimizes mean cross validated error and the most regularized model such that error is within one standard error of the minimum. 
-![plot of chunk unnamed-chunk-8](/figure/source/2016-12-28-Couple-fight/unnamed-chunk-8-1.png)
+<img src="/figure/source/2016-12-28-Couple-fight/unnamed-chunk-8-1.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
 As can be seen, the selected lambda value is 0.0760341 which minimizes the mean square error over cross validation corresponding to approximately nine predictor variables. These predictor variables with corresponding coefficients are given as follows:
 
@@ -150,12 +153,12 @@ As can be seen, the selected lambda value is 0.0760341 which minimizes the mean 
 ## Zdad_ipde_total      0.218536900
 ```
 Furthermore, value of each individual coefficient against l1 norm of the whole coefficient value is provided in the following path. The top axis label here corresponds to non-zero coefficient values at a particular lambda value.
-![plot of chunk unnamed-chunk-10](/figure/source/2016-12-28-Couple-fight/unnamed-chunk-10-1.png)
+<img src="/figure/source/2016-12-28-Couple-fight/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" style="display: block; margin: auto;" />
 
 ### Ridge Regression:
 Let's look at the story that ridge regression tells us about the data. Here, the ridge penalty tends to shrink the coefficients of correlated predictors towards each other. The same plots and coefficent values from previous section are used here so I'd skip the explanation and just display the results.
 
-![plot of chunk unnamed-chunk-11](/figure/source/2016-12-28-Couple-fight/unnamed-chunk-11-1.png)
+<img src="/figure/source/2016-12-28-Couple-fight/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
 
 As expected, all the variables are selected using ridge regression and we have no zero (close to zero) value predictor coefficients. The lamda value selected using cross-validation is 0.0760341. The selected coefficients are given as follows:
 
@@ -199,13 +202,13 @@ As expected, all the variables are selected using ridge regression and we have n
 ## Zdad_ipde_total      8.741920e-02
 ```
 
-![plot of chunk unnamed-chunk-12](/figure/source/2016-12-28-Couple-fight/unnamed-chunk-12-1.png)
+<img src="/figure/source/2016-12-28-Couple-fight/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" style="display: block; margin: auto;" />
 
 ### Random Forest feature selection:
 When training a tree, it can be computed how much each feature decreases the weighted impurity in a tree. For a forest, the impurity decrease of each feature can be averaged and the features can be ranked according to this measure. In particular, this provides us with a measure telling how much residual squared error(RSS) is increased by removing one of the features. If more RSS is increased, the feature is important. 
 Another popular feature selection method using random forest is to permute the values of each feature and measure how much the permutation decreases the accuracy of the model. For unimportant variables, the permutation has little to no effect on model accuracy, while permuting important variables significantly decreases it. Using a random forest with 2000 trees and 11 variables tried at each split, with all 34 predictor variables included, this is what we get:
 
-![plot of chunk unnamed-chunk-13](/figure/source/2016-12-28-Couple-fight/unnamed-chunk-13-1.png)
+<img src="/figure/source/2016-12-28-Couple-fight/unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" style="display: block; margin: auto;" />
 
 The variable at the top are the most important, since for mean square error, permuting value of this variable increase the mean square error by a horrible 25%!!! 
 
@@ -278,7 +281,7 @@ Finally, here are the results of one of the popular technique used these days fo
 ## [28] "HC_WD_iir"           "Zmom_mpq_CON"
 ```
 
-![plot of chunk unnamed-chunk-14](/figure/source/2016-12-28-Couple-fight/unnamed-chunk-14-1.png)
+<img src="/figure/source/2016-12-28-Couple-fight/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" style="display: block; margin: auto;" />
 
 
 __There is one important commonality from all the results. The predictor variables HCWFM and  dadIpdeTotal are shown as of prime important by all selection techniques__

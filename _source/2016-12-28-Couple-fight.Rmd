@@ -5,6 +5,11 @@ date: "28/4/2016"
 bigimg: /img/coupleFight1.jpg
 tags: [feature engineering,variable importance] 
 ---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=8, fig.height=4, echo=FALSE, warning=FALSE, message=FALSE, fig.align = 'center')
+```
+
 This is an inital attempt of understanding data. I'd explain the methods selected, stuff going through my mind, and questions raised as I code and explore. 
 
 ```{r,echo=FALSE,message=FALSE}

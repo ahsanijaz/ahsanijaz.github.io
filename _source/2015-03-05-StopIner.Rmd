@@ -6,6 +6,9 @@ tags: ["GTFS, visualization, document automation"]
 image: /img/gtfsB.jpg
 ---
 
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=8, fig.height=4, echo=FALSE, warning=FALSE, message=FALSE, fig.align = 'center')
+```
 
 A GTFS feed is a collection of csv files that stores a transit system's scheduled operations as visible to riders. The specification is designed to be sufficient to provide trip planning functionality. An excellent visual explanation by [OpenPlans](http://blog.openplans.org/2012/08/the-openplans-guide-to-gtfs-data/) of this system is provided in the figure below:
 

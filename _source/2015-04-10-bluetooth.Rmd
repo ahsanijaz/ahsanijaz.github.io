@@ -5,6 +5,10 @@ bigimg: /img/peopleCount.png
 tags: [confidence intervals, extrapolation]
 ---
 
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=8, fig.height=4, echo=FALSE, warning=FALSE, message=FALSE, fig.align = 'center')
+```
+
 As a thought experiment, I was working on the detection of number of people using Bluetooth visibility. Briefly, I was collecting data on my cellphone by counting the number of visible bluetooth devices while hanging out in some Cafes around Palo Alto. I was also counting the actual number of people in those shops. Thus, a simple extrapolation using these two numbers would provide an extrapolation factor. Assuming that the number of bluetooth devices follow a gaussian distribution, we can provide confidence interval of our extrapolation by looking at the standard deviation of data obtained. In this post, I'm generating psuedo-data to provide such estimates. In the next post, I'll work and show the actual results obtained through real data around Palo Alto. 
 The sections that follow look into the confidence intervals by assuming that a certain proportion of population has there bluetooth devices turned on. With that, we provide the observed total number of people and use mean and standard deviations of a binomial distribution. With increasing percentage, our confidence of estimates will increase and margin of error reduce. 
 ```{r,echo=FALSE, include = FALSE}

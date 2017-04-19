@@ -6,6 +6,10 @@ bigimg: /img/qS.jpg
 tags: [statistical features] 
 ---
 
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=8, fig.height=4, echo=FALSE, warning=FALSE, message=FALSE, fig.align = 'center')
+```
+
 Humans are transforming into data generating machines. Be it our system usage, the clicks, keystroke patterns, pressure that we apply while pressing touch screens, social media feeds, or exercising; loads of data is generated which can be used to both influence and optimize our behaviors. Scary as it sounds, one of my favorite data driven application is FitStar. The application decides an exercise regimen by taking feedback about your activity and engagement. Moreover, it has integrated itself with [FitBit](https://www.fitbit.com/fitstar), thus utilizing richer information about your exercises (highly recommended!). 
 Here, I am exploring and interpreting data obtained through a similar activity monitoring device. As an exercise enthusiast, I'm interested in how the quantified self movement can help us in optimizing our work outs. 
 The data used here is taken from Roger D. Peng's github [account](https://github.com/rdpeng/RepData_PeerAssessment1). 

@@ -5,6 +5,10 @@ date: "05/09/2016"
 bigimg: 
 ---
 
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=8, fig.height=4, echo=FALSE, warning=FALSE, message=FALSE, fig.align = 'center')
+```
+
 1. Psuedo data generation
 2. Psuedo anomalies and anomaly types along with plots
 3. Unsupervised PCA setting
