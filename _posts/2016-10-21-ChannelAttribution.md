@@ -3,17 +3,32 @@ layout: post
 title: Cross Channel Attribution (Part II)
 date: "19/10/2016"
 bigimg: /img/ca1.jpg
-tags: [data driven marketing, financial engineering]
+tags: [marketing models, Markov models, survival regression, financial engineering]
 ---
 
 
 
+In the [previous post](https://ahsanijaz.github.io/2016-10-19-channelAttribution/), we looked at some basic models that are used for channel attribution. As discussed earlier, more refined models are required for objective budget allocation. Here, we'll look at two recent methods that take into account the complete conversion chains. We'd also discuss about A/B lift, and how these models should be understood to create a hybrid decision model. 
 
 ## Markov chain based attribution
 
-- Transitional probalities by using markov model 
-- Check the effect of removal of each touch point
-- Attribute touch points according to the lift 
+### Markov chains
+
+A Markov chain tells you the probability of going from one state to another. Following one of the classic weather examples, say you can have three different weather conditions, cloudy, sunny and rainy. There will be some probability of transitioning from a cloudy day to a rainy day. Similarly, there will be some probability of having a sunny day followed with a sunny day. Therefore, we get a transitional probability matrix. So, a markov chain tells you about the possible states and probability of hopping from one state to another. I'd highly recommend the following [tutorial](http://setosa.io/ev/markov-chains/) on Markov chains to understand them better. 
+
+In comparison to multichannel heuristic based models, Markov chain provides an objective, transparent way of attributing marketing budget. Instead of condensing user journeys to one click and omitting any additional marketing contacts, or with more complex models based on predefined weights by the advertisers fail to attribute credit fairly across channels.
+
+### State definitions 
+
+For attribution modeling, the ad factor used is Removal Effect; it is calculated for each channel $$ s_i $$ and is the
+change in probability of reaching the conversion state from the starting state when the channel $$ s_i $$ is removed. All the incoming edges of the state $$ s_i $$ that is removed are redirected to the absorbing state. 
+Because it requires no preliminary assumptions about channels or decision processes,
+this framework is highly versatile. The only prerequisite for building graphical models is the
+availability of historical, individual-level tracking data. This framework can evaluate various
+conversion types, including sales, sign-ups, or leads, and easily integrate new online
+marketing channels. Analyses can also be run on different aggregation levels, such that users can
+analyze not only channels but also advertising campaigns or even different creatives.
+
 
 ![plot of chunk unnamed-chunk-1](/figure/source/2016-10-21-ChannelAttribution/unnamed-chunk-1-1.png)
 
