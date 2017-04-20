@@ -14,16 +14,10 @@ In the [previous post](https://ahsanijaz.github.io/2016-10-19-channelAttribution
 
 ## Markov chain based attribution
 
-### Markov chains
-
-A Markov chain tells you the probability of going from one state to another. Following one of the classic weather examples, say you can have three different weather conditions, cloudy, sunny and rainy. There will be some probability of transitioning from a cloudy day to a rainy day. Similarly, there will be some probability of having a sunny day followed with a sunny day. Therefore, we get a transitional probability matrix. So, a markov chain tells you about the possible states and probability of hopping from one state to another. I'd highly recommend the following [tutorial](http://setosa.io/ev/markov-chains/) on Markov chains to understand them better. 
-
-In comparison to multichannel heuristic based models, Markov chain provides an objective, transparent way of attributing marketing budget. Instead of condensing user journeys to one click and omitting any additional marketing contacts, or with more complex models based on predefined weights by the advertisers fail to attribute credit fairly across channels.
-
-### State definitions 
-
-For attribution modeling, the ad factor used is Removal Effect; it is calculated for each channel $$ s_i $$ and is the
-change in probability of reaching the conversion state from the starting state when the channel $$ s_i $$ is removed. All the incoming edges of the state $$ s_i $$ that is removed are redirected to the absorbing state. 
+A Markov chain tells you the probability of going from one state to another. Taking the weather example, say you can have three different weather conditions: cloudy, sunny and rainy. There will be some probability of transitioning from a cloudy day to a rainy day. Similarly, there will be some probability of having a sunny day followed with another sunny day. Therefore, we get a transitional probability matrix. So, a markov chain tells you about the possible states and probability of hopping from one state to another. I'd highly recommend the following [tutorial](http://setosa.io/ev/markov-chains/) with excellent visualizations on Markov chains to understand them better. 
+In comparison to multichannel heuristic based models, Markov chain provides an objective, robust and transparent way of attributing marketing budget. Instead of condensing user journeys to one click and omitting any additional marketing contacts, or as is the case with more complex models based on predefined weights by the advertisers, markov based models consider the complete chain objectively.
+For attribution modeling, the ad factor used in this case is Removal Effect; it is calculated for each channel $$ s_i $$ and is the
+change in probability of reaching the conversion state from the starting state when the channel $$ s_i $$ is removed. All the incoming edges of the state $$ s_i $$ that is removed are redirected to the absorbing state (NULL state or no conversion). 
 Because it requires no preliminary assumptions about channels or decision processes,
 this framework is highly versatile. The only prerequisite for building graphical models is the
 availability of historical, individual-level tracking data. This framework can evaluate various
