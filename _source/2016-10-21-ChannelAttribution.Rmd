@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Cross Channel Attribution (Part II)
-date: "19/10/2016"
+date: "21/10/2016"
 bigimg: /img/ca1.jpg
 tags: [marketing models, Markov models, survival regression, financial engineering]
 ---
@@ -136,7 +136,8 @@ ggplot(channel_tidy, aes(time, estimate, fill = strata)) +
   geom_line(aes(linetype = strata)) +
   geom_ribbon(aes(ymin=conf.low, ymax=conf.high), alpha=.15) + 
   xlab("days") + 
-  ylab("Proportion Survival")
+    ylab("Proportion Survival")
+
 ```
 
 
@@ -145,6 +146,7 @@ ggplot(channel_tidy, aes(time, estimate, fill = strata)) +
 - Attribution to conversions to different channels by using all the models
 
 ```{r, echo=FALSE}
+
 h_mod <- heuristic_models(channel_data, var_path = 'path', var_conv = 'conv')
 ndl_data <- function(path1){
   #print(path1)
@@ -178,6 +180,7 @@ ggplot(all_mod_plot, aes(x = conv_type, y = value, group = channel_name)) +
   ggtitle('Model comparison') + 
   theme(text = element_text(size=23),
         plot.title = element_text(size = rel(1)),axis.text.x = element_text(angle = 45, hjust = 1))
+
 ```
 
 ### Comparison of other models
@@ -185,10 +188,10 @@ ggplot(all_mod_plot, aes(x = conv_type, y = value, group = channel_name)) +
 - Attribution to touch-points
 
 ```{r,echo=FALSE}
+
 ggplot(all_mod_plot, aes(channel_name, value, fill = conv_type)) +
   geom_bar(stat='identity', position='dodge') +
   ggtitle('TOTAL VALUE') + 
-  scale_fill_manual(values = colours)  + 
   ylab("") + 
   theme(text = element_text(size=23),
         plot.title = element_text(size = rel(1)),axis.text.x = element_text(angle = 45, hjust = 1))

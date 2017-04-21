@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Cross Channel Attribution (Part II)
-date: "19/10/2016"
+date: "21/10/2016"
 bigimg: /img/ca1.jpg
 tags: [marketing models, Markov models, survival regression, financial engineering]
 ---
@@ -43,11 +43,6 @@ analyze not only channels but also advertising campaigns or even different creat
 ### Comparison of other models
 
 - Attribution to touch-points
-
-
-```
-## Error: Insufficient values in manual scale. 5 needed but only 1 provided.
-```
 
 ![plot of chunk unnamed-chunk-4](/figure/source/2016-10-21-ChannelAttribution/unnamed-chunk-4-1.png)
 
