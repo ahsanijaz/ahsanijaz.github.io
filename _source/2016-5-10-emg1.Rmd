@@ -37,7 +37,7 @@ $$
     \end{equation}\\
 $$
 
-It is assumed that the observations of the recorded EMG signal $\mathit{x}_j$ is realized from the same probability distribution during the active phase. Similarly, the observations from the silent phase are considered to be generated from the same probability distribution albeit different from the distribution of the activity phase. Mathematically, the process is explained in equation below using the indicator variable. 
+It is assumed that the observations of the recorded EMG signal $$ \mathit{x}_j $$ is realized from the same probability distribution during the active phase. Similarly, the observations from the silent phase are considered to be generated from the same probability distribution albeit different from the distribution of the activity phase. Mathematically, the process is explained in equation below using the indicator variable. 
 
 $$
 
@@ -96,3 +96,4 @@ signal = append(signal, list(emgx$values))
   plot(emgx)
   
 ```
+
