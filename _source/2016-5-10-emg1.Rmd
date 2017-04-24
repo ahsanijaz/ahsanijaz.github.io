@@ -1,6 +1,6 @@
 ---
 layout: post
-title: EMG signals
+title: EMG signals (Synthetic data and anomaly model)
 date: "05/09/2016"
 bigimg: 
 ---
@@ -9,7 +9,44 @@ bigimg:
 knitr::opts_chunk$set(fig.width=8, fig.height=4, echo=FALSE, warning=FALSE, message=FALSE, fig.align = 'center')
 ```
 
-1. Psuedo data generation
-2. Psuedo anomalies and anomaly types along with plots
-3. Unsupervised PCA setting
-4. 
+A few years back, I was working with some people at [Yale University, Orthopaedics and Rehabilitation Department](http://www.orthopaedics.yale.edu/). We were working on a data set of electromyographic signals collected from three hundred and three varsity athletes recruited for a study on low pack pain. In this series of blog post, I'll discuss the demographic details and will show some of our findings on that data set. Unfortunately, it was found that some of the signals obtained had serious issues, like signal leakage, electrode disconnection, noise etc. From there on, it was necessary to clean the data set from these anomalous signals. As a starting point, I thought that I'd need a set up to generate synthetic EMG data, and psuedo anomalies that mimic the real world situations. Once, I've tried and tested various time serious anomaly detection systems on that, I can pass the real data with some tuning to automatically detect all the anomalous signals. This would be quite handy with applications extending to wearable electronics, online data filtering, and posthoc time series analysis. 
+In this series of posts, I'll go through the techniques that I've tried, details of all, including those that have failed, and the final module that was tested to find out anomalies in the real world data set. Through this series, we'll discuss feature engineering, basis selection, anomaly detection methods, while underscoring the importance of reproducible research.
+
+## Synthetic data model for EMG signals
+
+Synthesized EMG signals are primarily used to provide a flexible test setting suitable for validating results under supervised, semi-supervised and unsupervised learning settings. Since anomalous signal are differentiated by learning the context of the experimental setup, it is imperative to determine the robustness of any model and highlight settings where the proposed framework might fail. In real world EMG data sets, post processing on any large scale EMG study to determine anomalous signals is nontrivial and prone to human error. Moreover, we can introduce anomalies pertaining to temporal activity in the synthetic EMG signals which is not possible to recreate in real world signals. Thus, using only real world data set would limit the scope and the model will be built on data susceptible to selection bias (as anomalies identified for quantification is carried by human expert). 
+The synthetic EMG signal is realized as observations from a heteroscedastic process sampled from normal random variables. The signal is divided between active phase (when the muscle of interest is in motion) and the silent phase (when the muscle of interest is at rest). The time of active phase $$ \mathit{l_a} $$ and silent phase $$ \mathit{l_s} $$ are modeled as: 
+
+$$
+\begin{equation}
+      \mathit{l_a} = \mathcal{N}\left(\mathit{l},\sigma_{as}^2\right),\\ 
+      \mathit{l_s} = \mathcal{N}\left(\mathit{m},\sigma_{ss}^2\right),
+    \end{equation} 
+$$
+
+where $$ \mathit{l} $$ is the mean activity time and $$ \sigma_{as} $$ is the standard deviation of the activity phase time window. The standard deviation $$ \sigma_{as} $$ can be used to model the dynamic state of muscle before reaching steady state. Particularly, it is used in this analysis for modeling the temporal misalignment that may occur while monitoring repetitive activity cycles. Similarly, $$\mathit{m}$$ is the mean silent time of muscle with $$ \sigma_{ss} $$ as the standard deviation of silent activity. Intuitively, a small deviation from the mean value of activity should be tolerated by the anomaly detection framework whereas a large deviation might be caused by a contextual anomaly. The activity of muscle is identified using an indicator variable $$ \mathbf{d} $$ which is defined in the equation below. The starting time of activity phase is denoted by $$ \mathit{s_a} $$ :
+
+$$
+\begin{equation}
+      \label{Eq:indicator}
+      \mathbf{d}_j =
+      \begin{cases}
+        1 & \mathit{j} ~\in ~[\mathit{s_a}, \mathit{l_a} + \mathit{s_a}),\\
+        0 & \mathit{j} ~\in ~[\mathit{s_a} + \mathit{l_a}, \mathit{l_a} + \mathit{s_a} + \mathit{l_s} ].\\
+      \end{cases}
+    \end{equation}\\
+$$
+
+It is assumed that the observations of the recorded EMG signal $\mathit{x}_j$ is realized from the same probability distribution during the active phase. Similarly, the observations from the silent phase are considered to be generated from the same probability distribution albeit different from the distribution of the activity phase. Mathematically, the process is explained in equation below using the indicator variable. 
+
+$$
+
+\begin{equation}
+      \mathbf{x}_j \sim \mathcal{N}\left(0,\mathbf{d}_j\sigma_a^2 + (1 - \mathbf{d}_j)\sigma_s^2\right), 
+\end{equation}
+
+$$
+
+where $$ \sigma_a $$ is the standard deviation of activity phase, $$ \sigma_s^2 $$ is the standard deviation of silent phase and $$ \sigma_a^2 > \sigma_s^2 $$. Using this framework, $$ 7000 $$ (with time length of 4 seconds) synthetic EMG signals were generated. The model parameter used to generate these signals are $$ \mathit{l_a} = 1000 $$, $$ \sigma_a = 2 $$, $$ \sigma_s = 0.05$$ , $$ \sigma_{as} = 50 $$, $$\sigma_{ss} = 50$$ with a sampling rate of 1000 hertz. 
+
+
