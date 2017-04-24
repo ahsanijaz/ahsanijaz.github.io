@@ -1,18 +1,19 @@
 ---
 layout: post
-title: Cross Channel Attribution (Part II)
+title: Digital Channel Attribution (Part II)
 date: "21/10/2016"
 bigimg: /img/ca1.jpg
 tags: [marketing models, Markov models, survival regression, financial engineering]
 ---
 
 ```{r global_options, include=FALSE}
-knitr::opts_chunk$set(fig.width=8, fig.height=4, echo=FALSE, warning=FALSE, message=FALSE)
+knitr::opts_chunk$set(fig.width=10, fig.height=6, echo=FALSE, warning=FALSE, message=FALSE)
 ```
 
-In the [previous post](https://ahsanijaz.github.io/2016-10-19-channelAttribution/), we looked at some basic models that are used for channel attribution. As discussed earlier, more refined models are required for objective budget allocation. Here, we'll look at two recent methods that take into account the complete conversion chains. We'd also discuss about A/B lift, and how these models should be understood to create a hybrid decision model. 
+In the [previous post](https://ahsanijaz.github.io/2016-10-19-channelAttribution/), we looked at some basic models that are used for channel attribution. As discussed earlier, more refined models are required for an objective budget allocation. Here, we'll look at two recent methods that take into account the complete conversion chains. We'd also discuss about A/B lift, and how these models should be understood to create a hybrid decision model. 
 
-## Markov chain based attribution
+
+# Markov chain based attribution
 
 A Markov chain tells you the probability of going from one state to another. Taking the weather example, say you can have three different weather conditions: cloudy, sunny and rainy. There will be some probability of transitioning from a cloudy day to a rainy day. Similarly, there will be some probability of having a sunny day followed with another sunny day. Therefore, we get a transitional probability matrix. So, a markov chain tells you about the possible states and probability of hopping from one state to another. I'd highly recommend the following [tutorial](http://setosa.io/ev/markov-chains/) with excellent visualizations on Markov chains to understand them better. 
 In comparison to multichannel heuristic based models, Markov chain provides an objective, robust and transparent way of attributing marketing budget. Instead of condensing user journeys to one click and omitting any additional marketing contacts, or as is the case with more complex models based on predefined weights by the advertisers, markov based models consider the complete chain objectively.
@@ -25,8 +26,31 @@ conversion types, including sales, sign-ups, or leads, and easily integrate new 
 marketing channels. Analyses can also be run on different aggregation levels, such that users can
 analyze not only channels but also advertising campaigns or even different creatives.
 
+### Demonstration and comparison with other models
 
-```{r,echo=FALSE}
+In an attempt to demonstrate the attribution models, we proceed with creating a sample data generation module. The code in the following snippets creates conversion journeys of 500 users. Five possible channels are used. In this data, the end of each users' journey is considered as a conversion. The users go through each channel with the probability specified in the data.frame of the snippet below.
+
+```{r, echo = TRUE}
+set.seed(354) 
+channel_data <- data.frame(client_id = sample(c(1:500),
+                                              5000,
+                                              replace = TRUE),
+                           date = sample(c(1:32),
+                                         5000,
+                                         replace = TRUE),
+                           channel = sample(c(0:4),
+                                            5000,
+                                            replace = TRUE,
+                                   prob =  c(0.2, 0.3, 0.1, 0.15, 0.25)))
+channel_data$date <- as.Date(channel_data$date, origin = "2016-01-01")
+name_channel <- c("Social_Network","Organic_Search",
+                  "Referral", "Paid_Search", "Direct")
+channel_data$channel <- name_channel[channel_data$channel+1]
+
+```
+
+```{r, echo = FALSE}
+
 library(dplyr)
 library(reshape2)
 library(ggplot2)
@@ -36,16 +60,6 @@ library(broom)
 library(survsim)
 library(OIsurv)
 
-set.seed(354) # c(0.2, 0.3, 0.1, 0.15, 0.25)
-channel_data <- data.frame(client_id = sample(c(1:500), 5000, replace = TRUE),
-                  date = sample(c(1:32), 5000, replace = TRUE),
-                  channel = sample(c(0:4), 5000, replace = TRUE,
-                                   prob =  c(0.2, 0.3, 0.1, 0.15, 0.25)))
-
-channel_data$date <- as.Date(channel_data$date, origin = "2016-01-01")
-name_channel <- c("Social_Network","Organic_Search", "Referral", "Paid_Search", "Direct")
-channel_data$channel <- name_channel[channel_data$channel+1]
-
 survival_time <- function(date){
   return(difftime(date[2],date[1]))
 }
@@ -53,22 +67,36 @@ survival_time <- function(date){
 survival_channel <- function(ch){
   return(ch[1])
 }
-# aggregating channels to the paths for each customer
-channel_data_survival <- channel_data %>%
-  group_by(client_id) %>% arrange(date) %>% 
-  filter(row_number()==1 | row_number()==n()) %>% summarise(surv_time = survival_time(date),
-                                                            channel_name = survival_channel(channel))
 
+```
+
+We modify the dataframe to create users' journeys, and note down the conversion time taken on each journey. In the code below, the function __survival_time__ returns the time taken for each journey, and __survival_channel__ returns the channel from which the journey was originated. The path for each user is separated by '>' sign. With this, we have all the necessary information to apply the markov model. The time taken from each channel to conversion will be used in the next section for  another attribution model.  
+
+```{r, echo = TRUE}
+channel_data_survival <- channel_data %>%
+    group_by(client_id) %>%
+    arrange(date) %>% 
+    filter(row_number()==1 | row_number()==n()) %>%
+    summarise(surv_time = survival_time(date),
+              channel_name = survival_channel(channel))
 
 channel_data <- channel_data %>%
-  group_by(client_id) %>% arrange(date) %>% 
+    group_by(client_id) %>%
+    arrange(date) %>% 
   summarise(path = paste(channel, collapse = ' > '),
-            # assume that all paths were finished with conversion
             conv = 1,
-            conv_null = 0) 
-channel_data = merge(channel_data_survival,channel_data,by = 'client_id')
+            conv_null = 0)
+channel_data = merge(channel_data_survival,
+                     channel_data,by = 'client_id')
 
-channel_survfit = survfit(Surv(time = as.numeric(surv_time), event = conv) ~ channel_name, data = channel_data)
+head(channel_data)
+
+```
+
+The transitional probability for each channels, starting point and conversion are computed and is shown in the figure below.
+
+```{r,echo=FALSE}
+
 # channel_data %>%
 # calculating the models (Markov and heuristics)
 mod_mark <- markov_model(channel_data,
@@ -79,23 +107,6 @@ mod_mark <- markov_model(channel_data,
 
 # heuristic_models() function doesn't work for me, therefore I used the manual calculations
 # instead of:
-h_mod <- heuristic_models(channel_data, var_path = 'path', var_conv = 'conv')
-ndl_data <- function(path1){
-  #print(path1)
-  for(i in 1:length(path1)){
-    path_split = strsplit(path1[i],"> ")
-    l_ps = length(path_split[[1]])
-    ch_ndl = trimws(path_split[[1]][l_ps-1])
-    path1[i] = ch_ndl
-  }
-  #path_split = strsplit(path1,"> ")
-  #l_ps = length(path_split[[1]])
-  #ch_ndl = path_split[[1]][l_ps-1]
-  return(path1)
-}
-df_hm <- channel_data %>% mutate(channel_name_ndl = ndl_data(path))
-ndl_model <- df_hm %>% group_by(channel_name_ndl) %>% summarise(last_non_direct_conversions = sum(conv))
-
 df_plot_trans <- mod_mark$transition_matrix
 
 cols <- c("#e7f0fa", "#c9e2f6", "#95cbee", "#0099dc", "#4ab04a", "#ffd73e", "#eec73a",
@@ -124,12 +135,91 @@ ggplot(df_plot_trans, aes(y = channel_from, x = channel_to, fill = transition_pr
 
 ```
 
-### Survival Model
+### Comparison between heuristic and markovian model
 
-- Use time to conversion from each touch-point
-- Medians time required to convert starting from each touch-point 
+It is important to point out here that this task is completed by using pseudo-data as discussed in previous section. Therefore, although we can see a difference in attribution through markov model as compared to heuristic ones, an objective comment on it is not possible. 
+
+```{r, echo=FALSE}
+
+h_mod <- heuristic_models(channel_data, var_path = 'path', var_conv = 'conv')
+
+ndl_data <- function(path1){
+  #print(path1)
+  for(i in 1:length(path1)){
+    path_split = strsplit(path1[i],"> ")
+    l_ps = length(path_split[[1]])
+    ch_ndl = trimws(path_split[[1]][l_ps-1])
+    path1[i] = ch_ndl
+  }
+  return(path1)
+}
+
+df_hm <- channel_data %>% mutate(channel_name_ndl = ndl_data(path)) # obtaining last non-direct link
+ndl_model <- df_hm %>% group_by(channel_name_ndl) %>%
+    summarise(last_non_direct_conversions = sum(conv))
+
+ndl_model$channel_name_ndl <- as.factor(ndl_model$channel_name_ndl)
+
+models_1 <- merge(h_mod, mod_mark$result, by = 'channel_name')
+
+all_models <- merge(models_1, as.data.frame(ndl_model),
+                    by.x = 'channel_name',
+                    by.y='channel_name_ndl')
+
+colnames(all_models)[c(1, 5)] <- c('channel_name', 'markov_model')
+
+all_mod_plot <- melt(all_models,
+                     id.vars = 'channel_name',
+                     variable.name = 'conv_type')
+
+all_mod_plot$value <- round(all_mod_plot$value)
+ggplot(all_mod_plot, aes(x = conv_type, y = value, group = channel_name)) +
+  geom_line(aes(color = channel_name), size = 2.5, alpha = 0.8) +
+  geom_point(aes(color = channel_name), size = 5)  +
+  labs(x = '', y = 'Conversions') +
+  ggtitle('Comparison of attribution models') + 
+  theme(text = element_text(size=23),
+        plot.title = element_text(size = rel(1)),axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggplot(all_mod_plot, aes(channel_name, value, fill = conv_type)) +
+  geom_bar(stat='identity', position='dodge') +
+  ggtitle('Total conversions attributed to each channel') + 
+  ylab("") + 
+  theme(text = element_text(size=23),
+        plot.title = element_text(size = rel(1)),axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+
+# Survival Analysis for channel attribution
+
+Survival analysis is defined as a methods that analyze data where the outcome variable is the time until the occurence of an event of interest. In the domain of medical sciences, the event is usually death, occurrence of a disease, etc. The time to event or survival time can be measured in days, weeks, years, etc. In case of channel attribution, the event of interest is the time taken to conversion after a user is exposed to the product using any of the available channels. 
+In survival analysis, users are followed over a specified time period and the focus is on the
+time at which the event of interest occurs. Although, simple regression models can be used to get the survival time using channels as predictor variables. But, you need to limit the regression model to positive values. Secondly, and more importantly, ordinary regression models cannot effectively handle the censoring of observations. Observations are said to be censored when the information about time to completion is not available. Suppose a user was exposed to a marketing channel and kept on interacting with product till the current date but hadn't made it to conversion, we can't say that the user will never end up to conversion. We merely know that till the current time, the user is indecisive. Thus, the final output is censored. This kind of data is called right censored. Censoring is an important issue in survival analysis, representing a particular type of missing data. Unlike ordinary regression models, survival methods correctly incorporate information from both censored and uncensored observations in estimating important model parameters. The dependent
+variable in survival analysis is composed of two parts: one is the time to event and the other is the event
+status, which records if the event of interest occurred or not. One can then estimate two functions that
+are dependent on time, the survival and hazard functions. The survival and hazard functions are key
+concepts in survival analysis for describing the distribution of event times. The survival function gives,
+for every time, the probability of surviving (or not experiencing the event) up to that time. The hazard
+function gives the potential that the event will occur, per time unit, given that an individual has survived
+up to the specified time. While these are often of direct interest, many other quantities of interest (e.g.,
+median survival) may subsequently be estimated from knowing either the hazard or survival function.
+It is generally of interest in survival studies to describe the relationship of a factor of interest (e.g.
+treatment) to the time to event, in the presence of several covariates, such as age, gender, race, etc.
+
+Here, we use a nonparametric estimator of the survival function: the Kaplan Meier method. It is widely used to estimate
+and graph survival probabilities as a function of time. It can be used to obtain univariate descriptive
+statistics for survival data, including the median survival time, and compare the survival experience for
+two or more groups of subjects. Using survival analysis, we can provide the markeeters and decision makers with another important figure: the median time taken to conversion through each channel. The survival curves are shown in the figure below for each channel using the data generated in the previous section. 
 
 ```{r,echo=FALSE}
+
+
+# aggregating channels to the paths for each customer
+
+channel_survfit = survfit(Surv(time = as.numeric(surv_time), event = conv) ~ channel_name,
+                          data = channel_data)
+
 channel_tidy = tidy(channel_survfit)
 mx = max(channel_tidy$n.censor)
 ggplot(channel_tidy, aes(time, estimate, fill = strata)) + 
@@ -139,62 +229,3 @@ ggplot(channel_tidy, aes(time, estimate, fill = strata)) +
     ylab("Proportion Survival")
 
 ```
-
-
-### Comparison of other models
-
-- Attribution to conversions to different channels by using all the models
-
-```{r, echo=FALSE}
-
-h_mod <- heuristic_models(channel_data, var_path = 'path', var_conv = 'conv')
-ndl_data <- function(path1){
-  #print(path1)
-  for(i in 1:length(path1)){
-    path_split = strsplit(path1[i],"> ")
-    l_ps = length(path_split[[1]])
-    ch_ndl = trimws(path_split[[1]][l_ps-1])
-    path1[i] = ch_ndl
-  }
-  #path_split = strsplit(path1,"> ")
-  #l_ps = length(path_split[[1]])
-  #ch_ndl = path_split[[1]][l_ps-1]
-  return(path1)
-}
-df_hm <- channel_data %>% mutate(channel_name_ndl = ndl_data(path))
-ndl_model <- df_hm %>% group_by(channel_name_ndl) %>% summarise(last_non_direct_conversions = sum(conv))
-#colnames(ndl_model)[1] <- "channel_name"
-ndl_model$channel_name_ndl <- as.factor(ndl_model$channel_name_ndl)
-models_1 <- merge(h_mod, mod_mark$result, by = 'channel_name')
-all_models <- merge(models_1, as.data.frame(ndl_model),by.x = 'channel_name',by.y='channel_name_ndl')
-colnames(all_models)[c(1, 5)] <- c('channel_name', 'markov_model')
-
-all_mod_plot <- melt(all_models, id.vars = 'channel_name', variable.name = 'conv_type')
-all_mod_plot$value <- round(all_mod_plot$value)
-# slope chart
-#pal <- colorRampPalette(brewer.pal(10, "Set1"))
-ggplot(all_mod_plot, aes(x = conv_type, y = value, group = channel_name)) +
-  geom_line(aes(color = channel_name), size = 2.5, alpha = 0.8) +
-  geom_point(aes(color = channel_name), size = 5)  +
-  labs(x = 'Model', y = 'Conversions') +
-  ggtitle('Model comparison') + 
-  theme(text = element_text(size=23),
-        plot.title = element_text(size = rel(1)),axis.text.x = element_text(angle = 45, hjust = 1))
-
-```
-
-### Comparison of other models
-
-- Attribution to touch-points
-
-```{r,echo=FALSE}
-
-ggplot(all_mod_plot, aes(channel_name, value, fill = conv_type)) +
-  geom_bar(stat='identity', position='dodge') +
-  ggtitle('TOTAL VALUE') + 
-  ylab("") + 
-  theme(text = element_text(size=23),
-        plot.title = element_text(size = rel(1)),axis.text.x = element_text(angle = 45, hjust = 1))
-
-```
-

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Cross Channel Attribution (Part I)
+title: Digital Channel Attribution (Part I)
 date: "19/10/2016"
 bigimg: /img/ca1.jpg
 tags: [data driven marketing, financial engineering]
@@ -46,4 +46,4 @@ Definitely an improvement on the linear attribution model, it provides higher we
 
 ![plot of chunk unnamed-chunk-5](/figure/source/2016-10-19-channelAttribution/unnamed-chunk-5-1.png)
 
-The methods discussed so far are heuristic based and not data driven. In the [next post](https://ahsanijaz.github.io/2016-10-19-ChannelAttribution/), we'll look into two state-of-art methods for attribution modeling that can be scaled at enterprise level. 
+The methods discussed so far are heuristic based and not data driven. In the [next post](https://ahsanijaz.github.io/2016-10-21-ChannelAttribution/), we'll look into two state-of-art methods for attribution modeling that can be scaled at enterprise level. 
