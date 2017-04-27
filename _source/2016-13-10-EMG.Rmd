@@ -77,7 +77,7 @@ Numerous books have been written on the topic, and a highly recommended applicat
 
 ### Wavelet basis selection
 
-The selection of wavelet basis is based on several signal properties including vanishing moments, discontinuities and the optimization goals. For anomaly detection, we use a modified Shanon entropy based cost function for optimization. Shanon entropy is chosen to maximise the sparsity of signal representation. During estimation, any wavelet coefficient, that is less than a threshold is dropped. This is equivalent to denoising the signal using wavelet hard threshold denoising method. Since we are only interested in the entropy of energy, Shanon entropy is calculated on the squared values of wavelet coefficients. The entropy obtained is further normalized by the coefficient values and the total number of signals. Mathematical representation follows.
+The selection of wavelet basis is based on several signal properties including vanishing moments, discontinuities and the optimization goals. In case of anomaly detection, we use a modified Shanon entropy based cost function for optimization. Shanon entropy is chosen to maximise the sparsity of signal representation. During estimation, any wavelet coefficient lesser than a threshold is dropped. This is equivalent to denoising the signal using wavelet hard threshold denoising method. Since we are only interested in the entropy of energy, Shanon entropy is calculated on the squared values of wavelet coefficients. The entropy obtained is further normalized by the coefficient values and the total number of signals. Mathematical representation follows.
     Let our data set be represented as $$\textbf{X}_{l,m}\forall{} l \in \mathcal{L}:= \{1, \cdots, p \}$$ and $$\forall{} m \in \mathcal{M}:= \{1, \cdots, N \}$$ where $$p$$ is the total number of input signals and $$N$$ is the length of each input vector. $$\textbf{X}_l$$ represents all $$N$$ observations of the signal at index $$l$$. Let the wavelet transformation be represented as $$\mathcal{W}\left(\textbf{X}\right)$$, and a row vector $$w:= [W_1^T,\cdots,W_p^T]$$ of length $$N \times p$$ denote the concatenated output of wavelet coefficients of all the signals. The modified Shanon Entropy is computed on the one dimensional vector $$w$$ and is given as:
 
 $$
@@ -87,5 +87,62 @@ $$
 $$
 
 where $$t_h$$ is the threshold value selected for removing wavelet coefficients with lower energy.
-    
 
+```{r, echo = TRUE}
+load("~/Personal/dataScale/signals.RData")
+waveletFamily <- list(c("DaubExPhase",1),
+                      c("DaubExPhase",2),
+                      c("DaubExPhase",3),
+                      c("DaubExPhase",4),
+                      c("DaubExPhase",5),
+                      c("DaubExPhase",6),
+                      c("DaubExPhase",7),
+                      c("DaubExPhase",8),
+                      c("DaubExPhase",9),
+                      c("DaubExPhase",10),
+                      c("DaubLeAsymm",10),
+                      c("Lawton",3),
+                      c("LittlewoodPaley",
+                        length(signal[[1]]$values)),
+                      c("LinaMayrand",5.4))
+waveletPacket <- list(c("DaubExPhase",10),
+                      c("DaubLeAsymm",10))
+sampleSignal <- signal[[1]]$waveletDecomp
+nOfSignals <- length(signal)
+levels <- 1:(sampleSignal$nlevels - 1)
+baseSelect <- data.frame(WaveletFam = character(),Entropy=numeric(),stringsAsFactors = FALSE)
+for(i in waveletFamily){
+  coefs <- list()
+  for(j in 1:length(signal)){
+    waveletDecomp = wd(family = i[1],data = signal[[j]]$values,filter.number = i[2])
+    nthresh = nlevelsWT(waveletDecomp)-1
+    for (k in 0:nthresh) {
+      coefs <- list(list(accessD(waveletDecomp, level = k)),coefs)
+    }
+    coefs <- list(list(accessC(waveletDecomp, level = 0)),coefs)
+  }
+  coefs <- unlist(coefs)
+  EntropyB <- Shannon.entropy(abs(coefs)/max(abs(coefs)))/7000
+  baseSelect<-rbind(baseSelect,data.frame(waveletFam = paste(i[1],i[2]),Entropy = EntropyB,stringsAsFactors = FALSE))
+}
+
+```
+
+The wavelet basis is selected by minimizing entropy as discussed. The candidate wavelets chosen were Daubechies (vanishing moments 1 through 10), Symmlets (vanishing moments 1 through 10), Lawton complex value wavelet (three vanishing moments, both distinct solutions), Lina and Mayrand wavelets (vanishing moments 5, all four solutions) and LittleWood-Paley wavelet. The entropy minimization was done for both synthetic and real world datasets. For both the cases, Lawton with three vanishing moments provided the best results. This can be seen in the barplot. 
+
+```{r, echo = FALSE}
+library(ggthemes)
+library(RColorBrewer)
+library(ggplot2)
+getPalette = colorRampPalette(brewer.pal(11, "Spectral"))
+colourCount = length(unique(baseSelect$waveletFam))
+
+baseSelect$waveletFam[1] = "Haar"
+c <- ggplot(baseSelect, aes(x=factor(waveletFam),y=Entropy,fill = factor(waveletFam)))
+c+geom_bar(stat="identity",position=position_dodge()) +
+  geom_text(aes(y=Entropy, ymax=Entropy, label=round(Entropy,2)),
+            position= position_dodge(width=0.9),hjust=-.25, color="black") +
+  coord_flip() + scale_fill_manual(values = getPalette(colourCount)) +
+  theme(plot.title = element_text(size = rel(1.25))) + labs(title = "Basis Selection") + 
+    xlab("Wavelet Family") + ylab("Relative Entropy Measure")
+```
