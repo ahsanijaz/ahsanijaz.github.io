@@ -49,9 +49,21 @@ filterPm2.5 <- function(PMvalue){
     else "Hazardous"
 }
 
+filterAQI <- function(AQI){
+    if(AQI > 0 & AQI <= 100.0){
+        "good"}
+    else if(AQI > 100.0 & AQI <= 200.0){
+            "unhealthy"
+        }
+    else if(AQI > 200.0){
+            "Hazardous"
+        }
+}
 
-tPollutionTS$hazard = rep(unlist(llply((tPollutionTS %>% dplyr::filter(series == "pm2.5") %>% dplyr::select(value))$value, filterPm2.5)),2)
 
+tPollutionTS$hazard = c(unlist(llply((tPollutionTS %>% dplyr::filter(series == "pm2.5") %>% dplyr::select(value))$value, filterPm2.5)),
+                        unlist(llply((tPollutionTS %>% dplyr::filter(series == "Air.Quality.Index") %>%
+                                      dplyr::select(value))$value, filterAQI)))
 
 
 aPlot <-  gvisAnnotationChart(tPollutionTS, datevar="index",
@@ -75,7 +87,9 @@ It seems that the air quality index is increasing with the passage of time, wher
 
 ```{r echo=FALSE,results='asis',tidy=TRUE}
 
-dailyPoll$hazard = rep(unlist(llply((dailyPoll %>% dplyr::filter(series == "pm2.5") %>% dplyr::select(value))$value, filterPm2.5)),2)
+dailyPoll$hazard = c(unlist(llply((dailyPoll %>% dplyr::filter(series == "pm2.5") %>% dplyr::select(value))$value, filterPm2.5)),
+                                unlist(llply((dailyPoll %>% dplyr::filter(series == "Air.Quality.Index") %>%
+                                      dplyr::select(value))$value, filterAQI)))
 aPlot2 <-  gvisAnnotationChart(dailyPoll, datevar="index",
                       numvar="value", idvar="series",
                       options=list(
@@ -93,7 +107,7 @@ print(aPlot2)
 
 ```
 
-Finally, we look at the motion chart for this data, along with hazard levels based on __pm2.5 values__ as defined by [BlissAir](https://blissair.com/what-is-pm-2-5.htm).
+Finally, we look at the motion chart for this data, along with hazard levels based on __pm2.5 values__ and __air quality indexes__ as defined by [BlissAir](https://blissair.com/what-is-pm-2-5.htm).
 
 ```{r echo=FALSE,results='asis',tidy=TRUE}
 
