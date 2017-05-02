@@ -10,9 +10,8 @@ bigimg:
 knitr::opts_chunk$set(fig.width=8, fig.height=4, echo=FALSE, warning=FALSE, message=FALSE, fig.align = 'center')
 ```
 
-A friend of mine ([Max](http://maxkrueger.com/)) was discussing about his presentation on Smart Cities. While going through it, he mentioned a twitter account that posts about air pollution data about Karachi: [KarachiAir](https://twitter.com/KarachiAir). The tweets are machine generated and posted at an hour's interval. It's a great step to open data community, and quite rare in a country like Pakistan. 
-We thought about creating some visualizations with basic exploratory analysis. It also 
-So we scraped the data from the twitter account using its [timeline API](https://dev.twitter.com/rest/reference/get/statuses/user_timeline); filtered it to get only quality measure tweets; parsed those tweets to get pm2.5 and air quality index and did some time series visualizations for it. 
+A friend of mine ([Max](http://maxkrueger.com/)) was discussing about his presentation on Smart Cities. While going through it, he mentioned a twitter account that posts about air pollution data about Karachi: [KarachiAir](https://twitter.com/KarachiAir). The tweets are machine generated and are posted every hour. It's a great step towards open data community and was a pleasent surprise for me to find it for Pakistani cities. 
+Unfortunately, it is difficult to look at the big picture by looking at these tweets. Therefore, we thought about creating some visualizations using this data with some basic exploratory analysis. So we scraped the data from the twitter account using its [timeline API](https://dev.twitter.com/rest/reference/get/statuses/user_timeline); filtered it to get only quality measure tweets; parsed those tweets to get pm2.5 and air quality index and did some time series visualizations. 
 
 ## Exploration of Air pollution data in Karachi
 
@@ -72,7 +71,7 @@ print(aPlot)
 
 ```
 
-It seems that the air quality index is increasing with the passage of time, whereas the pm2.5 metric is decreasing. If we pass our data through a moving average filter with one day window, this trend becomes more evident. 
+It seems that the air quality index is increasing with the passage of time, whereas the pm2.5 metric is decreasing. If we pass our data through a moving average filter by using a one day window, this trend becomes more evident. 
 
 ```{r echo=FALSE,results='asis',tidy=TRUE}
 

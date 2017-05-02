@@ -8,16 +8,15 @@ bigimg:
 
 
 
-A friend of mine ([Max](http://maxkrueger.com/)) was discussing about his presentation on Smart Cities. While going through it, he mentioned a twitter account that posts about air pollution data about Karachi: [KarachiAir](https://twitter.com/KarachiAir). The tweets are machine generated and posted at an hour's interval. It's a great step to open data community, and quite rare in a country like Pakistan. 
-We thought about creating some visualizations with basic exploratory analysis. It also 
-So we scraped the data from the twitter account using its [timeline API](https://dev.twitter.com/rest/reference/get/statuses/user_timeline); filtered it to get only quality measure tweets; parsed those tweets to get pm2.5 and air quality index and did some time series visualizations for it. 
+A friend of mine ([Max](http://maxkrueger.com/)) was discussing about his presentation on Smart Cities. While going through it, he mentioned a twitter account that posts about air pollution data about Karachi: [KarachiAir](https://twitter.com/KarachiAir). The tweets are machine generated and are posted every hour. It's a great step towards open data community and was a pleasent surprise for me to find it for Pakistani cities. 
+Unfortunately, it is difficult to look at the big picture by looking at these tweets. Therefore, we thought about creating some visualizations using this data with some basic exploratory analysis. So we scraped the data from the twitter account using its [timeline API](https://dev.twitter.com/rest/reference/get/statuses/user_timeline); filtered it to get only quality measure tweets; parsed those tweets to get pm2.5 and air quality index and did some time series visualizations. 
 
 ## Exploration of Air pollution data in Karachi
 
 
 
 <!-- AnnotationChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Tue May  2 13:13:54 2017 -->
+<!-- Tue May  2 13:20:16 2017 -->
 
 
 <!-- jsHeader -->
@@ -11295,10 +11294,10 @@ callbacks.shift()();
   style="width: 600; height: 350;">
 </div>
 
-It seems that the air quality index is increasing with the passage of time, whereas the pm2.5 metric is decreasing. If we pass our data through a moving average filter with one day window, this trend becomes more evident. 
+It seems that the air quality index is increasing with the passage of time, whereas the pm2.5 metric is decreasing. If we pass our data through a moving average filter by using a one day window, this trend becomes more evident. 
 
 <!-- AnnotationChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Tue May  2 13:13:55 2017 -->
+<!-- Tue May  2 13:20:17 2017 -->
 
 
 <!-- jsHeader -->
@@ -11939,14 +11938,14 @@ callbacks.shift()();
 Finally, we look at the motion chart for this data, along with hazard levels based on __pm2.5 values__ as defined by [BlissAir](https://blissair.com/what-is-pm-2-5.htm).
 
 <!-- MotionChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Tue May  2 13:13:55 2017 -->
+<!-- Tue May  2 13:20:17 2017 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataMotionChartID6c5427923d28 () {
+function gvisDataMotionChartID6db2201aa217 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -13268,15 +13267,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartMotionChartID6c5427923d28() {
-var data = gvisDataMotionChartID6c5427923d28();
+function drawChartMotionChartID6db2201aa217() {
+var data = gvisDataMotionChartID6db2201aa217();
 var options = {};
 options["width"] = 600;
 options["height"] = 500;
 options["state"] = "";
 
     var chart = new google.visualization.MotionChart(
-    document.getElementById('MotionChartID6c5427923d28')
+    document.getElementById('MotionChartID6db2201aa217')
     );
     chart.draw(data,options);
     
@@ -13300,9 +13299,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartMotionChartID6c5427923d28);
+callbacks.push(drawChartMotionChartID6db2201aa217);
 })();
-function displayChartMotionChartID6c5427923d28() {
+function displayChartMotionChartID6db2201aa217() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -13326,10 +13325,10 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID6c5427923d28"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID6db2201aa217"></script>
  
 <!-- divChart -->
   
-<div id="MotionChartID6c5427923d28" 
+<div id="MotionChartID6db2201aa217" 
   style="width: 600; height: 500;">
 </div>
