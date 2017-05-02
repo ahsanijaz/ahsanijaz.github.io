@@ -16,7 +16,7 @@ Unfortunately, it is difficult to look at the big picture by looking at these tw
 
 
 <!-- AnnotationChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Tue May  2 15:49:24 2017 -->
+<!-- Tue May  2 16:14:51 2017 -->
 
 
 <!-- jsHeader -->
@@ -11297,7 +11297,7 @@ callbacks.shift()();
 It seems that the air quality index is increasing with the passage of time, whereas the pm2.5 metric is decreasing. If we pass our data through a moving average filter by using a one day window, this trend becomes more evident. 
 
 <!-- AnnotationChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Tue May  2 15:49:24 2017 -->
+<!-- Tue May  2 16:14:51 2017 -->
 
 
 <!-- jsHeader -->
@@ -11938,14 +11938,14 @@ callbacks.shift()();
 Finally, we look at the motion chart for this data, along with hazard levels based on __pm2.5 values__ and __air quality indexes__ as defined by [BlissAir](https://blissair.com/what-is-pm-2-5.htm).
 
 <!-- MotionChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Tue May  2 15:49:24 2017 -->
+<!-- Tue May  2 16:14:51 2017 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataMotionChartID2847cd260e5 () {
+function gvisDataMotionChartID7e747a0660d () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -11953,13 +11953,13 @@ var datajson =
 "pm2.5",
 new Date(2017,0,11),
 64.05,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
 new Date(2017,0,12),
 88.67083333,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
@@ -11983,85 +11983,85 @@ new Date(2017,0,16),
 "pm2.5",
 new Date(2017,0,17),
 67.06315789,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
 new Date(2017,0,18),
 112.35,
-"Poor"
+"Severe"
 ],
 [
 "pm2.5",
 new Date(2017,0,19),
 65.885,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
 new Date(2017,0,20),
 70.5375,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
 new Date(2017,0,21),
 76.55,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
 new Date(2017,0,22),
 93.79166667,
-"Poor"
+"Severe"
 ],
 [
 "pm2.5",
 new Date(2017,0,23),
 85.42173913,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
 new Date(2017,0,24),
 69.63,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
 new Date(2017,0,25),
 76.59583333,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
 new Date(2017,0,26),
 62.775,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
 new Date(2017,0,27),
 75.58666667,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
 new Date(2017,0,28),
 128.9888889,
-"Poor"
+"Severe"
 ],
 [
 "pm2.5",
 new Date(2017,0,29),
 98.51818182,
-"Poor"
+"Severe"
 ],
 [
 "pm2.5",
 new Date(2017,0,30),
 90.07826087,
-"Poor"
+"Severe"
 ],
 [
 "pm2.5",
@@ -12073,19 +12073,19 @@ new Date(2017,0,31),
 "pm2.5",
 new Date(2017,1,1),
 106.2375,
-"Poor"
+"Severe"
 ],
 [
 "pm2.5",
 new Date(2017,1,2),
 77.00666667,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
 new Date(2017,1,3),
 98.955,
-"Poor"
+"Severe"
 ],
 [
 "pm2.5",
@@ -12109,31 +12109,31 @@ new Date(2017,1,6),
 "pm2.5",
 new Date(2017,1,7),
 64.79565217,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
 new Date(2017,1,8),
 87.6125,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
 new Date(2017,1,9),
 67.27727273,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
 new Date(2017,1,10),
 66.70909091,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
 new Date(2017,1,11),
 74.42,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
@@ -12151,7 +12151,7 @@ new Date(2017,1,13),
 "pm2.5",
 new Date(2017,1,14),
 60.33333333,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
@@ -12163,25 +12163,25 @@ new Date(2017,1,15),
 "pm2.5",
 new Date(2017,1,16),
 79.58333333,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
 new Date(2017,1,17),
 89.65,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
 new Date(2017,1,18),
 96.15833333,
-"Poor"
+"Severe"
 ],
 [
 "pm2.5",
 new Date(2017,1,19),
 62.04583333,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
@@ -12205,19 +12205,19 @@ new Date(2017,1,22),
 "pm2.5",
 new Date(2017,1,23),
 60.05416667,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
 new Date(2017,1,24),
 102.325,
-"Poor"
+"Severe"
 ],
 [
 "pm2.5",
 new Date(2017,1,25),
 61.56666667,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
@@ -12301,7 +12301,7 @@ new Date(2017,2,10),
 "pm2.5",
 new Date(2017,2,11),
 60.37916667,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
@@ -12457,7 +12457,7 @@ new Date(2017,3,5),
 "pm2.5",
 new Date(2017,3,6),
 66.44583333,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "pm2.5",
@@ -12757,19 +12757,19 @@ new Date(2017,1,5),
 "Air.Quality.Index",
 new Date(2017,1,6),
 141.75,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,7),
 126.2608696,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,8),
 126,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
@@ -12883,13 +12883,13 @@ new Date(2017,1,26),
 "Air.Quality.Index",
 new Date(2017,1,27),
 123.7083333,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,28),
 102.0909091,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
@@ -12919,7 +12919,7 @@ new Date(2017,2,4),
 "Air.Quality.Index",
 new Date(2017,2,5),
 106.0588235,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
@@ -12931,19 +12931,19 @@ new Date(2017,2,6),
 "Air.Quality.Index",
 new Date(2017,2,7),
 112.4583333,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,8),
 115.2916667,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,9),
 143.4117647,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
@@ -12985,19 +12985,19 @@ new Date(2017,2,15),
 "Air.Quality.Index",
 new Date(2017,2,16),
 102.6666667,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,17),
 124.0833333,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,18),
 118,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
@@ -13015,31 +13015,31 @@ new Date(2017,2,20),
 "Air.Quality.Index",
 new Date(2017,2,21),
 137.7916667,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,22),
 109.5833333,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,23),
 165.2916667,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,24),
 119.7083333,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,25),
 101.4166667,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
@@ -13051,211 +13051,211 @@ new Date(2017,2,26),
 "Air.Quality.Index",
 new Date(2017,2,27),
 132.0416667,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,28),
 158.1666667,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,29),
 174.4583333,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,30),
 171.1111111,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,31),
 144.4166667,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,1),
 146.5,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,2),
 140.3043478,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,3),
 146.2608696,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,4),
 145.1578947,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,5),
 134.2083333,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,6),
 157.6666667,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,7),
 147.5833333,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,8),
 122.625,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,9),
 107.4166667,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,10),
 123.9583333,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,11),
 165.4583333,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,12),
 176.2380952,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,13),
 138.6086957,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,14),
 144.7916667,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,15),
 176,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,16),
 188.2,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,17),
 153.7142857,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,18),
 133.65,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,19),
 154.625,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,20),
 163.6666667,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,21),
 157.1666667,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,22),
 172.95,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,23),
 160,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,24),
 153.1904762,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,25),
 178.6190476,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,26),
 153.65,
-"Poor"
+"Moderately Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,27),
 145.4166667,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,28),
 137.7083333,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,29),
 101.125,
-"Poor"
+"Lightly Polluted"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,30),
 178.7894737,
-"Poor"
+"Moderately Polluted"
 ] 
 ];
 data.addColumn('string','series');
@@ -13267,15 +13267,16 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartMotionChartID2847cd260e5() {
-var data = gvisDataMotionChartID2847cd260e5();
+function drawChartMotionChartID7e747a0660d() {
+var data = gvisDataMotionChartID7e747a0660d();
 var options = {};
 options["width"] = 600;
 options["height"] = 500;
 options["state"] = "";
+options["colors"] = ['#cbb69d', '#603913', '#c69c6e'];
 
     var chart = new google.visualization.MotionChart(
-    document.getElementById('MotionChartID2847cd260e5')
+    document.getElementById('MotionChartID7e747a0660d')
     );
     chart.draw(data,options);
     
@@ -13299,9 +13300,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartMotionChartID2847cd260e5);
+callbacks.push(drawChartMotionChartID7e747a0660d);
 })();
-function displayChartMotionChartID2847cd260e5() {
+function displayChartMotionChartID7e747a0660d() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -13325,10 +13326,10 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID2847cd260e5"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID7e747a0660d"></script>
  
 <!-- divChart -->
   
-<div id="MotionChartID2847cd260e5" 
+<div id="MotionChartID7e747a0660d" 
   style="width: 600; height: 500;">
 </div>

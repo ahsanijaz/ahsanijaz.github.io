@@ -43,8 +43,8 @@ filterPm2.5 <- function(PMvalue){
     else if(PMvalue > 30 & PMvalue <= 60){
             "Satisfactory"
         }
-    else if(PMvalue > 60){
-            "Poor"
+    else if(PMvalue > 60 & PMvalue <= 90){
+            "Moderately Polluted"
         }
     else "Severe"
 }
@@ -55,8 +55,11 @@ filterAQI <- function(AQI){
     else if(AQI > 50.0 & AQI <= 100.0){
             "Satisfactory"
         }
-    else if(AQI > 100.0 & AQI <= 200){
-            "Poor"
+    else if(AQI > 100.0 & AQI <= 150){
+            "Lightly Polluted"
+        }
+    else if(AQI > 150 & AQI <= 200){
+            "Moderately Polluted"
         }
     else "Severe"
 }
@@ -122,7 +125,7 @@ dailyPoll2 = rbind.data.frame(dailyPollpm,dailyPollaq)
 Motion=gvisMotionChart(dailyPoll2, 
                        idvar="series", 
                        timevar="index",
-                       )
+                       options=list(colors="['#cbb69d', '#603913', '#c69c6e']"))
 Motion$html$header <- NULL
 Motion$html$footer <- NULL
 Motion$html$jsFooter <- NULL
