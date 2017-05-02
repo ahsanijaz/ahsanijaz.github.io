@@ -10,7 +10,7 @@ bigimg:
 knitr::opts_chunk$set(fig.width=8, fig.height=4, echo=FALSE, warning=FALSE, message=FALSE, fig.align = 'center')
 ```
 
-A friend of mine ([Max](http://maxkrueger.com/)) was discussing about his presentation on Smart Cities. While going through it, he mentioned a twitter account that posts about air pollution data about Karachi [KarachiAir](https://twitter.com/KarachiAir). The tweets are machine generated and posted at an hour's interval. It's a great step to open data community, and quite rare in a country like Pakistan. 
+A friend of mine ([Max](http://maxkrueger.com/)) was discussing about his presentation on Smart Cities. While going through it, he mentioned a twitter account that posts about air pollution data about Karachi: [KarachiAir](https://twitter.com/KarachiAir). The tweets are machine generated and posted at an hour's interval. It's a great step to open data community, and quite rare in a country like Pakistan. 
 We thought about creating some visualizations with basic exploratory analysis. It also 
 So we scraped the data from the twitter account using its [timeline API](https://dev.twitter.com/rest/reference/get/statuses/user_timeline); filtered it to get only quality measure tweets; parsed those tweets to get pm2.5 and air quality index and did some time series visualizations for it. 
 
@@ -80,7 +80,7 @@ dailyPoll$hazard = rep(unlist(llply((dailyPoll %>% dplyr::filter(series == "pm2.
 aPlot2 <-  gvisAnnotationChart(dailyPoll, datevar="index",
                       numvar="value", idvar="series",
                       options=list(
-                        width=600, height=350,
+                        #width=600, height=350,
                         fill=10, displayExactValues=TRUE,
                         colors="['#0000ff','#00ff00']"),
                       chartid="AnnotationChart1"

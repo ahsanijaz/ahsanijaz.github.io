@@ -8,7 +8,7 @@ bigimg:
 
 
 
-A friend of mine ([Max](http://maxkrueger.com/)) was discussing about his presentation on Smart Cities. While going through it, he mentioned a twitter account that posts about air pollution data about Karachi [KarachiAir](https://twitter.com/KarachiAir). The tweets are machine generated and posted at an hour's interval. It's a great step to open data community, and quite rare in a country like Pakistan. 
+A friend of mine ([Max](http://maxkrueger.com/)) was discussing about his presentation on Smart Cities. While going through it, he mentioned a twitter account that posts about air pollution data about Karachi: [KarachiAir](https://twitter.com/KarachiAir). The tweets are machine generated and posted at an hour's interval. It's a great step to open data community, and quite rare in a country like Pakistan. 
 We thought about creating some visualizations with basic exploratory analysis. It also 
 So we scraped the data from the twitter account using its [timeline API](https://dev.twitter.com/rest/reference/get/statuses/user_timeline); filtered it to get only quality measure tweets; parsed those tweets to get pm2.5 and air quality index and did some time series visualizations for it. 
 
@@ -17,7 +17,7 @@ So we scraped the data from the twitter account using its [timeline API](https:/
 
 
 <!-- AnnotationChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Tue May  2 12:59:03 2017 -->
+<!-- Tue May  2 13:13:54 2017 -->
 
 
 <!-- jsHeader -->
@@ -11298,7 +11298,7 @@ callbacks.shift()();
 It seems that the air quality index is increasing with the passage of time, whereas the pm2.5 metric is decreasing. If we pass our data through a moving average filter with one day window, this trend becomes more evident. 
 
 <!-- AnnotationChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Tue May  2 12:59:04 2017 -->
+<!-- Tue May  2 13:13:55 2017 -->
 
 
 <!-- jsHeader -->
@@ -11872,7 +11872,7 @@ function drawChartAnnotationChart1() {
 var data = gvisDataAnnotationChart1();
 var options = {};
 options["width"] = 600;
-options["height"] = 350;
+options["height"] = 300;
 options["fill"] = 10;
 options["displayExactValues"] = true;
 options["colors"] = ['#0000ff','#00ff00'];
@@ -11933,20 +11933,20 @@ callbacks.shift()();
 <!-- divChart -->
   
 <div id="AnnotationChart1" 
-  style="width: 600; height: 350;">
+  style="width: 600; height: 300;">
 </div>
 
 Finally, we look at the motion chart for this data, along with hazard levels based on __pm2.5 values__ as defined by [BlissAir](https://blissair.com/what-is-pm-2-5.htm).
 
 <!-- MotionChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Tue May  2 12:59:04 2017 -->
+<!-- Tue May  2 13:13:55 2017 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataMotionChartID65af50c0bcef () {
+function gvisDataMotionChartID6c5427923d28 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -13268,15 +13268,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartMotionChartID65af50c0bcef() {
-var data = gvisDataMotionChartID65af50c0bcef();
+function drawChartMotionChartID6c5427923d28() {
+var data = gvisDataMotionChartID6c5427923d28();
 var options = {};
 options["width"] = 600;
 options["height"] = 500;
 options["state"] = "";
 
     var chart = new google.visualization.MotionChart(
-    document.getElementById('MotionChartID65af50c0bcef')
+    document.getElementById('MotionChartID6c5427923d28')
     );
     chart.draw(data,options);
     
@@ -13300,9 +13300,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartMotionChartID65af50c0bcef);
+callbacks.push(drawChartMotionChartID6c5427923d28);
 })();
-function displayChartMotionChartID65af50c0bcef() {
+function displayChartMotionChartID6c5427923d28() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -13326,10 +13326,10 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID65af50c0bcef"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID6c5427923d28"></script>
  
 <!-- divChart -->
   
-<div id="MotionChartID65af50c0bcef" 
+<div id="MotionChartID6c5427923d28" 
   style="width: 600; height: 500;">
 </div>
