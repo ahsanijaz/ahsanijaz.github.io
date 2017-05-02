@@ -32,7 +32,7 @@ tPollutionTS = tidy(PollutionTS)
 
 ```
 
-```{r echo=FALSE,results='asis',tidy=FALSE}
+```{r echo=FALSE,results='asis',tidy=TRUE}
 library(googleVis)
 library(plyr)
 

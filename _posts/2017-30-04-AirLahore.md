@@ -17,7 +17,7 @@ So we scraped the data from the twitter account using its [timeline API](https:/
 
 
 <!-- AnnotationChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Tue May  2 12:00:35 2017 -->
+<!-- Tue May  2 12:02:00 2017 -->
 
 
 <!-- jsHeader -->
