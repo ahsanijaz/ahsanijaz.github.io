@@ -1,0 +1,72 @@
+---
+layout: post
+title: Air pollution in Karachi (KarachiAir)
+date: "30/04/2017"
+tags: [Social Data Science, Air pollution, Data Visualization]
+bigimg: 
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=8, fig.height=4, echo=FALSE, warning=FALSE, message=FALSE, fig.align = 'center')
+```
+
+A friend of mine ([Max](http://maxkrueger.com/)) was discussing about his presentation on Smart Cities. While going through it, he mentioned a twitter account that posts about air pollution data about Karachi [KarachiAir](https://twitter.com/KarachiAir). The tweets are machine generated and posted at an hour's interval. It's a great step to open data community, and quite rare in a country like Pakistan. 
+We thought about creating some visualizations with basic exploratory analysis. It also 
+So we scraped the data from the twitter account using its [timeline API](https://dev.twitter.com/rest/reference/get/statuses/user_timeline); filtered it to get only quality measure tweets; parsed those tweets to get pm2.5 and air quality index and did some time series visualizations for it. 
+
+## Exploration of Air pollution data in Karachi
+
+```{r echo = FALSE}
+library(xts)
+library(broom)
+library(dplyr)
+library(ggplot2)
+load("~/Personal/blogData/polKarachi.RData")
+polDat$time = as.POSIXct(format(as.POSIXct(polDat$created,'PKT'), tz="Asia/Karachi"))
+tsPol = xts(x = polDat$pm2.5Num,polDat$time)
+PollutionTS = cbind(tsPol, polDat$airQNum)
+names(PollutionTS) <- c("pm2.5","Air Quality Index")
+# index(PollutionTS) <- as.Date(index(PollutionTS))
+tPollutionTS = tidy(PollutionTS)
+# tPollutionTS %>% ggplot(aes(x=index,y=value, color=series)) + geom_line()
+
+```
+
+```{r echo=FALSE,results='asis',tidy=FALSE}
+library(googleVis)
+library(plyr)
+
+filterPm2.5 <- function(PMvalue){
+    if(PMvalue > 0 & PMvalue < 12){
+        "good"}
+    else if(PMvalue > 12.1 & PMvalue < 35.4){
+            "moderate"
+        }
+    else if(PMvalue > 35.5 & PMvalue < 55.4){
+            "unhealthy"
+        }
+    else "Hazardous"
+}
+
+
+tPollutionTS$hazard = rep(unlist(llply((tPollutionTS %>% dplyr::filter(series == "pm2.5") %>% dplyr::select(value))$value, filterPm2.5)),2)
+
+
+
+aPlot <-  gvisAnnotationChart(tPollutionTS, datevar="index",
+                      numvar="value", idvar="series",
+                      options=list(
+                        width=600, height=350,
+                        fill=10, displayExactValues=TRUE,
+                        colors="['#0000ff','#00ff00']"),
+                      chartid="AnnotationChart"
+  )
+
+aPlot$html$header <- NULL
+aPlot$html$footer <- NULL
+aPlot$html$jsFooter <- NULL
+aPlot$html$caption <- NULL
+print(aPlot)
+
+```
+
