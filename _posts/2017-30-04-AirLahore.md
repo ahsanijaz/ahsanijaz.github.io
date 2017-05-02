@@ -16,7 +16,7 @@ Unfortunately, it is difficult to look at the big picture by looking at these tw
 
 
 <!-- AnnotationChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Tue May  2 15:40:20 2017 -->
+<!-- Tue May  2 15:49:24 2017 -->
 
 
 <!-- jsHeader -->
@@ -11297,7 +11297,7 @@ callbacks.shift()();
 It seems that the air quality index is increasing with the passage of time, whereas the pm2.5 metric is decreasing. If we pass our data through a moving average filter by using a one day window, this trend becomes more evident. 
 
 <!-- AnnotationChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Tue May  2 15:40:20 2017 -->
+<!-- Tue May  2 15:49:24 2017 -->
 
 
 <!-- jsHeader -->
@@ -11938,14 +11938,14 @@ callbacks.shift()();
 Finally, we look at the motion chart for this data, along with hazard levels based on __pm2.5 values__ and __air quality indexes__ as defined by [BlissAir](https://blissair.com/what-is-pm-2-5.htm).
 
 <!-- MotionChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Tue May  2 15:40:20 2017 -->
+<!-- Tue May  2 15:49:24 2017 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataMotionChartID7e4238cda9e5 () {
+function gvisDataMotionChartID2847cd260e5 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -11953,1309 +11953,1309 @@ var datajson =
 "pm2.5",
 new Date(2017,0,11),
 64.05,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,0,12),
 88.67083333,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,0,13),
 38.85833333,
-"unhealthy"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,0,14),
 59.6625,
-"Hazardous"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,0,16),
 59.79,
-"Hazardous"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,0,17),
 67.06315789,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,0,18),
 112.35,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,0,19),
 65.885,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,0,20),
 70.5375,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,0,21),
 76.55,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,0,22),
 93.79166667,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,0,23),
 85.42173913,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,0,24),
 69.63,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,0,25),
 76.59583333,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,0,26),
 62.775,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,0,27),
 75.58666667,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,0,28),
 128.9888889,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,0,29),
 98.51818182,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,0,30),
 90.07826087,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,0,31),
 59.07916667,
-"Hazardous"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,1,1),
 106.2375,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,1,2),
 77.00666667,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,1,3),
 98.955,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,1,4),
 38.56666667,
-"unhealthy"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,1,5),
 47.08333333,
-"unhealthy"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,1,6),
 58.8,
-"Hazardous"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,1,7),
 64.79565217,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,1,8),
 87.6125,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,1,9),
 67.27727273,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,1,10),
 66.70909091,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,1,11),
 74.42,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,1,12),
 44.91666667,
-"unhealthy"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,1,13),
 56.19166667,
-"Hazardous"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,1,14),
 60.33333333,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,1,15),
 55.985,
-"Hazardous"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,1,16),
 79.58333333,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,1,17),
 89.65,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,1,18),
 96.15833333,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,1,19),
 62.04583333,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,1,20),
 57.48461538,
-"Hazardous"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,1,21),
 36.0125,
-"unhealthy"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,1,22),
 39.93333333,
-"unhealthy"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,1,23),
 60.05416667,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,1,24),
 102.325,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,1,25),
 61.56666667,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,1,26),
 58.7875,
-"Hazardous"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,1,27),
 38.32916667,
-"unhealthy"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,1,28),
 32.29545455,
-"moderate"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,2,1),
 22.50909091,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,2,2),
 47.40833333,
-"unhealthy"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,2,3),
 50.54347826,
-"unhealthy"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,2,4),
 31.17916667,
-"moderate"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,2,5),
 15.95882353,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,2,6),
 24.83333333,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,2,7),
 29.30833333,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,2,8),
 20.4625,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,2,9),
 23.31764706,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,2,10),
 38.0952381,
-"unhealthy"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,2,11),
 60.37916667,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,2,12),
 35.98333333,
-"unhealthy"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,2,13),
 43.28181818,
-"unhealthy"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,2,14),
 22.37368421,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,2,15),
 38.10416667,
-"unhealthy"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,2,16),
 35.55,
-"unhealthy"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,2,17),
 14.68333333,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,2,18),
 20.07058824,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,2,19),
 30.46666667,
-"moderate"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,2,20),
 49.67916667,
-"unhealthy"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,2,21),
 31.70833333,
-"moderate"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,2,22),
 15.10833333,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,2,23),
 13.34583333,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,2,24),
 28.75416667,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,2,25),
 24.74583333,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,2,26),
 24.38333333,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,2,27),
 21.83333333,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,2,28),
 16.90833333,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,2,29),
 17.07083333,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,2,30),
 17.84444444,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,2,31),
 17.59583333,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,1),
 20.29166667,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,2),
 17.45652174,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,3),
 17.94782609,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,4),
 19.57894737,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,5),
 23.93333333,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,6),
 66.44583333,
-"Hazardous"
+"Poor"
 ],
 [
 "pm2.5",
 new Date(2017,3,7),
 55.975,
-"Hazardous"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,3,8),
 27.45,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,9),
 23.43333333,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,10),
 30.775,
-"moderate"
+"Satisfactory"
 ],
 [
 "pm2.5",
 new Date(2017,3,11),
 23.79583333,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,12),
 19.86190476,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,13),
 18.17391304,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,14),
 12.69583333,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,15),
 12.2125,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,16),
 10.65,
-"good"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,17),
 16.02857143,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,18),
 14.96,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,19),
 15.75,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,20),
 17.625,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,21),
 16.53333333,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,22),
 14.4,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,23),
 16.37727273,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,24),
 16.08095238,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,25),
 15.91428571,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,26),
 14.04,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,27),
 11.83333333,
-"good"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,28),
 13.04583333,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,29),
 25,
-"moderate"
+"Good"
 ],
 [
 "pm2.5",
 new Date(2017,3,30),
 17.80526316,
-"moderate"
+"Good"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,11),
 68.75,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,12),
 73.45833333,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,13),
 63.29166667,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,14),
 48.54166667,
-"good"
+"Good"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,16),
 40.5,
-"good"
+"Good"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,17),
 52.89473684,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,18),
 56.33333333,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,19),
 59.75,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,20),
 57.75,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,21),
 59.41666667,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,22),
 60.41666667,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,23),
 57.65217391,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,24),
 63.5,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,25),
 58.20833333,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,26),
 55.91666667,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,27),
 55.33333333,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,28),
 46.22222222,
-"good"
+"Good"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,29),
 47.13636364,
-"good"
+"Good"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,30),
 49.43478261,
-"good"
+"Good"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,0,31),
 63.16666667,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,1),
 67.8125,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,2),
 68.93333333,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,3),
 79.65,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,4),
 81.79166667,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,5),
 86.66666667,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,6),
 141.75,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,7),
 126.2608696,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,8),
 126,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,9),
 72.27272727,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,10),
 66.54545455,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,11),
 63.06666667,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,12),
 62,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,13),
 62.79166667,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,14),
 66.0952381,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,15),
 69.6,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,16),
 56.58333333,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,17),
 62.75,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,18),
 60.66666667,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,19),
 61.41666667,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,20),
 75.46153846,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,21),
 76.25,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,22),
 78.16666667,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,23),
 82.58333333,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,24),
 57.25,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,25),
 46.42857143,
-"good"
+"Good"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,26),
 91.33333333,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,27),
 123.7083333,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,1,28),
 102.0909091,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,1),
 61.63636364,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,2),
 62.70833333,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,3),
 80.47826087,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,4),
 94.29166667,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,5),
 106.0588235,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,6),
 78.54166667,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,7),
 112.4583333,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,8),
 115.2916667,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,9),
 143.4117647,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,10),
 95.52380952,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,11),
 74.79166667,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,12),
 68.125,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,13),
 85.81818182,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,14),
 79.26315789,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,15),
 63.83333333,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,16),
 102.6666667,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,17),
 124.0833333,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,18),
 118,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,19),
 90.66666667,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,20),
 98.20833333,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,21),
 137.7916667,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,22),
 109.5833333,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,23),
 165.2916667,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,24),
 119.7083333,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,25),
 101.4166667,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,26),
 99.22222222,
-"good"
+"Satisfactory"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,27),
 132.0416667,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,28),
 158.1666667,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,29),
 174.4583333,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,30),
 171.1111111,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,2,31),
 144.4166667,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,1),
 146.5,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,2),
 140.3043478,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,3),
 146.2608696,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,4),
 145.1578947,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,5),
 134.2083333,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,6),
 157.6666667,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,7),
 147.5833333,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,8),
 122.625,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,9),
 107.4166667,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,10),
 123.9583333,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,11),
 165.4583333,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,12),
 176.2380952,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,13),
 138.6086957,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,14),
 144.7916667,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,15),
 176,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,16),
 188.2,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,17),
 153.7142857,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,18),
 133.65,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,19),
 154.625,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,20),
 163.6666667,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,21),
 157.1666667,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,22),
 172.95,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,23),
 160,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,24),
 153.1904762,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,25),
 178.6190476,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,26),
 153.65,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,27),
 145.4166667,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,28),
 137.7083333,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,29),
 101.125,
-"unhealthy"
+"Poor"
 ],
 [
 "Air.Quality.Index",
 new Date(2017,3,30),
 178.7894737,
-"unhealthy"
+"Poor"
 ] 
 ];
 data.addColumn('string','series');
@@ -13267,15 +13267,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartMotionChartID7e4238cda9e5() {
-var data = gvisDataMotionChartID7e4238cda9e5();
+function drawChartMotionChartID2847cd260e5() {
+var data = gvisDataMotionChartID2847cd260e5();
 var options = {};
 options["width"] = 600;
 options["height"] = 500;
 options["state"] = "";
 
     var chart = new google.visualization.MotionChart(
-    document.getElementById('MotionChartID7e4238cda9e5')
+    document.getElementById('MotionChartID2847cd260e5')
     );
     chart.draw(data,options);
     
@@ -13299,9 +13299,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartMotionChartID7e4238cda9e5);
+callbacks.push(drawChartMotionChartID2847cd260e5);
 })();
-function displayChartMotionChartID7e4238cda9e5() {
+function displayChartMotionChartID2847cd260e5() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -13325,10 +13325,10 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID7e4238cda9e5"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID2847cd260e5"></script>
  
 <!-- divChart -->
   
-<div id="MotionChartID7e4238cda9e5" 
+<div id="MotionChartID2847cd260e5" 
   style="width: 600; height: 500;">
 </div>

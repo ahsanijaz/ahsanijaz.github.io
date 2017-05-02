@@ -38,26 +38,27 @@ library(googleVis)
 library(plyr)
 
 filterPm2.5 <- function(PMvalue){
-    if(PMvalue > 0 & PMvalue < 12){
-        "good"}
-    else if(PMvalue > 12.1 & PMvalue < 35.4){
-            "moderate"
+    if(PMvalue > 0 & PMvalue <= 30){
+        "Good"}
+    else if(PMvalue > 30 & PMvalue <= 60){
+            "Satisfactory"
         }
-    else if(PMvalue > 35.5 & PMvalue < 55.4){
-            "unhealthy"
+    else if(PMvalue > 60){
+            "Poor"
         }
-    else "Hazardous"
+    else "Severe"
 }
 
 filterAQI <- function(AQI){
-    if(AQI > 0 & AQI <= 100.0){
-        "good"}
-    else if(AQI > 100.0 & AQI <= 200.0){
-            "unhealthy"
+    if(AQI > 0 & AQI <= 50.0){
+        "Good"}
+    else if(AQI > 50.0 & AQI <= 100.0){
+            "Satisfactory"
         }
-    else if(AQI > 200.0){
-            "Hazardous"
+    else if(AQI > 100.0 & AQI <= 200){
+            "Poor"
         }
+    else "Severe"
 }
 
 
@@ -120,7 +121,8 @@ dailyPoll2 = rbind.data.frame(dailyPollpm,dailyPollaq)
 
 Motion=gvisMotionChart(dailyPoll2, 
                        idvar="series", 
-                       timevar="index")
+                       timevar="index",
+                       )
 Motion$html$header <- NULL
 Motion$html$footer <- NULL
 Motion$html$jsFooter <- NULL
