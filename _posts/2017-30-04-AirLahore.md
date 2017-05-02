@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Air pollution in Karachi (KarachiAir)
+title: Air pollution in Karachi 
 date: "30/04/2017"
 tags: [Social Data Science, Air pollution, Data Visualization]
 bigimg: 
@@ -17,7 +17,7 @@ So we scraped the data from the twitter account using its [timeline API](https:/
 
 
 <!-- AnnotationChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Tue May  2 12:02:00 2017 -->
+<!-- Tue May  2 12:59:03 2017 -->
 
 
 <!-- jsHeader -->
@@ -11295,3 +11295,2041 @@ callbacks.shift()();
   style="width: 600; height: 350;">
 </div>
 
+It seems that the air quality index is increasing with the passage of time, whereas the pm2.5 metric is decreasing. If we pass our data through a moving average filter with one day window, this trend becomes more evident. 
+
+<!-- AnnotationChart generated in R 3.3.1 by googleVis 0.6.2 package -->
+<!-- Tue May  2 12:59:04 2017 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataAnnotationChart1 () {
+var data = new google.visualization.DataTable();
+var datajson =
+[
+ [
+new Date(2017,0,11,23,21,13),
+64.05,
+68.75
+],
+[
+new Date(2017,0,12,23,11,52),
+88.67083333,
+73.45833333
+],
+[
+new Date(2017,0,13,23,21,12),
+38.85833333,
+63.29166667
+],
+[
+new Date(2017,0,14,23,12,15),
+59.6625,
+48.54166667
+],
+[
+new Date(2017,0,15,2,25,5),
+38.1,
+58
+],
+[
+new Date(2017,0,16,23,18,9),
+59.79,
+40.5
+],
+[
+new Date(2017,0,17,23,24,13),
+67.06315789,
+52.89473684
+],
+[
+new Date(2017,0,18,23,16,56),
+112.35,
+56.33333333
+],
+[
+new Date(2017,0,19,19,10,35),
+65.885,
+59.75
+],
+[
+new Date(2017,0,20,23,18,24),
+70.5375,
+57.75
+],
+[
+new Date(2017,0,21,23,24,37),
+76.55,
+59.41666667
+],
+[
+new Date(2017,0,22,23,22,4),
+93.79166667,
+60.41666667
+],
+[
+new Date(2017,0,23,22,18,16),
+85.42173913,
+57.65217391
+],
+[
+new Date(2017,0,24,23,12,31),
+69.63,
+63.5
+],
+[
+new Date(2017,0,25,23,22,12),
+76.59583333,
+58.20833333
+],
+[
+new Date(2017,0,26,23,23,53),
+62.775,
+55.91666667
+],
+[
+new Date(2017,0,27,23,18,29),
+75.58666667,
+55.33333333
+],
+[
+new Date(2017,0,28,8,20,31),
+128.9888889,
+46.22222222
+],
+[
+new Date(2017,0,29,23,14,22),
+98.51818182,
+47.13636364
+],
+[
+new Date(2017,0,30,23,15,48),
+90.07826087,
+49.43478261
+],
+[
+new Date(2017,0,31,23,14,27),
+59.07916667,
+63.16666667
+],
+[
+new Date(2017,1,1,15,13,58),
+106.2375,
+67.8125
+],
+[
+new Date(2017,1,2,23,10,34),
+77.00666667,
+68.93333333
+],
+[
+new Date(2017,1,3,23,22,24),
+98.955,
+79.65
+],
+[
+new Date(2017,1,4,23,17,22),
+38.56666667,
+81.79166667
+],
+[
+new Date(2017,1,5,23,21,56),
+47.08333333,
+86.66666667
+],
+[
+new Date(2017,1,6,23,17,30),
+58.8,
+141.75
+],
+[
+new Date(2017,1,7,23,17,33),
+64.79565217,
+126.2608696
+],
+[
+new Date(2017,1,8,23,11,28),
+87.6125,
+126
+],
+[
+new Date(2017,1,9,23,24,46),
+67.27727273,
+72.27272727
+],
+[
+new Date(2017,1,10,23,11,34),
+66.70909091,
+66.54545455
+],
+[
+new Date(2017,1,11,14,12,49),
+74.42,
+63.06666667
+],
+[
+new Date(2017,1,12,23,15,23),
+44.91666667,
+62
+],
+[
+new Date(2017,1,13,23,18,45),
+56.19166667,
+62.79166667
+],
+[
+new Date(2017,1,14,23,14,52),
+60.33333333,
+66.0952381
+],
+[
+new Date(2017,1,15,20,19,25),
+55.985,
+69.6
+],
+[
+new Date(2017,1,16,23,15,39),
+79.58333333,
+56.58333333
+],
+[
+new Date(2017,1,17,23,14,53),
+89.65,
+62.75
+],
+[
+new Date(2017,1,18,23,10,44),
+96.15833333,
+60.66666667
+],
+[
+new Date(2017,1,19,23,13,9),
+62.04583333,
+61.41666667
+],
+[
+new Date(2017,1,20,23,11,43),
+57.48461538,
+75.46153846
+],
+[
+new Date(2017,1,21,23,14,6),
+36.0125,
+76.25
+],
+[
+new Date(2017,1,22,23,21,27),
+39.93333333,
+78.16666667
+],
+[
+new Date(2017,1,23,23,19,1),
+60.05416667,
+82.58333333
+],
+[
+new Date(2017,1,24,10,22,13),
+102.325,
+57.25
+],
+[
+new Date(2017,1,25,23,15,43),
+61.56666667,
+46.42857143
+],
+[
+new Date(2017,1,26,23,24,17),
+58.7875,
+91.33333333
+],
+[
+new Date(2017,1,27,23,22,58),
+38.32916667,
+123.7083333
+],
+[
+new Date(2017,1,28,21,17,22),
+32.29545455,
+102.0909091
+],
+[
+new Date(2017,2,1,23,12,20),
+22.50909091,
+61.63636364
+],
+[
+new Date(2017,2,2,23,22,25),
+47.40833333,
+62.70833333
+],
+[
+new Date(2017,2,3,23,21,49),
+50.54347826,
+80.47826087
+],
+[
+new Date(2017,2,4,23,16,19),
+31.17916667,
+94.29166667
+],
+[
+new Date(2017,2,5,23,15,4),
+15.95882353,
+106.0588235
+],
+[
+new Date(2017,2,6,23,19,57),
+24.83333333,
+78.54166667
+],
+[
+new Date(2017,2,7,23,14,6),
+29.30833333,
+112.4583333
+],
+[
+new Date(2017,2,8,23,22,39),
+20.4625,
+115.2916667
+],
+[
+new Date(2017,2,9,23,13,46),
+23.31764706,
+143.4117647
+],
+[
+new Date(2017,2,10,23,20,12),
+38.0952381,
+95.52380952
+],
+[
+new Date(2017,2,11,23,20,58),
+60.37916667,
+74.79166667
+],
+[
+new Date(2017,2,12,23,18,28),
+35.98333333,
+68.125
+],
+[
+new Date(2017,2,13,21,23,8),
+43.28181818,
+85.81818182
+],
+[
+new Date(2017,2,14,23,18,22),
+22.37368421,
+79.26315789
+],
+[
+new Date(2017,2,15,23,24,3),
+38.10416667,
+63.83333333
+],
+[
+new Date(2017,2,16,23,20,10),
+35.55,
+102.6666667
+],
+[
+new Date(2017,2,17,23,19,7),
+14.68333333,
+124.0833333
+],
+[
+new Date(2017,2,18,23,18,49),
+20.07058824,
+118
+],
+[
+new Date(2017,2,19,23,17,7),
+30.46666667,
+90.66666667
+],
+[
+new Date(2017,2,20,23,16,28),
+49.67916667,
+98.20833333
+],
+[
+new Date(2017,2,21,23,11,16),
+31.70833333,
+137.7916667
+],
+[
+new Date(2017,2,22,23,14,19),
+15.10833333,
+109.5833333
+],
+[
+new Date(2017,2,23,23,20,24),
+13.34583333,
+165.2916667
+],
+[
+new Date(2017,2,24,23,11,55),
+28.75416667,
+119.7083333
+],
+[
+new Date(2017,2,25,23,19,38),
+24.74583333,
+101.4166667
+],
+[
+new Date(2017,2,26,23,13,16),
+24.38333333,
+99.22222222
+],
+[
+new Date(2017,2,27,23,18,14),
+21.83333333,
+132.0416667
+],
+[
+new Date(2017,2,28,23,19,14),
+16.90833333,
+158.1666667
+],
+[
+new Date(2017,2,29,23,12,16),
+17.07083333,
+174.4583333
+],
+[
+new Date(2017,2,30,17,24,53),
+17.84444444,
+171.1111111
+],
+[
+new Date(2017,2,31,23,12,4),
+17.59583333,
+144.4166667
+],
+[
+new Date(2017,3,1,23,13,52),
+20.29166667,
+146.5
+],
+[
+new Date(2017,3,2,23,22,59),
+17.45652174,
+140.3043478
+],
+[
+new Date(2017,3,3,22,22,10),
+17.94782609,
+146.2608696
+],
+[
+new Date(2017,3,4,23,13,57),
+19.57894737,
+145.1578947
+],
+[
+new Date(2017,3,5,23,16,38),
+23.93333333,
+134.2083333
+],
+[
+new Date(2017,3,6,23,20,18),
+66.44583333,
+157.6666667
+],
+[
+new Date(2017,3,7,23,17,14),
+55.975,
+147.5833333
+],
+[
+new Date(2017,3,8,20,27,53),
+27.45,
+122.625
+],
+[
+new Date(2017,3,9,23,12,14),
+23.43333333,
+107.4166667
+],
+[
+new Date(2017,3,10,23,17,57),
+30.775,
+123.9583333
+],
+[
+new Date(2017,3,11,23,20,11),
+23.79583333,
+165.4583333
+],
+[
+new Date(2017,3,12,20,12,6),
+19.86190476,
+176.2380952
+],
+[
+new Date(2017,3,13,23,14,1),
+18.17391304,
+138.6086957
+],
+[
+new Date(2017,3,14,23,12,26),
+12.69583333,
+144.7916667
+],
+[
+new Date(2017,3,15,23,19,47),
+12.2125,
+176
+],
+[
+new Date(2017,3,16,21,23,9),
+10.65,
+188.2
+],
+[
+new Date(2017,3,17,23,18,47),
+16.02857143,
+153.7142857
+],
+[
+new Date(2017,3,18,23,13,19),
+14.96,
+133.65
+],
+[
+new Date(2017,3,19,23,22,13),
+15.75,
+154.625
+],
+[
+new Date(2017,3,20,23,17,26),
+17.625,
+163.6666667
+],
+[
+new Date(2017,3,21,23,16,29),
+16.53333333,
+157.1666667
+],
+[
+new Date(2017,3,22,23,17,15),
+14.4,
+172.95
+],
+[
+new Date(2017,3,23,21,21,15),
+16.37727273,
+160
+],
+[
+new Date(2017,3,24,23,24,25),
+16.08095238,
+153.1904762
+],
+[
+new Date(2017,3,25,22,14,1),
+15.91428571,
+178.6190476
+],
+[
+new Date(2017,3,26,23,10,49),
+14.04,
+153.65
+],
+[
+new Date(2017,3,27,23,22,52),
+11.83333333,
+145.4166667
+],
+[
+new Date(2017,3,28,23,24,20),
+13.04583333,
+137.7083333
+],
+[
+new Date(2017,3,29,23,12,6),
+25,
+101.125
+],
+[
+new Date(2017,3,30,18,16,28),
+17.80526316,
+178.7894737
+] 
+];
+data.addColumn('datetime','index');
+data.addColumn('number','pm2.5');
+data.addColumn('number','Air.Quality.Index');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartAnnotationChart1() {
+var data = gvisDataAnnotationChart1();
+var options = {};
+options["width"] = 600;
+options["height"] = 350;
+options["fill"] = 10;
+options["displayExactValues"] = true;
+options["colors"] = ['#0000ff','#00ff00'];
+
+    var chart = new google.visualization.AnnotationChart(
+    document.getElementById('AnnotationChart1')
+    );
+    chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+var chartid = "annotationchart";
+  
+// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+var i, newPackage = true;
+for (i = 0; newPackage && i < pkgs.length; i++) {
+if (pkgs[i] === chartid)
+newPackage = false;
+}
+if (newPackage)
+  pkgs.push(chartid);
+  
+// Add the drawChart function to the global list of callbacks
+callbacks.push(drawChartAnnotationChart1);
+})();
+function displayChartAnnotationChart1() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+  var pkgCount = pkgs.length;
+  google.load("visualization", "1", { packages:pkgs, callback: function() {
+  if (pkgCount != pkgs.length) {
+  // Race condition where another setTimeout call snuck in after us; if
+  // that call added a package, we must not shift its callback
+  return;
+}
+while (callbacks.length > 0)
+callbacks.shift()();
+} });
+}, 100);
+}
+ 
+// jsFooter
+</script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartAnnotationChart1"></script>
+ 
+<!-- divChart -->
+  
+<div id="AnnotationChart1" 
+  style="width: 600; height: 350;">
+</div>
+
+Finally, we look at the motion chart for this data, along with hazard levels based on __pm2.5 values__ as defined by [BlissAir](https://blissair.com/what-is-pm-2-5.htm).
+
+<!-- MotionChart generated in R 3.3.1 by googleVis 0.6.2 package -->
+<!-- Tue May  2 12:59:04 2017 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataMotionChartID65af50c0bcef () {
+var data = new google.visualization.DataTable();
+var datajson =
+[
+ [
+"pm2.5",
+new Date(2017,0,11),
+64.05,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,0,12),
+88.67083333,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,0,13),
+38.85833333,
+"unhealthy"
+],
+[
+"pm2.5",
+new Date(2017,0,14),
+59.6625,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,0,16),
+59.79,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,0,17),
+67.06315789,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,0,18),
+112.35,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,0,19),
+65.885,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,0,20),
+70.5375,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,0,21),
+76.55,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,0,22),
+93.79166667,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,0,23),
+85.42173913,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,0,24),
+69.63,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,0,25),
+76.59583333,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,0,26),
+62.775,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,0,27),
+75.58666667,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,0,28),
+128.9888889,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,0,29),
+98.51818182,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,0,30),
+90.07826087,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,0,31),
+59.07916667,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,1),
+106.2375,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,2),
+77.00666667,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,3),
+98.955,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,4),
+38.56666667,
+"unhealthy"
+],
+[
+"pm2.5",
+new Date(2017,1,5),
+47.08333333,
+"unhealthy"
+],
+[
+"pm2.5",
+new Date(2017,1,6),
+58.8,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,7),
+64.79565217,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,8),
+87.6125,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,9),
+67.27727273,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,10),
+66.70909091,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,11),
+74.42,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,12),
+44.91666667,
+"unhealthy"
+],
+[
+"pm2.5",
+new Date(2017,1,13),
+56.19166667,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,14),
+60.33333333,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,15),
+55.985,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,16),
+79.58333333,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,17),
+89.65,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,18),
+96.15833333,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,19),
+62.04583333,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,20),
+57.48461538,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,21),
+36.0125,
+"unhealthy"
+],
+[
+"pm2.5",
+new Date(2017,1,22),
+39.93333333,
+"unhealthy"
+],
+[
+"pm2.5",
+new Date(2017,1,23),
+60.05416667,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,24),
+102.325,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,25),
+61.56666667,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,26),
+58.7875,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,1,27),
+38.32916667,
+"unhealthy"
+],
+[
+"pm2.5",
+new Date(2017,1,28),
+32.29545455,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,1),
+22.50909091,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,2),
+47.40833333,
+"unhealthy"
+],
+[
+"pm2.5",
+new Date(2017,2,3),
+50.54347826,
+"unhealthy"
+],
+[
+"pm2.5",
+new Date(2017,2,4),
+31.17916667,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,5),
+15.95882353,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,6),
+24.83333333,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,7),
+29.30833333,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,8),
+20.4625,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,9),
+23.31764706,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,10),
+38.0952381,
+"unhealthy"
+],
+[
+"pm2.5",
+new Date(2017,2,11),
+60.37916667,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,2,12),
+35.98333333,
+"unhealthy"
+],
+[
+"pm2.5",
+new Date(2017,2,13),
+43.28181818,
+"unhealthy"
+],
+[
+"pm2.5",
+new Date(2017,2,14),
+22.37368421,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,15),
+38.10416667,
+"unhealthy"
+],
+[
+"pm2.5",
+new Date(2017,2,16),
+35.55,
+"unhealthy"
+],
+[
+"pm2.5",
+new Date(2017,2,17),
+14.68333333,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,18),
+20.07058824,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,19),
+30.46666667,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,20),
+49.67916667,
+"unhealthy"
+],
+[
+"pm2.5",
+new Date(2017,2,21),
+31.70833333,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,22),
+15.10833333,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,23),
+13.34583333,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,24),
+28.75416667,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,25),
+24.74583333,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,26),
+24.38333333,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,27),
+21.83333333,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,28),
+16.90833333,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,29),
+17.07083333,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,30),
+17.84444444,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,2,31),
+17.59583333,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,1),
+20.29166667,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,2),
+17.45652174,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,3),
+17.94782609,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,4),
+19.57894737,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,5),
+23.93333333,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,6),
+66.44583333,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,3,7),
+55.975,
+"Hazardous"
+],
+[
+"pm2.5",
+new Date(2017,3,8),
+27.45,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,9),
+23.43333333,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,10),
+30.775,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,11),
+23.79583333,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,12),
+19.86190476,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,13),
+18.17391304,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,14),
+12.69583333,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,15),
+12.2125,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,16),
+10.65,
+"good"
+],
+[
+"pm2.5",
+new Date(2017,3,17),
+16.02857143,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,18),
+14.96,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,19),
+15.75,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,20),
+17.625,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,21),
+16.53333333,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,22),
+14.4,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,23),
+16.37727273,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,24),
+16.08095238,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,25),
+15.91428571,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,26),
+14.04,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,27),
+11.83333333,
+"good"
+],
+[
+"pm2.5",
+new Date(2017,3,28),
+13.04583333,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,29),
+25,
+"moderate"
+],
+[
+"pm2.5",
+new Date(2017,3,30),
+17.80526316,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,11),
+68.75,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,12),
+73.45833333,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,13),
+63.29166667,
+"unhealthy"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,14),
+48.54166667,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,16),
+40.5,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,17),
+52.89473684,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,18),
+56.33333333,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,19),
+59.75,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,20),
+57.75,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,21),
+59.41666667,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,22),
+60.41666667,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,23),
+57.65217391,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,24),
+63.5,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,25),
+58.20833333,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,26),
+55.91666667,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,27),
+55.33333333,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,28),
+46.22222222,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,29),
+47.13636364,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,30),
+49.43478261,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,0,31),
+63.16666667,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,1),
+67.8125,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,2),
+68.93333333,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,3),
+79.65,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,4),
+81.79166667,
+"unhealthy"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,5),
+86.66666667,
+"unhealthy"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,6),
+141.75,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,7),
+126.2608696,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,8),
+126,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,9),
+72.27272727,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,10),
+66.54545455,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,11),
+63.06666667,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,12),
+62,
+"unhealthy"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,13),
+62.79166667,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,14),
+66.0952381,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,15),
+69.6,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,16),
+56.58333333,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,17),
+62.75,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,18),
+60.66666667,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,19),
+61.41666667,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,20),
+75.46153846,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,21),
+76.25,
+"unhealthy"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,22),
+78.16666667,
+"unhealthy"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,23),
+82.58333333,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,24),
+57.25,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,25),
+46.42857143,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,26),
+91.33333333,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,27),
+123.7083333,
+"unhealthy"
+],
+[
+"Air.Quality.Index",
+new Date(2017,1,28),
+102.0909091,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,1),
+61.63636364,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,2),
+62.70833333,
+"unhealthy"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,3),
+80.47826087,
+"unhealthy"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,4),
+94.29166667,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,5),
+106.0588235,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,6),
+78.54166667,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,7),
+112.4583333,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,8),
+115.2916667,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,9),
+143.4117647,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,10),
+95.52380952,
+"unhealthy"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,11),
+74.79166667,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,12),
+68.125,
+"unhealthy"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,13),
+85.81818182,
+"unhealthy"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,14),
+79.26315789,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,15),
+63.83333333,
+"unhealthy"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,16),
+102.6666667,
+"unhealthy"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,17),
+124.0833333,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,18),
+118,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,19),
+90.66666667,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,20),
+98.20833333,
+"unhealthy"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,21),
+137.7916667,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,22),
+109.5833333,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,23),
+165.2916667,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,24),
+119.7083333,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,25),
+101.4166667,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,26),
+99.22222222,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,27),
+132.0416667,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,28),
+158.1666667,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,29),
+174.4583333,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,30),
+171.1111111,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,2,31),
+144.4166667,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,1),
+146.5,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,2),
+140.3043478,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,3),
+146.2608696,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,4),
+145.1578947,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,5),
+134.2083333,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,6),
+157.6666667,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,7),
+147.5833333,
+"Hazardous"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,8),
+122.625,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,9),
+107.4166667,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,10),
+123.9583333,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,11),
+165.4583333,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,12),
+176.2380952,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,13),
+138.6086957,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,14),
+144.7916667,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,15),
+176,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,16),
+188.2,
+"good"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,17),
+153.7142857,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,18),
+133.65,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,19),
+154.625,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,20),
+163.6666667,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,21),
+157.1666667,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,22),
+172.95,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,23),
+160,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,24),
+153.1904762,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,25),
+178.6190476,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,26),
+153.65,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,27),
+145.4166667,
+"good"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,28),
+137.7083333,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,29),
+101.125,
+"moderate"
+],
+[
+"Air.Quality.Index",
+new Date(2017,3,30),
+178.7894737,
+"moderate"
+] 
+];
+data.addColumn('string','series');
+data.addColumn('date','index');
+data.addColumn('number','value');
+data.addColumn('string','hazard');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartMotionChartID65af50c0bcef() {
+var data = gvisDataMotionChartID65af50c0bcef();
+var options = {};
+options["width"] = 600;
+options["height"] = 500;
+options["state"] = "";
+
+    var chart = new google.visualization.MotionChart(
+    document.getElementById('MotionChartID65af50c0bcef')
+    );
+    chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+var chartid = "motionchart";
+  
+// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+var i, newPackage = true;
+for (i = 0; newPackage && i < pkgs.length; i++) {
+if (pkgs[i] === chartid)
+newPackage = false;
+}
+if (newPackage)
+  pkgs.push(chartid);
+  
+// Add the drawChart function to the global list of callbacks
+callbacks.push(drawChartMotionChartID65af50c0bcef);
+})();
+function displayChartMotionChartID65af50c0bcef() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+  var pkgCount = pkgs.length;
+  google.load("visualization", "1", { packages:pkgs, callback: function() {
+  if (pkgCount != pkgs.length) {
+  // Race condition where another setTimeout call snuck in after us; if
+  // that call added a package, we must not shift its callback
+  return;
+}
+while (callbacks.length > 0)
+callbacks.shift()();
+} });
+}, 100);
+}
+ 
+// jsFooter
+</script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID65af50c0bcef"></script>
+ 
+<!-- divChart -->
+  
+<div id="MotionChartID65af50c0bcef" 
+  style="width: 600; height: 500;">
+</div>

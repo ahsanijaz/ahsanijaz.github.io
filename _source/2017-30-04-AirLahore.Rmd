@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Air pollution in Karachi (KarachiAir)
+title: Air pollution in Karachi 
 date: "30/04/2017"
 tags: [Social Data Science, Air pollution, Data Visualization]
 bigimg: 
@@ -26,10 +26,12 @@ polDat$time = as.POSIXct(format(as.POSIXct(polDat$created,'PKT'), tz="Asia/Karac
 tsPol = xts(x = polDat$pm2.5Num,polDat$time)
 PollutionTS = cbind(tsPol, polDat$airQNum)
 names(PollutionTS) <- c("pm2.5","Air Quality Index")
+
+dailyIndexs = apply.daily(PollutionTS, colMeans)
 # index(PollutionTS) <- as.Date(index(PollutionTS))
 tPollutionTS = tidy(PollutionTS)
 # tPollutionTS %>% ggplot(aes(x=index,y=value, color=series)) + geom_line()
-
+dailyPoll = tidy(dailyIndexs)
 ```
 
 ```{r echo=FALSE,results='asis',tidy=TRUE}
@@ -70,3 +72,46 @@ print(aPlot)
 
 ```
 
+It seems that the air quality index is increasing with the passage of time, whereas the pm2.5 metric is decreasing. If we pass our data through a moving average filter with one day window, this trend becomes more evident. 
+
+```{r echo=FALSE,results='asis',tidy=TRUE}
+
+dailyPoll$hazard = rep(unlist(llply((dailyPoll %>% dplyr::filter(series == "pm2.5") %>% dplyr::select(value))$value, filterPm2.5)),2)
+aPlot2 <-  gvisAnnotationChart(dailyPoll, datevar="index",
+                      numvar="value", idvar="series",
+                      options=list(
+                        width=600, height=350,
+                        fill=10, displayExactValues=TRUE,
+                        colors="['#0000ff','#00ff00']"),
+                      chartid="AnnotationChart1"
+                      )
+
+aPlot2$html$header <- NULL
+aPlot2$html$footer <- NULL
+aPlot2$html$jsFooter <- NULL
+aPlot2$html$caption <- NULL
+print(aPlot2)
+
+```
+
+Finally, we look at the motion chart for this data, along with hazard levels based on __pm2.5 values__ as defined by [BlissAir](https://blissair.com/what-is-pm-2-5.htm).
+
+```{r echo=FALSE,results='asis',tidy=TRUE}
+
+dailyPoll$index = as.Date(dailyPoll$index)
+dailyPollpm = dailyPoll %>% dplyr::filter(series == "pm2.5")
+dailyPollaq = dailyPoll %>% dplyr::filter(series == "Air.Quality.Index")
+dailyPollpm = dailyPollpm[!duplicated(dailyPollpm[,c('index')]),]
+dailyPollaq = dailyPollaq[!duplicated(dailyPollaq[,c('index')]),]
+dailyPoll2 = rbind.data.frame(dailyPollpm,dailyPollaq)
+
+Motion=gvisMotionChart(dailyPoll2, 
+                       idvar="series", 
+                       timevar="index")
+Motion$html$header <- NULL
+Motion$html$footer <- NULL
+Motion$html$jsFooter <- NULL
+Motion$html$caption <- NULL
+print(Motion)
+
+```
