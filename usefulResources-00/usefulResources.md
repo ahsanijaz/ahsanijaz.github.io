@@ -1,10 +1,7 @@
 ---
+layout: post
 title: "Reference Material"
-author: ""
-date: ""
-output: html_document
 ---
-
 
 
 # Helpful Resources for Workshops
@@ -18,6 +15,13 @@ output: html_document
 ## Tutorials for R
 
 * [Swirl](http://swirlstats.com/students.html) is an excellent tutorial for learning R interactively in RStudio. Highly recommended. 
+
+
+## Mathematical Background
+
+* [Linear Algebra](http://www.deeplearningbook.org/contents/linear_algebra.html)
+* [Probability and Information Theory](http://www.deeplearningbook.org/contents/prob.html)
+* [Numerical Computation](http://www.deeplearningbook.org/contents/numerical.html)
 
 ## Data science examples and technology landscape
 
@@ -41,8 +45,7 @@ output: html_document
 * [Advanced] Cohen et al.[“MAD Skills: New Analysis Practices for Big Data”](http://db.cs.berkeley.edu/papers/vldb09-madskills.pdf), 2009
 * [Advanced] Erik Meijer, Gavin Bierma [co-Relational Model of Large Shared Data Banks](http://queue.acm.org/detail.cfm?id=1961297), Communications of the ACM, 2011
 
-### MapReduce, Hadoop, relationship to databases, algorithms, extensions, language; key-value stores and NoSQL; tradeoffs of SQL and NoSQL Readings
-
+### Big data paradigm
 
 * Ullman, Rajaraman, [Mining of Massive Datasets](http://infolab.stanford.edu/~ullman/mmds.html), Chapter 2
 * Stonebraker et al., [“MapReduce and Parallel DBMS’s: Friends or Foes?”](http://database.cs.brown.edu/papers/stonebraker-cacm2010.pdf), Communications of the ACM, January 2010.

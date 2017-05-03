@@ -16,6 +16,13 @@ title: "Reference Material"
 
 * [Swirl](http://swirlstats.com/students.html) is an excellent tutorial for learning R interactively in RStudio. Highly recommended. 
 
+
+## Mathematical Background
+
+* [Linear Algebra](http://www.deeplearningbook.org/contents/linear_algebra.html)
+* [Probability and Information Theory](http://www.deeplearningbook.org/contents/prob.html)
+* [Numerical Computation](http://www.deeplearningbook.org/contents/numerical.html)
+
 ## Data science examples and technology landscape
 
 * (example) Yong-Yeol Ahn, Sebastian E. Ahnert, James P. Bagrow, Albert-László Barabási, [Flavor network and the principles of food pairing](http://www.nature.com/srep/2011/111215/srep00196/full/srep00196.html), Scientific Reports 1, Article number: 196 doi:10.1038/srep00196
