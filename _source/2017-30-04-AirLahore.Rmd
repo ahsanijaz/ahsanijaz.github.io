@@ -122,10 +122,23 @@ dailyPollpm = dailyPollpm[!duplicated(dailyPollpm[,c('index')]),]
 dailyPollaq = dailyPollaq[!duplicated(dailyPollaq[,c('index')]),]
 dailyPoll2 = rbind.data.frame(dailyPollpm,dailyPollaq)
 
+state2 = '
+{"duration":{"multiplier":1,"timeUnit":"D"},
+"yAxisOption":"2","showTrails":true,"playDuration":15000,
+"sizeOption":"_UNISIZE","xAxisOption":"_TIME",
+"xZoomedDataMin":1484092800000,"orderedByY":false,"xZoomedIn":false,
+"time":"2017-01-11","xLambda":1,"orderedByX":false,
+"yZoomedIn":false,"yZoomedDataMax":188.2,"yZoomedDataMin":10.65,
+"nonSelectedAlpha":0.4,"uniColorForNonSelected":false,
+"iconKeySettings":[{"trailStart":"2017-01-11","key":{"dim0":"Air.Quality.Index"}}],
+"yLambda":1,"colorOption":"3","dimensions":{"iconDimensions":["dim0"]},"xZoomedDataMax":1493510400000,"iconType":"BUBBLE"}
+'
+
 Motion=gvisMotionChart(dailyPoll2, 
                        idvar="series", 
                        timevar="index",
-                       options=list(colors="['#cbb69d', '#603913', '#c69c6e']"))
+                       options=list(state = state2))
+
 Motion$html$header <- NULL
 Motion$html$footer <- NULL
 Motion$html$jsFooter <- NULL

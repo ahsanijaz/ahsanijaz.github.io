@@ -16,7 +16,7 @@ Unfortunately, it is difficult to look at the big picture by looking at these tw
 
 
 <!-- AnnotationChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Tue May  2 16:14:51 2017 -->
+<!-- Thu May  4 01:09:27 2017 -->
 
 
 <!-- jsHeader -->
@@ -11297,7 +11297,7 @@ callbacks.shift()();
 It seems that the air quality index is increasing with the passage of time, whereas the pm2.5 metric is decreasing. If we pass our data through a moving average filter by using a one day window, this trend becomes more evident. 
 
 <!-- AnnotationChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Tue May  2 16:14:51 2017 -->
+<!-- Thu May  4 01:09:28 2017 -->
 
 
 <!-- jsHeader -->
@@ -11938,14 +11938,14 @@ callbacks.shift()();
 Finally, we look at the motion chart for this data, along with hazard levels based on __pm2.5 values__ and __air quality indexes__ as defined by [BlissAir](https://blissair.com/what-is-pm-2-5.htm).
 
 <!-- MotionChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Tue May  2 16:14:51 2017 -->
+<!-- Thu May  4 01:09:28 2017 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataMotionChartID7e747a0660d () {
+function gvisDataMotionChartID5d72351fb29c () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -13267,16 +13267,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartMotionChartID7e747a0660d() {
-var data = gvisDataMotionChartID7e747a0660d();
+function drawChartMotionChartID5d72351fb29c() {
+var data = gvisDataMotionChartID5d72351fb29c();
 var options = {};
 options["width"] = 600;
 options["height"] = 500;
-options["state"] = "";
-options["colors"] = ['#cbb69d', '#603913', '#c69c6e'];
+options["state"] = "\n{\"duration\":{\"multiplier\":1,\"timeUnit\":\"D\"},\n\"yAxisOption\":\"2\",\"showTrails\":true,\"playDuration\":15000,\n\"sizeOption\":\"_UNISIZE\",\"xAxisOption\":\"_TIME\",\n\"xZoomedDataMin\":1484092800000,\"orderedByY\":false,\"xZoomedIn\":false,\n\"time\":\"2017-01-11\",\"xLambda\":1,\"orderedByX\":false,\n\"yZoomedIn\":false,\"yZoomedDataMax\":188.2,\"yZoomedDataMin\":10.65,\n\"nonSelectedAlpha\":0.4,\"uniColorForNonSelected\":false,\n\"iconKeySettings\":[{\"trailStart\":\"2017-01-11\",\"key\":{\"dim0\":\"Air.Quality.Index\"}}],\n\"yLambda\":1,\"colorOption\":\"3\",\"dimensions\":{\"iconDimensions\":[\"dim0\"]},\"xZoomedDataMax\":1493510400000,\"iconType\":\"BUBBLE\"}\n";
 
     var chart = new google.visualization.MotionChart(
-    document.getElementById('MotionChartID7e747a0660d')
+    document.getElementById('MotionChartID5d72351fb29c')
     );
     chart.draw(data,options);
     
@@ -13300,9 +13299,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartMotionChartID7e747a0660d);
+callbacks.push(drawChartMotionChartID5d72351fb29c);
 })();
-function displayChartMotionChartID7e747a0660d() {
+function displayChartMotionChartID5d72351fb29c() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -13326,10 +13325,10 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID7e747a0660d"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID5d72351fb29c"></script>
  
 <!-- divChart -->
   
-<div id="MotionChartID7e747a0660d" 
+<div id="MotionChartID5d72351fb29c" 
   style="width: 600; height: 500;">
 </div>
