@@ -21,7 +21,8 @@ library(broom)
 library(dplyr)
 library(ggplot2)
 load("~/Personal/blogData/polKarachi.RData")
-polDat$time = as.POSIXct(format(as.POSIXct(polDat$created,'PKT'), tz="Asia/Karachi"))
+polDat$time = as.POSIXct(format(as.POSIXct(polDat$created,
+                                           'PKT'), tz="Asia/Karachi"))
 tsPol = xts(x = polDat$pm2.5Num,polDat$time)
 PollutionTS = cbind(tsPol, polDat$airQNum)
 names(PollutionTS) <- c("pm2.5","Air Quality Index")
@@ -65,8 +66,11 @@ filterAQI <- function(AQI){
 }
 
 
-tPollutionTS$hazard = c(unlist(llply((tPollutionTS %>% dplyr::filter(series == "pm2.5") %>% dplyr::select(value))$value, filterPm2.5)),
-                        unlist(llply((tPollutionTS %>% dplyr::filter(series == "Air.Quality.Index") %>%
+tPollutionTS$hazard = c(unlist(llply((tPollutionTS %>%
+                                      dplyr::filter(series == "pm2.5") %>%
+                                      dplyr::select(value))$value, filterPm2.5)),
+                        unlist(llply((tPollutionTS %>%
+                                      dplyr::filter(series == "Air.Quality.Index") %>%
                                       dplyr::select(value))$value, filterAQI)))
 
 
@@ -91,8 +95,11 @@ It seems that the air quality index is increasing with the passage of time, wher
 
 ```{r echo=FALSE,results='asis',tidy=TRUE}
 
-dailyPoll$hazard = c(unlist(llply((dailyPoll %>% dplyr::filter(series == "pm2.5") %>% dplyr::select(value))$value, filterPm2.5)),
-                                unlist(llply((dailyPoll %>% dplyr::filter(series == "Air.Quality.Index") %>%
+dailyPoll$hazard = c(unlist(llply((dailyPoll %>%
+                                   dplyr::filter(series == "pm2.5") %>%
+                                   dplyr::select(value))$value, filterPm2.5)),
+                     unlist(llply((dailyPoll %>%
+                                   dplyr::filter(series == "Air.Quality.Index") %>%
                                       dplyr::select(value))$value, filterAQI)))
 aPlot2 <-  gvisAnnotationChart(dailyPoll, datevar="index",
                       numvar="value", idvar="series",
@@ -145,4 +152,37 @@ Motion$html$jsFooter <- NULL
 Motion$html$caption <- NULL
 print(Motion)
 
+```
+
+Since we have the data, and can see an increasing trend for the air quality index, we can fit a simple linear regression model to capture and forecast the air pollution. This can help us in taking preemptive measures and suggestions for policy makers. 
+We have fitted a linear model, with the predictor variables as Time, and to capture the periodical variation: cos and sin functions of time. The frequency used for capturing this temporal variation was estimated by choosing the most dominant frequency of the signal by analyzing its power spectral density as shown in the code snippet below.
+```{r, echo = TRUE}
+aqDat = dailyPoll2 %>% dplyr::filter(series == 'Air.Quality.Index')
+Time = aqDat$index
+AQI = aqDat$value
+ssp <- spectrum(AQI)
+per <- 1/ssp$freq[ssp$spec==max(ssp$spec)]
+aqDat$xc = cos(2*pi*as.numeric(Time)/per)
+aqDat$xs = sin(2*pi*as.numeric(Time)/per)
+fit.lm <- lm(value ~ xc+xs +  as.numeric(index), data = aqDat)
+pred <- predict(fit.lm)
+```
+
+With this we can visualize an increasing trend line by using our prediction function.
+
+```{r, echo = FALSE}
+aqDat$pred = pred 
+ggplot(data = aqDat, aes(x = index, y = value)) +
+    geom_point(aes(color = hazard)) + geom_line(aes(x= index, y = pred))
+```
+
+We can also forecast future values of the air pollution index, although, I'd like to mention the caveat of us having limited data, and almost no information about the location of sensor. Of course, with more observations over the years, we can see the trend going down or stabilizing after reaching some peak value (which is usually true with most signals). Regardless, the figure given below that predicts the pollution values for the next few months is quite bleak! It seems that we will soon make Karachi unbreathable. 
+
+```{r,echo = FALSE}
+datePredict = seq(from = aqDat$index[1], length.out= 200, by =1)
+newDat = data.frame(index = datePredict,
+           xc = cos(2*pi*as.numeric(datePredict)/per),
+           xs = sin(2*pi*as.numeric(datePredict)/per))
+pred2 <- predict(fit.lm, newDat)
+plot(datePredict, pred2, 'l', col = 'blue')
 ```
