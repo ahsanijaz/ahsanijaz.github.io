@@ -168,7 +168,7 @@ fit.lm <- lm(value ~ xc+xs +  as.numeric(index), data = aqDat)
 pred <- predict(fit.lm)
 ```
 
-With this we can visualize an increasing trend line by using our prediction function.
+With this, we proceed to visualize the trend line by using our prediction function.
 
 ```{r, echo = FALSE}
 aqDat$pred = pred 
@@ -186,3 +186,5 @@ newDat = data.frame(index = datePredict,
 pred2 <- predict(fit.lm, newDat)
 plot(datePredict, pred2, 'l', col = 'blue')
 ```
+
+
