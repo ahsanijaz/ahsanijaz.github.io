@@ -1,6 +1,6 @@
 ---
 layout: post
-title: EMG Signals (Wavelet analysis in R)
+title: Wavelet analysis in R
 date: "13/09/2016"
 tags: [Digital Signal processing, Wavelet analysis]
 ---
