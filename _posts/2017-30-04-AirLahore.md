@@ -16,7 +16,7 @@ Unfortunately, it is difficult to look at the big picture by looking at these tw
 
 
 <!-- AnnotationChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Thu May  4 19:25:01 2017 -->
+<!-- Fri May  5 01:22:59 2017 -->
 
 
 <!-- jsHeader -->
@@ -11297,7 +11297,7 @@ callbacks.shift()();
 It seems that the air quality index is increasing with the passage of time, whereas the pm2.5 metric is decreasing. If we pass our data through a moving average filter by using a one day window, this trend becomes more evident. 
 
 <!-- AnnotationChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Thu May  4 19:25:02 2017 -->
+<!-- Fri May  5 01:22:59 2017 -->
 
 
 <!-- jsHeader -->
@@ -11938,14 +11938,14 @@ callbacks.shift()();
 Finally, we look at the motion chart for this data, along with hazard levels based on __pm2.5 values__ and __air quality indexes__ as defined by [BlissAir](https://blissair.com/what-is-pm-2-5.htm).
 
 <!-- MotionChart generated in R 3.3.1 by googleVis 0.6.2 package -->
-<!-- Thu May  4 19:25:02 2017 -->
+<!-- Fri May  5 01:23:00 2017 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataMotionChartID1e0520201688 () {
+function gvisDataMotionChartID5a8953511e40 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -13267,15 +13267,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartMotionChartID1e0520201688() {
-var data = gvisDataMotionChartID1e0520201688();
+function drawChartMotionChartID5a8953511e40() {
+var data = gvisDataMotionChartID5a8953511e40();
 var options = {};
 options["width"] = 600;
 options["height"] = 500;
 options["state"] = "\n{\"duration\":{\"multiplier\":1,\"timeUnit\":\"D\"},\n\"yAxisOption\":\"2\",\"showTrails\":true,\"playDuration\":15000,\n\"sizeOption\":\"_UNISIZE\",\"xAxisOption\":\"_TIME\",\n\"xZoomedDataMin\":1484092800000,\"orderedByY\":false,\"xZoomedIn\":false,\n\"time\":\"2017-01-11\",\"xLambda\":1,\"orderedByX\":false,\n\"yZoomedIn\":false,\"yZoomedDataMax\":188.2,\"yZoomedDataMin\":10.65,\n\"nonSelectedAlpha\":0.4,\"uniColorForNonSelected\":false,\n\"iconKeySettings\":[{\"trailStart\":\"2017-01-11\",\"key\":{\"dim0\":\"Air.Quality.Index\"}}],\n\"yLambda\":1,\"colorOption\":\"3\",\"dimensions\":{\"iconDimensions\":[\"dim0\"]},\"xZoomedDataMax\":1493510400000,\"iconType\":\"BUBBLE\"}\n";
 
     var chart = new google.visualization.MotionChart(
-    document.getElementById('MotionChartID1e0520201688')
+    document.getElementById('MotionChartID5a8953511e40')
     );
     chart.draw(data,options);
     
@@ -13299,9 +13299,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartMotionChartID1e0520201688);
+callbacks.push(drawChartMotionChartID5a8953511e40);
 })();
-function displayChartMotionChartID1e0520201688() {
+function displayChartMotionChartID5a8953511e40() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -13325,11 +13325,11 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID1e0520201688"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID5a8953511e40"></script>
  
 <!-- divChart -->
   
-<div id="MotionChartID1e0520201688" 
+<div id="MotionChartID5a8953511e40" 
   style="width: 600; height: 500;">
 </div>
 
@@ -13353,10 +13353,12 @@ fit.lm <- lm(value ~ xc+xs +  as.numeric(index), data = aqDat)
 pred <- predict(fit.lm)
 ```
 
-With this we can visualize an increasing trend line by using our prediction function.
+With this, we proceed to visualize the trend line by using our prediction function.
 
 <img src="/figure/source/2017-30-04-AirLahore/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
 
 We can also forecast future values of the air pollution index, although, I'd like to mention the caveat of us having limited data, and almost no information about the location of sensor. Of course, with more observations over the years, we can see the trend going down or stabilizing after reaching some peak value (which is usually true with most signals). Regardless, the figure given below that predicts the pollution values for the next few months is quite bleak! It seems that we will soon make Karachi unbreathable. 
 
 <img src="/figure/source/2017-30-04-AirLahore/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+
+

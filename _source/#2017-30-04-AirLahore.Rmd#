@@ -1,0 +1,190 @@
+---
+layout: post
+title: Air pollution in Karachi 
+date: "30/04/2017"
+tags: [Social Data Science, Air pollution, Data Visualization]
+bigimg: 
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=8, fig.height=4, echo=FALSE, warning=FALSE, message=FALSE, fig.align = 'center')
+```
+
+A friend of mine ([Max](http://maxkrueger.com/)) was discussing about his presentation on Smart Cities. While going through it, he mentioned a twitter account that posts about air pollution data about Karachi: [KarachiAir](https://twitter.com/KarachiAir). The tweets are machine generated and are posted every hour. It's a great step towards open data community and was a pleasent surprise for me to find it for Pakistani cities. 
+Unfortunately, it is difficult to look at the big picture by looking at these tweets. Therefore, we thought about creating some visualizations using this data with some basic exploratory analysis. So we scraped the data from the twitter account using its [timeline API](https://dev.twitter.com/rest/reference/get/statuses/user_timeline); filtered it to get only quality measure tweets; parsed those tweets to get pm2.5 and air quality index and did some time series visualizations. 
+
+## Exploration of Air pollution data in Karachi
+
+```{r echo = FALSE}
+library(xts)
+library(broom)
+library(dplyr)
+library(ggplot2)
+load("~/Personal/blogData/polKarachi.RData")
+polDat$time = as.POSIXct(format(as.POSIXct(polDat$created,
+                                           'PKT'), tz="Asia/Karachi"))
+tsPol = xts(x = polDat$pm2.5Num,polDat$time)
+PollutionTS = cbind(tsPol, polDat$airQNum)
+names(PollutionTS) <- c("pm2.5","Air Quality Index")
+
+dailyIndexs = apply.daily(PollutionTS, colMeans)
+# index(PollutionTS) <- as.Date(index(PollutionTS))
+tPollutionTS = tidy(PollutionTS)
+# tPollutionTS %>% ggplot(aes(x=index,y=value, color=series)) + geom_line()
+dailyPoll = tidy(dailyIndexs)
+```
+
+```{r echo=FALSE,results='asis',tidy=TRUE}
+library(googleVis)
+library(plyr)
+
+filterPm2.5 <- function(PMvalue){
+    if(PMvalue > 0 & PMvalue <= 30){
+        "Good"}
+    else if(PMvalue > 30 & PMvalue <= 60){
+            "Satisfactory"
+        }
+    else if(PMvalue > 60 & PMvalue <= 90){
+            "Moderately Polluted"
+        }
+    else "Severe"
+}
+
+filterAQI <- function(AQI){
+    if(AQI > 0 & AQI <= 50.0){
+        "Good"}
+    else if(AQI > 50.0 & AQI <= 100.0){
+            "Satisfactory"
+        }
+    else if(AQI > 100.0 & AQI <= 150){
+            "Lightly Polluted"
+        }
+    else if(AQI > 150 & AQI <= 200){
+            "Moderately Polluted"
+        }
+    else "Severe"
+}
+
+
+tPollutionTS$hazard = c(unlist(llply((tPollutionTS %>%
+                                      dplyr::filter(series == "pm2.5") %>%
+                                      dplyr::select(value))$value, filterPm2.5)),
+                        unlist(llply((tPollutionTS %>%
+                                      dplyr::filter(series == "Air.Quality.Index") %>%
+                                      dplyr::select(value))$value, filterAQI)))
+
+
+aPlot <-  gvisAnnotationChart(tPollutionTS, datevar="index",
+                      numvar="value", idvar="series",
+                      options=list(
+                        width=600, height=350,
+                        fill=10, displayExactValues=TRUE,
+                        colors="['#0000ff','#00ff00']"),
+                      chartid="AnnotationChart"
+  )
+
+aPlot$html$header <- NULL
+aPlot$html$footer <- NULL
+aPlot$html$jsFooter <- NULL
+aPlot$html$caption <- NULL
+print(aPlot)
+
+```
+
+It seems that the air quality index is increasing with the passage of time, whereas the pm2.5 metric is decreasing. If we pass our data through a moving average filter by using a one day window, this trend becomes more evident. 
+
+```{r echo=FALSE,results='asis',tidy=TRUE}
+
+dailyPoll$hazard = c(unlist(llply((dailyPoll %>%
+                                   dplyr::filter(series == "pm2.5") %>%
+                                   dplyr::select(value))$value, filterPm2.5)),
+                     unlist(llply((dailyPoll %>%
+                                   dplyr::filter(series == "Air.Quality.Index") %>%
+                                      dplyr::select(value))$value, filterAQI)))
+aPlot2 <-  gvisAnnotationChart(dailyPoll, datevar="index",
+                      numvar="value", idvar="series",
+                      options=list(
+                        #width=600, height=350,
+                        fill=10, displayExactValues=TRUE,
+                        colors="['#0000ff','#00ff00']"),
+                      chartid="AnnotationChart1"
+                      )
+
+aPlot2$html$header <- NULL
+aPlot2$html$footer <- NULL
+aPlot2$html$jsFooter <- NULL
+aPlot2$html$caption <- NULL
+print(aPlot2)
+
+```
+
+Finally, we look at the motion chart for this data, along with hazard levels based on __pm2.5 values__ and __air quality indexes__ as defined by [BlissAir](https://blissair.com/what-is-pm-2-5.htm).
+
+```{r echo=FALSE,results='asis',tidy=TRUE}
+
+dailyPoll$index = as.Date(dailyPoll$index)
+dailyPollpm = dailyPoll %>% dplyr::filter(series == "pm2.5")
+dailyPollaq = dailyPoll %>% dplyr::filter(series == "Air.Quality.Index")
+dailyPollpm = dailyPollpm[!duplicated(dailyPollpm[,c('index')]),]
+dailyPollaq = dailyPollaq[!duplicated(dailyPollaq[,c('index')]),]
+dailyPoll2 = rbind.data.frame(dailyPollpm,dailyPollaq)
+
+state2 = '
+{"duration":{"multiplier":1,"timeUnit":"D"},
+"yAxisOption":"2","showTrails":true,"playDuration":15000,
+"sizeOption":"_UNISIZE","xAxisOption":"_TIME",
+"xZoomedDataMin":1484092800000,"orderedByY":false,"xZoomedIn":false,
+"time":"2017-01-11","xLambda":1,"orderedByX":false,
+"yZoomedIn":false,"yZoomedDataMax":188.2,"yZoomedDataMin":10.65,
+"nonSelectedAlpha":0.4,"uniColorForNonSelected":false,
+"iconKeySettings":[{"trailStart":"2017-01-11","key":{"dim0":"Air.Quality.Index"}}],
+"yLambda":1,"colorOption":"3","dimensions":{"iconDimensions":["dim0"]},"xZoomedDataMax":1493510400000,"iconType":"BUBBLE"}
+'
+
+Motion=gvisMotionChart(dailyPoll2, 
+                       idvar="series", 
+                       timevar="index",
+                       options=list(state = state2))
+
+Motion$html$header <- NULL
+Motion$html$footer <- NULL
+Motion$html$jsFooter <- NULL
+Motion$html$caption <- NULL
+print(Motion)
+
+```
+
+Since we have the data, and can see an increasing trend for the air quality index, we can fit a simple linear regression model to capture and forecast the air pollution. This can help us in taking preemptive measures and suggestions for policy makers. 
+We have fitted a linear model, with the predictor variables as Time, and to capture the periodical variation: cos and sin functions of time. The frequency used for capturing this temporal variation was estimated by choosing the most dominant frequency of the signal by analyzing its power spectral density as shown in the code snippet below.
+```{r, echo = TRUE}
+aqDat = dailyPoll2 %>% dplyr::filter(series == 'Air.Quality.Index')
+Time = aqDat$index
+AQI = aqDat$value
+ssp <- spectrum(AQI)
+per <- 1/ssp$freq[ssp$spec==max(ssp$spec)]
+aqDat$xc = cos(2*pi*as.numeric(Time)/per)
+aqDat$xs = sin(2*pi*as.numeric(Time)/per)
+fit.lm <- lm(value ~ xc+xs +  as.numeric(index), data = aqDat)
+pred <- predict(fit.lm)
+```
+
+With this, we proceed to visualize the trend line by using our prediction function.
+
+```{r, echo = FALSE}
+aqDat$pred = pred 
+ggplot(data = aqDat, aes(x = index, y = value)) +
+    geom_point(aes(color = hazard)) + geom_line(aes(x= index, y = pred))
+```
+
+We can also forecast future values of the air pollution index, although, I'd like to mention the caveat of us having limited data, and almost no information about the location of sensor. Of course, with more observations over the years, we can see the trend going down or stabilizing after reaching some peak value (which is usually true with most signals). Regardless, the figure given below that predicts the pollution values for the next few months is quite bleak! It seems that we will soon make Karachi unbreathable. 
+
+```{r,echo = FALSE}
+datePredict = seq(from = aqDat$index[1], length.out= 200, by =1)
+newDat = data.frame(index = datePredict,
+           xc = cos(2*pi*as.numeric(datePredict)/per),
+           xs = sin(2*pi*as.numeric(datePredict)/per))
+pred2 <- predict(fit.lm, newDat)
+plot(datePredict, pred2, 'l', col = 'blue')
+```
+
+
