@@ -91,7 +91,7 @@ print(aPlot)
 
 ```
 
-It seems that the air quality index is increasing with the passage of time, whereas the pm2.5 metric is decreasing. If we pass our data through a moving average filter by using a one day window, this trend becomes more evident. 
+It seems that the air quality index is steadily increasing, albeit at a slower rate than Karachi, which is a good sign. If we pass our data through a moving average filter by using a one day window, this trend becomes more evident. 
 
 ```{r echo=FALSE,results='asis',tidy=TRUE}
 
