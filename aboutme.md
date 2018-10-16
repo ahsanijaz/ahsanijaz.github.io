@@ -10,7 +10,7 @@ I am full stack Data Scientist, Machine Learning Researcher and Cloud Architect 
 - **Statistics and Machine Learning** including Model Building, Linear/Nonlinear Regression, Prediction, Hypothesis Testing, Classification, Clustering, Deep Learning (CNN, RNN, LSTM), Natural Language Processing and Data Visualization. 
 - **Data Engineering** with big datasets, including relational database management, noSQL paradigms, lambda architecture, Hadoop ecosystem, Spark and data warehousing. My experience is both on cloud infrastructure~(Google Cloud Certified Professional - Data Engineer) and on-premise deployments.
 - **Cloud Architecture** including design, development, provisioning and management of robust, secure, scalable, highly available, and dynamic solutions on cloud~(Google Cloud Certified Professional- Cloud Architect) with decent experience of on-premise deployments.
-- **Trainings** where I've led, managed and coached machine learning teams through workshops, lectures, presentations, blogging and mentor sessions. %My area of expertise are scalable m
+- **Trainings** where I've led, managed and coached machine learning teams through workshops, lectures, presentations, blogging and mentor sessions.
 
 <!---It's a work in progress. Here is what I do know about me, but please let me know if you know more!
 

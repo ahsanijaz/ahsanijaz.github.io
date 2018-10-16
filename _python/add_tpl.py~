@@ -1,0 +1,5 @@
+from os import environ
+IPYTHONDIR = environ["IPYTHONDIR"]
+template_rel_path = '/nbextensions/templates'
+template_path = IPYTHONDIR + template_rel_path
+c.TemplateExporter.template_path = ['.',template_path]
