@@ -13,8 +13,8 @@ My posts will divided under the following tags:
 1. **Programming:** will discuss programming paradigms and tricks to optimize data science pipelines. 
 2. **Productivity:** tags will talk about different IDEs, collaboration and management tools.
 3. **Production:** where I'd discuss about production grade machine learning and watch points. 
-4. **Trainings:** where I'd either share my presentations or discuss major watchpoints against each workshop. 
-5. **Infrastructure** where I'd talk about the latest technology and comparisons in producing machine learning pipelines. 
+4. **Workshops:** where I'd either share my presentations or discuss major watchpoints against each workshop. 
+5. **Infrastructure** where I'd talk about the latest technology, comparisons and paradigms needed for production grade machine learning. 
 6. **Data Modeling** where I'd post about data model and query design for different relational and noSQL paradigms.
 
 
