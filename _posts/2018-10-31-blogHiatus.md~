@@ -1,0 +1,12 @@
+---
+layout: post
+title: Mining weather conditions
+date: "24/01/2015"
+bigimg: /img/tornado.jpg
+tags: [Personal]
+
+---
+
+My job switched gears a year back as I joined [ADDO AI](http://addo.ai) as Chief Data Scientist and Senior Partner.  In addition to my responsibilities as a Data Scientist, my job requires responses to RFPs, training data science and data architecture teams, managing my team and external partnerships. On a personal note, I also got married and my blog got ignored. 
+I've decided to re-initiate it as I normally have strong opinions about technology and would love to open those up for discussion. Seldom, I also have something interesting to share with the community. There has been one more change, I've started using Python as part of my machine learning pipelines over R. I've mentioned [previously](https://ahsanijaz.github.io/2015-01-04-first-post/) about my extensive use of R Markdown, nbconvert and Jekyll for blogging. So my first hurdle was setting up this blog so that it can upload both R Markdown files and jupyter notebooks as blog posts. I'll write a post soon on how it was achieved. 
+ALSO
