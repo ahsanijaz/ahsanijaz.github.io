@@ -1,3 +1,8 @@
+---
+layout: post
+title: Monte Calro methods using TensorFlow (Part I)
+date: "01/11/2018"
+---
 
 # Monte Carlo Simulation
 
@@ -22,10 +27,10 @@ This can easily be integrated to obtain:
 
 $$ \tfrac{x^{3}}{3}\big|_0^2 = 2.667 $$
 
-Now if want to solve it using Monte Carlo simulation, we have to generate random samples within some bounded region and see how many of those fall within our region of interest i.e. lie under the line drawn by $y= x^2$. 
+Now if want to solve it using Monte Carlo simulation, we have to generate random samples within some bounded region and see how many of those fall within our region of interest i.e. lie under the line drawn by $$y= x^2$$. 
 
 ### Generating samples in TensorFlow
-In other words, we have to generate random uniform numbers with x-coordinate between 0 and 2 (since integration is from 0 to 2) and y-coordinate from 0 to 4 (as the $x^2$ function gives the y value of 4 at x = 2). To ease understanding, I'll execute the TensorFlow code in Eager mode and wrap it around a function in the end. Here, I draw 10000 samples from uniform distribution in TensorFlow as follows:
+In other words, we have to generate random uniform numbers with x-coordinate between 0 and 2 (since integration is from 0 to 2) and y-coordinate from 0 to 4 (as the $$x^2$$ function gives the y value of 4 at x = 2). To ease understanding, I'll execute the TensorFlow code in Eager mode and wrap it around a function in the end. Here, I draw 10000 samples from uniform distribution in TensorFlow as follows:
 
 
 ```python
@@ -35,7 +40,7 @@ y = tf.random_uniform((10000,1),0,4)
 ```
 
 ### Finding region of interest
-Once we have our random samples drawn from uniform distribution, we have to find the number of (x,y) samples that fall within $x^2$ function. This can easily be done as:
+Once we have our random samples drawn from uniform distribution, we have to find the number of (x,y) samples that fall within $$x^2$$ function. This can easily be done as:
 
 
 ```python
@@ -54,8 +59,9 @@ print(count)
 
 
 ### Computing the area
-Now, in the example above, we know that the total samples we have generated are 10,000 where as those lying under the $x^2$ function are given in the variable _count_. The range in which uniform samples were drawn has the area of 8 ( x-range * y-range = (2-0)*(4-0) = 8).
+Now, in the example above, we know that the total samples we have generated are 10,000 where as those lying under the $$x^2$$ function are given in the variable _count_. The range in which uniform samples were drawn has the area of 8 ( x-range * y-range = (2-0)*(4-0) = 8).
 Therefore, the ratio of area of function and range is equal to the ratio of _count_ and total samples. This is given as:
+
 $$\frac{\textit{area}}{\textit{range_area}} = \frac{count}{\textit{n_of_samples}}$$
 
 Programmatically, the area can be computed as:
@@ -78,7 +84,6 @@ What follows is the vanilla TensorFlow mode of carrying these computations along
 
 ```python
 def compute_integral(n_samples):
-#    shape = tf.shape(rand_samples)
     x = tf.random_uniform((n_samples,1),0,2)
     y = tf.random_uniform((n_samples,1),0,4)
     c_in_region = y<x**2
