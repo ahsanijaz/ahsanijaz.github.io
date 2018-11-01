@@ -1,10 +1,8 @@
 ---
 layout: post
-title: Monte Calro methods using TensorFlow (Part I)
+title: Monte Calro simulation using low level TensorFlow (Part I)
 date: "01/11/2018"
 ---
-
-# Monte Carlo Simulation
 
 Monte Carlo methods are computational algorithms relying on repeated random sampling to solve a variety of optimization, integration and sampling problems. More often than not, one stumbles across an intractable integral only solvable through numericel integration. The field of Physics and Mathematics also rely heavily on Monte Carlo Simulations. Moreover, these simulations provide random amount of error, reduciable by expanding computational resources. Thus, an error budget can be provided based on the resources.
 In machine learning, some methods are quite difficult to solve and approximate answers is all that we can get. Therefore, at times, it is needed to use Monte Carlo approximations over deterministic methods. In this post, I'll attempt at solving some simple integrations by using Monte Carlo simulations. Future posts will expand on this to discuss Importance Sampling and Markov Chain Monte Carlo Methods.
