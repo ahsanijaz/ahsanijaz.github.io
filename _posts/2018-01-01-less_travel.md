@@ -7,7 +7,7 @@ image: /img/scream.jpg
 ---
 
 Internet is replete with posts on 'how to become a data scientist'. Unfortunately, I'm also adding a post on this topic. The breadth of knowledge expected of a practicing data scientist can be quite daunting. However, one can limit the depth in some of these skills. 
-Here, I'd put together the bare minimum resources that a data scientist should go through. I'll attempt to provide the resources needed to sharpen each of the needed skill sets and how to approach the learning path. There is minimum set of skills that is needed before one qualifies as a practicing data scientist. Data Scientist role has morphed into a concoction of skill sets. 
+Here, I'd put together the bare minimum resources that a data scientist should go through. I'll attempt to provide the resources needed to sharpen each of the needed skill sets and how to approach the learning path. Data Scientist role has morphed into a concoction of skill sets. 
 
 What follows is a catalog of resources divided under different skill sets. 
 
