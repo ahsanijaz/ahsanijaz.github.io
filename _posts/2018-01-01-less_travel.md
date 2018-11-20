@@ -146,7 +146,7 @@ I've suggested one of the data engineering certification since most of the compo
 |Data Engineering Product|AWS|GCP|Azure|On-premise
 |---|:---:|:---:|:---:|
 |Object Storage|Amazon Simple Storage Service|Cloud Storage|Azure Blob Storage|HDFS|
-|Block Storage|Amazon Elastic Block Store|Persistent Disk|Disk Storage|HDFS|
+|Block Storage|Amazon Elastic Block Store|Persistent Disk|Disk Storage|Hard disks|
 |File Storage|Amazon Elastic File System|Cloud Filestore|Azure File Storage|HDFS|
 |RDBMS|Amazon Relational Database Service, Amazon Aurora|Cloud SQL, Cloud Spanner|SQL Database|PostgreSQL|
 |Reduced-availability Storage|Amazon S3 Standard-Infrequent Access, Amazon S3 One Zone-Infrequent Access|Cloud Storage Nearline|Azure Cool Blob Storage|HDFS|
