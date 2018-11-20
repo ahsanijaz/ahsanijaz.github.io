@@ -143,23 +143,23 @@ As I've only done the GCP certification, what follows are some useful resources 
 ### Big Data Paradigm
 I've suggested one of the data engineering certification since most of the components used by one of the cloud providers have equivalent services offered by other cloud providers. What follows is a table providing the mapping of these services:
 
-|Data Engineering Product|AWS|GCP|Azure|
+|Data Engineering Product|AWS|GCP|Azure|On-premise
 |---|:---:|:---:|:---:|
-|Object Storage|Amazon Simple Storage Service|Cloud Storage|Azure Blob Storage|
-|Block Storage|Amazon Elastic Block Store|Persistent Disk|Disk Storage|
-|File Storage|Amazon Elastic File System|Cloud Filestore|Azure File Storage|
-|RDBMS|Amazon Relational Database Service, Amazon Aurora|Cloud SQL, Cloud Spanner|SQL Database|
-|Reduced-availability Storage|Amazon S3 Standard-Infrequent Access, Amazon S3 One Zone-Infrequent Access|Cloud Storage Nearline|Azure Cool Blob Storage|
-|Archival Storage|Amazon Glacier|Cloud Storage Coldline|Azure Archive Blob Storage|
-|NoSQL: Key-value|Amazon DynamoDB|Cloud Datastore, Cloud Bigtable|Table Storage|
-|NoSQL: Indexed|Amazon SimpleDB|Cloud Datastore|Cosmos DB|
-|Batch Data Processing|Amazon Elastic MapReduce, AWS Batch|Cloud Dataproc, Cloud Dataflow|HDInsight, Batch|
-|Stream Data Processing|Amazon Kinesis|Cloud Dataflow|Stream Analytics|
-|Stream Data Ingest|Amazon Kinesis|Cloud Pub/Sub|Event Hubs, Service Bus|
-|Analytics|Amazon Redshift, Amazon Athena|BigQuery|Data Lake Analytics, Data Lake Store|
-|Workflow Orchestration|Amazon Data Pipeline, AWS Glue|Cloud Composer||
-|Monitoring|Amazon CloudWatch|StackDriver Monitoring|Application Insights|
-|Fully Managed ML|Amazon SageMaker|Cloud Machine Learning Engine|ML Studio|
+|Object Storage|Amazon Simple Storage Service|Cloud Storage|Azure Blob Storage|HDFS|
+|Block Storage|Amazon Elastic Block Store|Persistent Disk|Disk Storage|HDFS|
+|File Storage|Amazon Elastic File System|Cloud Filestore|Azure File Storage|HDFS|
+|RDBMS|Amazon Relational Database Service, Amazon Aurora|Cloud SQL, Cloud Spanner|SQL Database|PostgreSQL|
+|Reduced-availability Storage|Amazon S3 Standard-Infrequent Access, Amazon S3 One Zone-Infrequent Access|Cloud Storage Nearline|Azure Cool Blob Storage|HDFS|
+|Archival Storage|Amazon Glacier|Cloud Storage Coldline|Azure Archive Blob Storage|HDFS|
+|NoSQL: Key-value|Amazon DynamoDB|Cloud Datastore, Cloud Bigtable|Table Storage|HBase/Cassandra|
+|NoSQL: Indexed|Amazon SimpleDB|Cloud Datastore|Cosmos DB|MongoDB|
+|Batch Data Processing|Amazon Elastic MapReduce, AWS Batch|Cloud Dataproc, Cloud Dataflow|HDInsight, Batch|Hadoop/Spark|
+|Stream Data Processing|Amazon Kinesis|Cloud Dataflow|Stream Analytics|Apache Beam/Spark stream|
+|Stream Data Ingest|Amazon Kinesis|Cloud Pub/Sub|Event Hubs, Service Bus|Kafka|
+|Analytics|Amazon Redshift, Amazon Athena|BigQuery|Data Lake Analytics, Data Lake Store|Kudos/GreenPlum|
+|Workflow Orchestration|Amazon Data Pipeline, AWS Glue|Cloud Composer||Apache AirFlow|
+|Monitoring|Amazon CloudWatch|StackDriver Monitoring|Application Insights|Elastic Search/Solr|
+|Fully Managed ML|Amazon SageMaker|Cloud Machine Learning Engine|ML Studio|KubeFlow/Seldon.io|
 
 In addition to this I'd suggest to take the first course of the specialization [Data Science at Scale](https://www.coursera.org/specializations/data-science){:target="_blank"} to get a cursory understanding of Hadoop, Spark and big data design space. 
 

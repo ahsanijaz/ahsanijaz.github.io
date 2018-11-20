@@ -45,16 +45,3 @@ use same mean and sd
 Initialization: speed up convergence
 Increase the odds of gd converging to lower training error
 Vanishing/exploding gradients
-
-Deep learning flexible enough to cause over-fitting
-
-really iterative process
-
-works on big data-slow 
-
-stochastic-loose speed up by vectorization
-batch descent- too big
-so something in between for value of batch size (64,128,256,512,1024)
-
-minibatch in CPU/GPU memory - hyperparameter
-
