@@ -144,7 +144,7 @@ As I've only done the GCP certification, what follows are some useful resources 
 I've suggested one of the data engineering certification since most of the components used by one of the cloud providers have equivalent services offered by other cloud providers. What follows is a table providing the mapping of these services:
 
 |Data Engineering Product|AWS|GCP|Azure|On-premise
-|---|:---:|:---:|:---:|
+|---|:---:|:---:|:---:|:---:|
 |Object Storage|Amazon Simple Storage Service|Cloud Storage|Azure Blob Storage|HDFS|
 |Block Storage|Amazon Elastic Block Store|Persistent Disk|Disk Storage|Hard disks|
 |File Storage|Amazon Elastic File System|Cloud Filestore|Azure File Storage|HDFS|
