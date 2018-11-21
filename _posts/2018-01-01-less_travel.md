@@ -156,7 +156,7 @@ I've suggested one of the data engineering certification since most of the compo
 |Batch Data Processing|Amazon Elastic MapReduce, AWS Batch|Cloud Dataproc, Cloud Dataflow|HDInsight, Batch|Hadoop/Spark|
 |Stream Data Processing|Amazon Kinesis|Cloud Dataflow|Stream Analytics|Apache Beam/Spark stream|
 |Stream Data Ingest|Amazon Kinesis|Cloud Pub/Sub|Event Hubs, Service Bus|Kafka|
-|Analytics|Amazon Redshift, Amazon Athena|BigQuery|Data Lake Analytics, Data Lake Store|Kudos/GreenPlum|
+|Analytics|Amazon Redshift, Amazon Athena|BigQuery|Data Lake Analytics, Data Lake Store|Kudu/GreenPlum|
 |Workflow Orchestration|Amazon Data Pipeline, AWS Glue|Cloud Composer||Apache AirFlow|
 |Monitoring|Amazon CloudWatch|StackDriver Monitoring|Application Insights|Elastic Search/Solr|
 |Fully Managed ML|Amazon SageMaker|Cloud Machine Learning Engine|ML Studio|KubeFlow/Seldon.io|
