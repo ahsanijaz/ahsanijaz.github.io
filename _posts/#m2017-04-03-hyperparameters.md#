@@ -1,0 +1,73 @@
+---
+layout: post
+title: Mining weather conditions
+date: "04/03/2017"
+---
+
+
+number of input features
+gpu/cpu configuration
+training data
+
+impossible to correctly guess the correct hyperparameters-iterative process of finding a good choice of network.
+
+How efficient you can cycle:
+
+Train/validation set/Test sets
+dev test just big enough-not whole 20% of data
+same is the case with test case (10k might be enough with 1mil examples)
+Traditional ratios with small data sets
+Distribution should be the same (getting data from different sources)
+
+bias/variance tradeoff 
+
+if train error << dev error (over-fitting) (high variance)
+Bayes set- look at train/dev set to see if high variance or high bias
+ 
+L1 and L2 regularization
+
+regularization parameter - using cross validation/validation set
+
+Frobenius norm of a matrix
+
+Drop out regularization:
+
+Separate optimization and over-fitting-decouple these
+
+l2 over early stopping to decouple-but need to set hyperparameter
+
+
+NORMALIZE THE INPUTS:
+
+use same mean and sd
+
+
+Initialization: speed up convergence
+Increase the odds of gd converging to lower training error
+Vanishing/exploding gradients
+
+Deep learning flexible enough to cause over-fitting
+
+really iterative process
+
+works on big data-slow 
+
+stochastic-loose speed up by vectorization
+batch descent- too big
+so something in between for value of batch size (64,128,256,512,1024)
+
+minibatch in CPU/GPU memory - hyperparameter
+
+
+shear number of hyperparameters (adam, b1, b2, epsilon, number of layers, hidden units; learning rate decay;
+learning rate; mini batch size)
+Learning rate- most important
+Momentum term (0.8-0.99) 0.9
+3) #hidden units
+3) mini batch size
+4) layers-learning rate decay
+
+Don't use grid search for hyperparameters;
+- choose at random: difficult to know in advance which one is more important 
+- coarse to fine sampling scheme
+-
