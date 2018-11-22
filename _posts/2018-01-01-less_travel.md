@@ -11,7 +11,7 @@ Here, I'd put together the bare minimum resources that a data scientist should g
 Data Scientist role has morphed into a concoction of skill sets. What follows is a catalog of resources divided under different skill sets. 
 
 # Mathematical Background
-There is no way around it! You need strong mathematics to be a data scientist. I usually start the interview process by asking the candidates to draw equations of commonly used functions ($$\exp(-x)$$, $$\cos(kx)$$, $$sin(kx)$$ $$\log_{k}(x),...$$). Why is this needed? Once you start on the machine learning journey, You can't go around without sigmoid functions, trend analysis, radial basis kernels and estimators using log scale. Therefore, it is important to familiarize yourself with geometry of these functions:
+There is no way around it! You need strong mathematics to be a data scientist. I usually start the interview process by asking the candidates to draw equations of commonly used functions ($$\exp(-x)$$, $$\cos(kx)$$, $$sin(kx)$$ $$\log_{k}(x),...$$). Why is this needed? Once you start on the machine learning journey, you can't go around without sigmoid functions, trend analysis, radial basis kernels and estimators using log scale. Therefore, it is important to familiarize yourself with geometry of these functions:
 
 * [An intuition of exponential functions](http://setosa.io/ev/exponentiation/){:target="_blank"}
 * [sin and cos functions](http://setosa.io/ev/sine-and-cosine/){:target="_blank"}
@@ -19,33 +19,33 @@ There is no way around it! You need strong mathematics to be a data scientist. I
 * [Activation functions in deep learning](https://www.learnopencv.com/understanding-activation-functions-in-deep-learning/){:target="_blank"}
 
 ## Calculus review
-Since, most of the machine learning models require a geometric interpretation, I'd recommend to create a geometric interpretation of mathematical concepts as well. Here, the suggested resources are provided since the explanations are provided within a geometric framework. In the links that follow, explanations are provided that help in visualizing the derivatives; critical points and using these to plot lines. You'd see that this interpretation will help you to create a deeper appreciation of optimization algorithms like **gradient descent, RMSprop and stochastic gradient descent**.
+Since, most of the machine learning models require a geometric interpretation, I'd recommend to create a geometric intuition of mathematical concepts as well. Here, the suggested resources are provided since the explanations are provided within a geometric framework. In the links that follow, explanations are provided that help in visualizing the derivatives; critical points and using these to plot lines. You'd see that this interpretation will help you to create a deeper appreciation of optimization algorithms like **gradient descent, RMSprop and stochastic gradient descent**:
 
 * [The Shape Of A Graph](http://tutorial.math.lamar.edu/Classes/CalcI/ShapeofGraphPtI.aspx){:target="_blank"}
-* [The Shape Of A Graph (Part 2)](http://tutorial.math.lamar.edu/Classes/CalcI/ShapeofGraphPtII.aspx){:target="_blank"}
+* [The Shape Of A Graph (Part 2)](http://tutorial.math.lamar.edu/Classes/CalcI/ShapeofGraphPtII.aspx){:target="_blank"}.
 
-Also, don't forget to review the chain rule:
+Also, don't forget to review the chain rule needed for back propagation algorithms:
 
-* [Chain Rule](http://tutorial.math.lamar.edu/Classes/CalcIII/ChainRule.aspx){:target="_blank"}
+* [Chain Rule](http://tutorial.math.lamar.edu/Classes/CalcIII/ChainRule.aspx){:target="_blank"}.
 
-What follows is an article of using integrals to compute areas. I find this interpretation important when working on **Monte Carlo simulations**. 
+What follows is an article of using integrals to compute areas. I find this interpretation important when working on **Monte Carlo simulations**: 
 
 * [Area between curves](http://tutorial.math.lamar.edu/Classes/CalcI/AreaBetweenCurves.aspx){:target="_blank"}
-* [Volumes using integration](http://tutorial.math.lamar.edu/Classes/CalcIII/TripleIntegrals.aspx){:target="_blank"}
+* [Volumes using integration](http://tutorial.math.lamar.edu/Classes/CalcIII/TripleIntegrals.aspx){:target="_blank"}.
 
 Here is another article that discusses integration as area and can more easily be related to **dot product** (mother of all machine learning and feature engineering).
 
 * [Integration as area](http://tutorial.math.lamar.edu/Classes/CalcI/AreaProblem.aspx){:target="_blank"}
 
-Finally, it is important to understand the interplay of integration and probability distributions.
+Finally, it is important to understand the interplay of integration and probability distributions:
 
 * [Probability density function](http://tutorial.math.lamar.edu/Classes/CalcII/Probability.aspx){:target="_blank"}
 
 If it is easier for you to follow videos instead of reading, here's the link to some exceptional visually explained lectures on Calculus: [Cal lectures](https://www.youtube.com/watch?v=WUvTyaaNkzM&list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr){:target="_blank"}. 
 
 ## Linear Algebra
-Linear algebra is the core of feature engineering; basis selection; dimensionality reduction; matrix factorization; spectral clustering; deep learning and generalized linear models to name some. Almost all the algorithms have a linear algebra interpretation to them. Therefore, it is the back bone of Machine learning and you can't do without knowing it well.
-I haven't found a resource better than Gilbert Strang's [lecture series](https://www.youtube.com/watch?v=ZK3O402wf1c&list=PL49CF3715CB9EF31D){:target="_blank"} on linear algebra. It can be arduous to follow through all of them, but do if you can. If you just want the essentials for Machine Learning from the complete course, take the following of his lectures:
+Linear algebra is the core of feature engineering; basis selection; dimensionality reduction; matrix factorization; spectral clustering; deep learning and generalized linear models to name some. Almost all the algorithms have a linear algebra interpretation to them. Therefore, it is the backbone of Machine learning.
+I haven't found a better resource than Gilbert Strang's [lecture series](https://www.youtube.com/watch?v=ZK3O402wf1c&list=PL49CF3715CB9EF31D){:target="_blank"} on linear algebra. It can be arduous to follow through all of them, but it will be highly rewarding if you do. If you just want the essentials for Machine Learning from the complete course, take the following of his lectures:
 
 * [Lec 6: Column space and null space](https://www.youtube.com/watch?v=8o5Cmfpeo6g){:target="_blank"}
 * [Lec 9: Independence, basis and Dimension](https://www.youtube.com/watch?v=yjBerM5jWsc){:target="_blank"}
@@ -56,9 +56,9 @@ I haven't found a resource better than Gilbert Strang's [lecture series](https:/
 * [Lec 29: Singular Value Decomposition](https://www.youtube.com/watch?v=Nx0lRBaXoz4){:target="_blank"}
 * [Lec 31: Change of basis](https://www.youtube.com/watch?v=vGkn-3NFGck){:target="_blank"}
 
-The [mathematical background](https://www.deeplearningbook.org/contents/linear_algebra.html){:target="_blank"} provided by Ian Goodfellow is quite thorough although somewhat dry. It is a good review nevertheless, so referring it over here. In case you are taking the selected lectures only, do go through this small series of [linear algebra lectures](https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab){:target="_blank"}. It is one of the best visualization explanation lecture series that I've come across.
+The [mathematical background](https://www.deeplearningbook.org/contents/linear_algebra.html){:target="_blank"} provided by Ian Goodfellow is quite thorough although somewhat dry. It is a good review nevertheless, so referring it over here. In case you are taking the selected lectures only, do go through this small series of [linear algebra lectures](https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab){:target="_blank"} before embarking on the selected lectures. It is one of the best visualization explanation lecture series that I've come across.
 
-Finally, these are some beautiful javascript visualizations to understand EigenValues, Eigen vectors, PCA and least squares.
+Finally, these are some beautiful javascript visualizations to understand eigenvalues, eigenvectors, PCA and least squares.
 
 * [Eigenvectors and eigenvalues](http://setosa.io/ev/eigenvectors-and-eigenvalues/){:target="_blank"}
 * [Principal Component Analysis](http://setosa.io/ev/principal-component-analysis/){:target="_blank"}
@@ -74,7 +74,7 @@ Read the first two parts of [Larry Wasserman's All of Statistics](https://www.ic
 
 # Programming
 
-The usual candidates for Data Science programming languages are Python, R and Scala. As this post is directed towards industry folks, my recommendation would be to go with Python as your primary language. Python is already used by many organizations and is a complete production ready programming language. Integration is also usually easier as it has good support of Web Frameworks and the larger engineering environment. Furthermore, TensorFlow provides a rich environment for production ready machine learning deployments and it has good high level API support of Python. PyTorch (albeit a bit behind in terms of production grade pipelines) is also written in Python. Also, if you'd look into Cloud Deployment solutions (AWS and GCP), Python support is far more than that of R (except for Azure). 
+The usual candidates for Data Science programming languages are Python, R and Scala. As this post is directed towards industry folks, my recommendation would be to go with Python as your primary language. Python is already used by many organizations and is a complete production ready programming language. Integration is also easier as it has good support of Web Frameworks and the larger engineering environment. Furthermore, TensorFlow provides a rich environment for production ready machine learning deployments and it has good high level API support of Python. PyTorch (albeit a bit behind in terms of production grade pipelines) is also written in Python. Also, if you'd look into Cloud Deployment solutions (AWS and GCP), Python support is far more than that of R (except for Azure). 
 
 You might use R in the following cases:
 
@@ -83,10 +83,10 @@ You might use R in the following cases:
 * You are working purely on a research problem; in my experience, it is faster to write a machine learning pipeline and prototyping using R as compared to Python.
 
 A final note on Statistical packages; I've started working on TensorFlow and especially [Edward2](https://medium.com/tensorflow/introducing-tensorflow-probability-dca4c304e245){:target="_blank"} programming language for statistical computation. You can write Bayesian models, MCMC problems, variational approximation methods and trainable distributions. 
-There are quite a few resources available for learning Python. I'd suggest to develop of thorough understanding of data structures and algorithms in Python instead of diving directly into 'dataframes' and 'scikit-learn'.
-This free online book provides a great resource and is replete with excellent examples on data structures and algorithms. I'd suggest to do the first seven chapters with all the sample problems: [Problem solving with algorithms and data structures](https://runestone.academy/runestone/static/pythonds/index.html){:target="_blank"}.
+There are numerous online resources available for learning Python. I'd suggest to develop of thorough understanding of data structures and algorithms in Python instead of diving directly into the world of 'dataframes' and 'scikit-learn'.
+[This]((https://runestone.academy/runestone/static/pythonds/index.html){:target="_blank"}) free online book provides a great resource and is replete with excellent examples on data structures and algorithms. I'd suggest to do the first seven chapters with all the sample problems: [Problem solving with algorithms and data structures](https://runestone.academy/runestone/static/pythonds/index.html){:target="_blank"}.
 
-Finally, I cannot stress enough to consistently sharpen your programming skills through practice. [LeetCode](https://leetcode.com){:target="_blank"} and [Coding games](https://www.codingame.com/start){:target="_blank"} are great platforms that provide interesting programming problems and games to solve, so get in a habit of solving good programming problems. 
+Finally, I cannot stress enough to consistently sharpen your programming skills through practice. [LeetCode](https://leetcode.com){:target="_blank"} and [Coding games](https://www.codingame.com/start){:target="_blank"} are great platforms that provide interesting programming problems and games to solve; so get in a habit of solving these programming problems. 
 
 # Data Engineering
 This might be a digression from pure data science. At best, you'd need a high level knowledge of data engineering pipelines so that it is easier for you to integrate your work with real time, big data systems in a secure manner. There is no alternate to real world experience; but to get the basic knowledge on data engineering, I'd suggest to take one of these data engineering certifications and follow the course work needed for that. Preparing for any one of these will give you significant understanding of the state of art technologies and infrastructure needed for data engineering pipelines. 
@@ -160,17 +160,17 @@ I've suggested one of the data engineering certification since most of the compo
 |Monitoring|Amazon CloudWatch|StackDriver Monitoring|Application Insights|Elastic Search/Solr|
 |Fully Managed ML|Amazon SageMaker|Cloud Machine Learning Engine|ML Studio|KubeFlow/Seldon.io|
 
-In addition to this I'd suggest to take the first course of the specialization [Data Science at Scale](https://www.coursera.org/specializations/data-science){:target="_blank"} to get a cursory understanding of Hadoop, Spark and big data design space. 
+In addition to this, I'd suggest to take the first course of the specialization [Data Science at Scale](https://www.coursera.org/specializations/data-science){:target="_blank"} to get a cursory understanding of Hadoop, Spark and big data design space. 
 
 # Machine Learning
 For machine learning, I'll highly recommend taking the Machine learning specialization at Coursera. It is a four course specialization that touches on all the important topics. The first course will give an overview of ML techniques and use cases. The second course will have you  implement regression, gradient descent, modifying it for ridge and lasso, feature selection and introduction to kernel regression. The third course will have implementation exercises on logistic regression, maximum likelihood, regularization, decision trees, boosting and scaling. While implementing these methods, you'd get to know quite a lot about different optimization techniques and machine learning scalability. The final course of the specialization will start from topics of information retrieval and what similarity metrics are suitable depending on use cases. It will follow with implementation details on KD-trees and locality sensitive hashing. Next section will address K-means, K-means++ and its implementation using MapReduce. This will be followed with Gaussian mixture models and expectation maximization techniques. The next week will cover Latent Dirichlet Allocation model and Gibbs Sampling. The final week will cover hierarchical clustering. Just as previous courses, you'll have to implement all of these algorithms. This is not an easy specialization and will require considerable time and attention to complete but it stands out as one of the best machine learning specialization out there. The link is given below:
 
 * [Machine learning specialization](https://www.coursera.org/specializations/machine-learning){:target="_blank"}
 
-On parallel to this specialization, you can read ["An introduction to statistical learning with applications in R"](https://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf){:target="_blank"}. Please read it thoroughly as it is an easy to read book that covers machine learning from a statistical perspective and covers a few topics not covered in ML specialization (confidence intervals in Regression; splines; SVM; QDA and linear discriminant analysis; resampling methods and Random Forests to name a few). As it is an introductory book, it is imperative to know each and every concept discuss in this. The good part is, it won't take more than a week to finish this book.
+On parallel to this specialization, you can read ["An introduction to statistical learning with applications in R"](https://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf){:target="_blank"}. Please read it thoroughly as it is an easy to read book that covers machine learning from a statistical perspective and covers a few topics not covered in ML specialization (confidence intervals in Regression; splines; SVM; QDA and linear discriminant analysis; resampling methods and Random Forests to name a few). As it is an introductory book, it is imperative to know each and every concept discussed in this. The good part is, it won't take more than a week to finish this book.
 
 # Deep Learning
-If you want to get a decent introduction to deep learning, [Deep Learning specialization](https://www.coursera.org/specializations/deep-learning){:target="_blank"} by Andrew Ng is the best resource out there. The exercises are provided so that you get to implement the key components of Deep Learning models (the code snippets are quite simple and the comments almost provide the needed code so it will be quite easy to complete these exercises). The second and third course of the specialization covers practical issues as well: including hyperparameter tuning; weight initialization; faster optimization algorithms; gradient checking; vanishing and exploding gradients and batch normalization. Once you've completed this specialization, I'd highly recommend taking [Advanced Machine Learning with TensorFlow on Google Cloud Platform Specialization](https://www.coursera.org/specializations/advanced-machine-learning-tensorflow-gcp){:target="_blank"}. This specialization covers the practical aspects of Machine learning quite well including machine learning Devops. It also covers aspects of hybrid deployments (Kubeflow); adaptable machine learning; use of managed services; TPU/GPU/CPU. If you just want the essential out of this specialization that generalizes to more than just the GCP, take the second course: [Production Machine Learning Systems](https://www.coursera.org/learn/gcp-production-ml-systems){:target="_blank"}. I've found that this specialization has provided far more advice on practical aspects of deep learning as compared to Andrew Ng's Deep learning specialization (Full disclosure: I still have to complete the last course of both of these specializations (on sequence modeling). 
+If you want to get a decent introduction to deep learning, [Deep Learning specialization](https://www.coursera.org/specializations/deep-learning){:target="_blank"} by Andrew Ng is the best resource out there. The exercises are provided so that you get to implement the key components of Deep Learning models (the code snippets are quite simple and the comments almost provide the needed code so it will be quite easy to complete these exercises). The second and third course of the specialization covers practical issues as well: including hyperparameter tuning; weight initialization; faster optimization algorithms; gradient checking; vanishing and exploding gradients and batch normalization. Once you've completed this specialization, I'd highly recommend taking [Advanced Machine Learning with TensorFlow on Google Cloud Platform Specialization](https://www.coursera.org/specializations/advanced-machine-learning-tensorflow-gcp){:target="_blank"}. This specialization covers the practical aspects of Machine learning quite well including machine learning Devops. It also covers aspects of hybrid deployments (Kubeflow); adaptable machine learning; use of managed services; TPU/GPU/CPU. If you just want the essential out of this specialization that generalizes to more than just the GCP, take the second course: [Production Machine Learning Systems](https://www.coursera.org/learn/gcp-production-ml-systems){:target="_blank"}. I've found that this specialization has provided better advice on practical aspects of deep learning as compared to Andrew Ng's Deep learning specialization (Full disclosure: I still have to complete the last course of both of these specializations (on sequence modeling). 
 
 
 ## Machine learning frameworks
