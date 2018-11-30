@@ -174,7 +174,7 @@ If you want to get a decent introduction to deep learning, [Deep Learning specia
 
 
 ## Machine learning frameworks
-For industry and production ready systems, go with TensorFlow if you are programming in Python; [H2o](https://www.h2o.ai){:target="_blank"} if you are working in R. [TensorFlow](http://tensorflow.org){:target="_blank"}, is by far, the best machine learning framework to go into production; whether you are doing cloud or on-premise deployment. Its portability means that the models can be deployed on any operating system and computing device. Whenever you are judging a machine learning platform, you need to mindful about the following watchpoints:
+For industry and production ready systems, go with TensorFlow if you are programming in Python; [H2o](https://www.h2o.ai){:target="_blank"} if you are working in R. [TensorFlow](http://tensorflow.org){:target="_blank"}, is by far, the best machine learning framework to go into production; whether you are doing cloud or on-premise deployment. Its portability means that the models can be deployed on any operating system and computing device. Whenever you are judging a machine learning platform, be mindful about the following watchpoints:
 
 1. Does it provide capability of fast prototyping?
 2. Does the framework provide model check pointing?
