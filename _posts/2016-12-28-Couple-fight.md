@@ -8,13 +8,6 @@ tags: [feature engineering,variable importance]
 
 
 
-This is an inital attempt of understanding data. I'd explain the methods selected, stuff going through my mind, and questions raised as I code and explore. 
-
-
-
-
-
-
 Reading some of the content shared, I assume that the study is intended to provide interpretable results and variable importance in predicting Zdyad_msi_globdist. This follows that instead of looking for the best model, I'd initially look into finding the most interpretable interactions using the provided features. Starting off, let's look at the story told by the Global data file.
 
 ## Global Data (generalized findings):
