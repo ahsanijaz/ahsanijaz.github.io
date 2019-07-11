@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A less trodden road to data science (Part I) 
+title: Data Science, the hard way
 date: "04/09/2018"
 tags: [Workshops, Data Science]
 image: /img/scream.jpg
