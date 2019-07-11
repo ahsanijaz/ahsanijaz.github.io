@@ -12,6 +12,9 @@ I am full stack Data Scientist, Machine Learning Researcher and Cloud Architect 
 - **Cloud Architecture** including design, development, provisioning and management of robust, secure, scalable, highly available, and dynamic solutions on cloud~(Google Cloud Certified Professional- Cloud Architect) with decent experience of on-premise deployments.
 - **Trainings** where I've led, managed and coached machine learning teams through workshops, lectures, presentations, blogging and mentor sessions.
 
+My publications can be checked at my [Google Scholar's page](https://scholar.google.com.pk/citations?user=JFhSbuEAAAAJ&hl=en). 
+
+
 <!---It's a work in progress. Here is what I do know about me, but please let me know if you know more!
 
 - Stereotypical geek; fanboy of comics, animes, mangas and fantasy novels.
