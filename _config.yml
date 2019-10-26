@@ -14,7 +14,7 @@ baseurl: ""
 # Of course don't forget to change the username and projectname to YOUR username and project
 
 # Name of website
-title: Data science
+title: Data Science
 
 # Short description of your site
 description: Big Data Analytics in Production.
@@ -40,6 +40,7 @@ navbar-links:
   Learning resources:
     - Road to Data Science: "http://ahsanijaz.github.io/2018-09-04-less_travel"
     - Machine learning Anti-patterns: "http://ahsanijaz.github.io/2019-02-10-patterns/"
+    - AWS Certified Solutions-Associate path: "http://ahsanijaz.github.io/2019-10-23-aws/" 
     - Data Science: "http://ahsanijaz.github.io/2016-10-10-usefulResources/"
 #  Author's home: "http://deanattali.com"
   About Me: "aboutme"
