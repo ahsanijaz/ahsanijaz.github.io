@@ -1,4 +1,4 @@
-FROM mangar/jekyll:1.0
+	FROM mangar/jekyll:1.0
 
 MAINTAINER Marcio Mangar "marcio.mangar@gmail.com"
 
